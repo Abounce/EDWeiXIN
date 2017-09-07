@@ -1,0 +1,3 @@
+export const SET_TITLEONE = 'SET_TITLEONE'
+
+export const SET_TITLETWO = 'SET_TITLETWO'
