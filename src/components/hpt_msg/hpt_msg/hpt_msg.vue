@@ -35,20 +35,20 @@
 
     created: function () {
       // `this` 指向 vm 实例
-      this.getdata()
+//      this.getdata()
     },
    methods:{
-     getdata:function () {
-       http.get('http://localhost:63342/EDWeiXin/ac.html?_ijt=ufvlqrs344ihjjb7dq4bk6dq04')
-         .then(function (response) {
-           console.log(response);
-         })
-         .catch(function (error) {
-           console.log(error);
-         });
-     }
+//     getdata:function () {
+//       http.get('http://localhost:63342/EDWeiXin/ac.html?_ijt=ufvlqrs344ihjjb7dq4bk6dq04')
+//         .then(function (response) {
+//           console.log(response);
+//         })
+//         .catch(function (error) {
+//           console.log(error);
+//         });
+//     }
    }
   }
 </script>
-<style lang="less" scoped>
+<style scoped lang="less" type="text/less">
 </style>
