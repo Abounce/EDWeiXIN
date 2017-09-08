@@ -1,33 +1,35 @@
 <template>
-   <div class="main">
-     <div class="search">
-     <search
-       placeholder="请输入科室或者医生名称"
-       v-model="value"
-       @on-focus="onFocus"
-       @on-cancel="onCancel"
-       @on-submit="onSubmit"
-       ref="search"></search>
-     </div>
-     <div class="docutor"></div>
-     <div class="department ">
-       <scroller lock-x height="-80">
-       <div class="department_left">
-         <ul>
-           <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)">{{tab.dpt_name}}</li>
-         </ul>
-       </div>
-       </scroller>
-       <scroller lock-x height="-80">
-       <div class="department_right">
-         <ul>
-           <li v-for="(item,index) in currenttabconts">{{item}}</li>
-         </ul>
-       </div>
-       </scroller>
-     </div>
+  <div >
+    <search
+      placeholder="请输入科室或者医生名称"
+      v-model="value"
+      @on-focus="onFocus"
+      @on-cancel="onCancel"
+      @on-submit="onSubmit"
+      ref="search"></search>
+    <div class="main">
+      <div class="docutor">
+      </div>
+      <div class="department ">
 
-   </div>
+        <scroller lock-x   class="department_left">
+
+          <ul>
+            <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)">{{tab.dpt_name}}</li>
+          </ul>
+
+        </scroller>
+        <div></div>
+        <scroller lock-x    class="department_right">
+
+          <ul>
+            <li v-for="(item,index) in currenttabconts">{{item}}</li>
+          </ul>
+
+        </scroller>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
   import { Search ,Scroller } from 'vux'
@@ -43,15 +45,18 @@
           type:0,
           dpt_data:["呼吸内科","消化内科","神经内科","心血管内科","内分泌科","免疫科"]
         },
-         {
+          {
             dpt_name:"外科",
             type:1,
-           dpt_data:["呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科"]
+            dpt_data:["呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科"]
           },
           {
             dpt_name:"儿科",
             type:2,
-            dpt_data:["呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"]
+            dpt_data:["呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
+              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
+              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
+              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"]
           },
           {
             dpt_name:"五官科",
@@ -82,7 +87,7 @@
         this.currenttabconts=tabcontents;
         console.log('当前点击了'+this.currenttype)
         console.log('当前点击数组'+this.currenttabconts)
-     }
+      }
     },
     components: {
       Search,
@@ -95,11 +100,20 @@
   }
 </script>
 <style scoped lang="less" type="text/less" >
-  .department{
+
+  .main{
     position: absolute;
-    top: 50px;
-    left: 0;
     right: 0;
+    left: 0;
+    top: 50px;
+  }
+  .docutor{
+
+    height: 100px;
+    background: red;
+  }
+  .department{
+
     display: flex;
 
     .department_left{
