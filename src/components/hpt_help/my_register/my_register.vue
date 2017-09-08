@@ -95,16 +95,6 @@
   }
 </script>
 <style scoped lang="less" type="text/less" >
-    .main{
-     position: relative;
-    }
-  .clearfix:after {
-    content: '';
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-  }
   .department{
     position: absolute;
     top: 50px;
