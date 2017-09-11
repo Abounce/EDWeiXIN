@@ -7,7 +7,7 @@ import router from './router'
 import store from './store'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
-import vConsole from 'vconsole'
+// import vConsole from 'vconsole'
 import './common/css/reset.css'
 Vue.config.productionTip = false
 FastClick.attach(document.body)

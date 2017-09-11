@@ -10,8 +10,8 @@
     <div class="main">
       <div class="docutor">
         <div class="title">挂过号的医生</div>
-        <scroller lock-y>
-        <ul>
+        <scroller lock-y >
+        <ul >
           <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
           <li><span class="name">张浩我是</span><span class="category">(儿科用用)</span></li>
           <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
@@ -24,15 +24,15 @@
       </div>
       <div class="department ">
 
-        <scroller lock-x  height="-152" class="department_left">
+        <scroller lock-x  height="-152px"  class="department_left">
 
           <ul>
-            <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)">{{tab.dpt_name}}</li>
+            <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
           </ul>
 
         </scroller>
-        <div></div>
-        <scroller lock-x  height="-152" class="department_right">
+
+        <scroller lock-x  height="-152px" class="department_right">
 
           <ul>
             <li v-for="(item,index) in currenttabconts">{{item}}</li>
@@ -44,11 +44,15 @@
   </div>
 </template>
 <script>
+
   import { Search ,Scroller } from 'vux'
+  import {getscreenWith,getscreenheight} from "../../../api/screenutils.js"
   export default {
 
     data () {
       return {
+        screenwith:0,
+        screenheight:0,
         currenttype:'',
         currenttabconts:[],
         value: '',
@@ -67,6 +71,8 @@
             type:2,
             dpt_data:["呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
               "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
+              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
+              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
               ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
               "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"]
           },
@@ -95,6 +101,7 @@
         console.log('on cancel')
       },
       choose(type,tabcontents){
+//        this.isActive=true
         this.currenttype=type;
         this.currenttabconts=tabcontents;
         console.log('当前点击了'+this.currenttype)
@@ -107,6 +114,11 @@
     },
     created(){
       this.choose(0,this.tabs[0].dpt_data)
+      console.log("宽度为"+getscreenWith())
+      this.screenwith=getscreenWith();
+      console.log("高度为"+getscreenheight())
+      this.screenheight=getscreenheight();
+
     }
 
   }
@@ -120,7 +132,6 @@
     right: 0;
     left: 0;
     top: 52px;
-
   }
   .docutor{
     height: 90px;
@@ -131,9 +142,12 @@
       padding : 14px;
     }
     ul{
+      font-size: 0;
       white-space:nowrap;//处理块元素中的空白符和换行
     }
     ul li{
+      font-size: @font-size-six;
+      margin-left: 15px;
       background-color:@color-background;
       text-align: center;
       line-height: 35px;
@@ -164,4 +178,9 @@
     }
 
   }
+  .selectleft{
+    background:@color-withe ;
+  }
+
+
 </style>
