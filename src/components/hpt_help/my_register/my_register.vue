@@ -24,7 +24,7 @@
       </div>
       <div class="department ">
 
-        <scroller lock-x  class="department_left">
+        <scroller lock-x  height="-152" class="department_left">
 
           <ul>
             <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)">{{tab.dpt_name}}</li>
@@ -32,7 +32,7 @@
 
         </scroller>
         <div></div>
-        <scroller lock-x    class="department_right">
+        <scroller lock-x  height="-152" class="department_right">
 
           <ul>
             <li v-for="(item,index) in currenttabconts">{{item}}</li>
