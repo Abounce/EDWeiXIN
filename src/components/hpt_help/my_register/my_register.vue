@@ -9,10 +9,22 @@
       ref="search"></search>
     <div class="main">
       <div class="docutor">
+        <div class="title">挂过号的医生</div>
+        <scroller lock-y>
+        <ul>
+          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+          <li><span class="name">张浩我是</span><span class="category">(儿科用用)</span></li>
+          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+        </ul>
+        </scroller>
       </div>
       <div class="department ">
 
-        <scroller lock-x   class="department_left">
+        <scroller lock-x  class="department_left">
 
           <ul>
             <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)">{{tab.dpt_name}}</li>
@@ -99,28 +111,57 @@
 
   }
 </script>
+
 <style scoped lang="less" type="text/less" >
+@import "../../../common/css/variable.less";
 
   .main{
     position: absolute;
     right: 0;
     left: 0;
-    top: 50px;
+    top: 52px;
+
   }
   .docutor{
+    height: 90px;
+    background:@color-withe;
+    /*overflow: hidden;*/
+    .title{
+      font-size:@font-size-five;
+      padding : 14px;
+    }
+    ul{
+      white-space:nowrap;//处理块元素中的空白符和换行
+    }
+    ul li{
+      background-color:@color-background;
+      text-align: center;
+      line-height: 35px;
+      display: inline-block;
+    }
 
-    height: 100px;
-    background: red;
   }
   .department{
-
+    border-top: 10px solid @color-background;
     display: flex;
-
+    li{
+      padding: 15px;
+      text-align: center;
+      font-size:@font-size-five;
+    }
     .department_left{
-      flex: 1 1 auto
+      flex: 1 ;
+      background-color:@color-background;
+      li{
+        border-bottom: 1px solid @color-withe;
+      }
     }
     .department_right{
-      flex: 1 1 auto;
+      flex: 1 ;
+      li{
+        border-bottom: 1px solid @color-fgx;
+      }
     }
+
   }
 </style>
