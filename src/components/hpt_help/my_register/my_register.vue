@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div >
     <search
       placeholder="请输入科室或者医生名称"
       v-model="value"
@@ -11,45 +11,68 @@
       <div class="docutor">
         <div class="title">挂过号的医生</div>
 
+        <!--<betterscroll class="toptitle" :data="toptitles" :scrollX="istrue" >-->
+        <div class="toptitle" ref="toptitle">
         <ul>
-          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
-          <li><span class="name">张浩我是</span><span class="category">(儿科用用)</span></li>
-          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
-          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
-          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
-          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
-          <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
+          <li v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
         </ul>
-
+        </div>
+        <!--</betterscroll>-->
       </div>
       <div class="department ">
-
-        <div class="department_left" ref="departmentleft">
+        <betterscroll class="department_left" :data="tabs">
 
           <ul >
             <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
           </ul>
 
-        </div>
+        </betterscroll>
 
-        <div  class="department_right" ref="departmentright">
-
+        <betterscroll class="department_right" :data="currenttabconts" ref="right">
           <ul>
             <li v-for="(item,index) in currenttabconts">{{item}}</li>
           </ul>
-
-        </div>
+        </betterscroll>
       </div>
     </div>
   </div>
 </template>
 <script>
   import BScroll from 'better-scroll'
+  import betterscroll from "../../common/betterscroll.vue"
   import {Search} from 'vux'
   import {getscreenWith,getscreenheight} from "../../../api/screenutils.js"
   export default {
     data () {
       return {
+        istrue:true,
+        toptitles:[{
+          name:'王凯',
+          category:"儿科"
+        },
+          {
+            name:'王凯',
+            category:"儿科"
+          },{
+            name:'王凯',
+            category:"儿科"
+          },{
+            name:'王凯',
+            category:"儿科"
+          }
+          ,{
+            name:'王凯',
+            category:"儿科"
+          },{
+            name:'王凯',
+            category:"儿科"
+          },{
+            name:'王凯',
+            category:"儿科"
+          },{
+            name:'最后一个',
+            category:"最后一个"
+          }],
         currenttype:'',
         currenttabconts:[],
         value: '',
@@ -151,19 +174,20 @@
         console.log('当前点击了'+this.currenttype)
         console.log('当前点击数组'+this.currenttabconts)
         this.$nextTick(function () {
-//          this.ascroll=  new BScroll(this.$refs.departmentleft,{});
-          this.bscroll=  new BScroll(this.$refs.departmentright,{});
+          this.$refs.right.refresh();
         })
       }
     },
     components: {
-      Search
+      Search,
+      betterscroll
     },
     created(){
        this.choose(0,this.tabs[0].dpt_data)
-      this.$nextTick(function () {
-        this.ascroll=  new BScroll(this.$refs.departmentleft,{});
-        this.bscroll=  new BScroll(this.$refs.departmentright,{});
+       this.$nextTick(function () {
+//         new BScroll(this.$refs.toptitle,{
+//           scrollX:true,
+//         })
       })
     }
 
@@ -172,6 +196,7 @@
 
 <style scoped lang="less" type="text/less" >
 @import "../../../common/css/variable.less";
+
   .main{
     position: absolute;
     right: 0;
@@ -187,8 +212,13 @@
       font-size:@font-size-five;
       padding : 14px;
     }
+    /*.toptitle{*/
+      /*overflow: hidden;*/
+      /*width: 100%;*/
+    /*}*/
     ul{
-      overflow: hidden;
+
+      overflow: auto;
       font-size: 0;
       white-space:nowrap;//处理块元素中的空白符和换行
     }
