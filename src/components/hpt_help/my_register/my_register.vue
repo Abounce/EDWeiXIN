@@ -10,8 +10,8 @@
     <div class="main">
       <div class="docutor">
         <div class="title">挂过号的医生</div>
-        <scroller lock-y >
-        <ul >
+
+        <ul>
           <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
           <li><span class="name">张浩我是</span><span class="category">(儿科用用)</span></li>
           <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
@@ -20,32 +20,33 @@
           <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
           <li><span class="name">张浩</span><span class="category">(儿科)</span></li>
         </ul>
-        </scroller>
+
       </div>
       <div class="department ">
 
-        <scroller lock-x  height="-152px"  class="department_left">
+        <div   class="department_left" ref="department_left">
 
-          <ul>
+          <ul  :style="{ height: screenheight + 'px' }">
             <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
           </ul>
 
-        </scroller>
+        </div>
 
-        <scroller lock-x  height="-152px" class="department_right">
+        <div  class="department_right" ref="department_right">
 
-          <ul>
+          <ul  :style="{ height: screenheight + 'px' }">
             <li v-for="(item,index) in currenttabconts">{{item}}</li>
           </ul>
 
-        </scroller>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 
-  import { Search ,Scroller } from 'vux'
+  import { Search } from 'vux'
+  import BScroll from 'better-scroll'
   import {getscreenWith,getscreenheight} from "../../../api/screenutils.js"
   export default {
 
@@ -110,16 +111,24 @@
     },
     components: {
       Search,
-      Scroller
     },
     created(){
       this.choose(0,this.tabs[0].dpt_data)
-      console.log("宽度为"+getscreenWith())
+      this.$nextTick(function () {
+        // Code that will run only after the
+        // entire view has been rendered
       this.screenwith=getscreenWith();
-      console.log("高度为"+getscreenheight())
-      this.screenheight=getscreenheight();
+      this.screenheight=getscreenheight()-152;
+      console.log("宽度为"+getscreenWith())
+      console.log("高度为"+this.screenheight)
+//        this.bscroll = new Bscroll(this.$refs.department_left, {});
+//      this.ascroll = new Bscroll(this.$refs.department_right, {});
 
-    }
+
+
+      })
+    },
+
 
   }
 </script>
@@ -136,12 +145,13 @@
   .docutor{
     height: 90px;
     background:@color-withe;
-    /*overflow: hidden;*/
+
     .title{
       font-size:@font-size-five;
       padding : 14px;
     }
     ul{
+      overflow: hidden;
       font-size: 0;
       white-space:nowrap;//处理块元素中的空白符和换行
     }
@@ -166,12 +176,18 @@
     .department_left{
       flex: 1 ;
       background-color:@color-background;
+      ul{
+        overflow: auto;
+      }
       li{
         border-bottom: 1px solid @color-withe;
       }
     }
     .department_right{
       flex: 1 ;
+      ul{
+        overflow: auto;
+      }
       li{
         border-bottom: 1px solid @color-fgx;
       }
