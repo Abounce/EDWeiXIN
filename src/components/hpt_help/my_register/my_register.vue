@@ -24,17 +24,17 @@
       </div>
       <div class="department ">
 
-        <div   class="department_left" ref="department_left">
+        <div class="department_left" ref="departmentleft">
 
-          <ul  :style="{ height: screenheight + 'px' }">
+          <ul >
             <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
           </ul>
 
         </div>
 
-        <div  class="department_right" ref="department_right">
+        <div  class="department_right" ref="departmentright">
 
-          <ul  :style="{ height: screenheight + 'px' }">
+          <ul>
             <li v-for="(item,index) in currenttabconts">{{item}}</li>
           </ul>
 
@@ -44,23 +44,21 @@
   </div>
 </template>
 <script>
-
-  import { Search } from 'vux'
   import BScroll from 'better-scroll'
+  import {Search} from 'vux'
   import {getscreenWith,getscreenheight} from "../../../api/screenutils.js"
   export default {
-
     data () {
       return {
-        screenwith:0,
-        screenheight:0,
         currenttype:'',
         currenttabconts:[],
         value: '',
         tabs:[{
           dpt_name:"内科",
           type:0,
-          dpt_data:["呼吸内科","消化内科","神经内科","心血管内科","内分泌科","免疫科"]
+          dpt_data:["呼吸内科","消化内科","神经内科","心血管内科","内分泌科","免疫科","消化内科","神经内科","" +
+          "心血管内科","内分泌科","免疫科","消化内科","神经内科","心血管内科","内分泌科","免疫科","消化内科","神经内科"
+            ,"心血管内科","内分泌科","免疫科","消化内科","神经内科","心血管内科","内分泌科","免疫科"]
         },
           {
             dpt_name:"外科",
@@ -86,7 +84,36 @@
             dpt_name:"中医科",
             type:4,
             dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          },  {
+            dpt_name:"中医科",
+            type:5,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          },
+          {
+            dpt_name:"中医科",
+            type:6,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          },  {
+            dpt_name:"中医科",
+            type:7,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
           }
+          ,  {
+            dpt_name:"中医科",
+            type:8,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          },
+          {
+            dpt_name:"中医科",
+            type:9,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          },
+          {
+            dpt_name:"中医科",
+            type:10,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          }
+
         ]
 
       }
@@ -107,28 +134,19 @@
         this.currenttabconts=tabcontents;
         console.log('当前点击了'+this.currenttype)
         console.log('当前点击数组'+this.currenttabconts)
+
       }
     },
     components: {
-      Search,
+      Search
     },
     created(){
       this.choose(0,this.tabs[0].dpt_data)
       this.$nextTick(function () {
-        // Code that will run only after the
-        // entire view has been rendered
-      this.screenwith=getscreenWith();
-      this.screenheight=getscreenheight()-152;
-      console.log("宽度为"+getscreenWith())
-      console.log("高度为"+this.screenheight)
-//        this.bscroll = new Bscroll(this.$refs.department_left, {});
-//      this.ascroll = new Bscroll(this.$refs.department_right, {});
-
-
-
+         new Bscroll(this.$refs.departmentleft);
+         new Bscroll(this.$refs.departmentright);
       })
-    },
-
+    }
 
   }
 </script>
@@ -141,6 +159,7 @@
     right: 0;
     left: 0;
     top: 52px;
+    bottom: 0;
   }
   .docutor{
     height: 90px;
@@ -167,6 +186,12 @@
   }
   .department{
     border-top: 10px solid @color-background;
+    top:100px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    overflow:hidden;
     display: flex;
     li{
       padding: 15px;
@@ -176,18 +201,12 @@
     .department_left{
       flex: 1 ;
       background-color:@color-background;
-      ul{
-        overflow: auto;
-      }
       li{
         border-bottom: 1px solid @color-withe;
       }
     }
     .department_right{
       flex: 1 ;
-      ul{
-        overflow: auto;
-      }
       li{
         border-bottom: 1px solid @color-fgx;
       }
