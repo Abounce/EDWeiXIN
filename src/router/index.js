@@ -15,6 +15,12 @@ const My_register = (resolve) => {
   })
 }
 
+const See = (resolve) => {
+  import('../components/hpt_help/report_see/see.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 export default new Router({
   routes: [
@@ -26,6 +32,10 @@ export default new Router({
       path: '/register',
       component: My_register
     },
+    {
+      path: '/seedemo',
+      component: See
+    }
 
   ]
 })

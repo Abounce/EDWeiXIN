@@ -1,5 +1,5 @@
 <template>
-  <div >
+   <div>
     <search
       placeholder="请输入科室或者医生名称"
       v-model="value"
@@ -111,8 +111,24 @@
           {
             dpt_name:"中医科",
             type:10,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
+          },
+          {
+            dpt_name:"中医科",
+            type:11,
+            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科"]
+          },
+          {
+            dpt_name:"儿科",
+            type:12,
+            dpt_data:["呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
+              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
+              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
+              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
+              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
+              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","末尾"]
           }
+
 
         ]
 
@@ -129,22 +145,25 @@
         console.log('on cancel')
       },
       choose(type,tabcontents){
-//        this.isActive=true
+
         this.currenttype=type;
         this.currenttabconts=tabcontents;
         console.log('当前点击了'+this.currenttype)
         console.log('当前点击数组'+this.currenttabconts)
-
+        this.$nextTick(function () {
+//          this.ascroll=  new BScroll(this.$refs.departmentleft,{});
+          this.bscroll=  new BScroll(this.$refs.departmentright,{});
+        })
       }
     },
     components: {
       Search
     },
     created(){
-      this.choose(0,this.tabs[0].dpt_data)
+       this.choose(0,this.tabs[0].dpt_data)
       this.$nextTick(function () {
-         new Bscroll(this.$refs.departmentleft);
-         new Bscroll(this.$refs.departmentright);
+        this.ascroll=  new BScroll(this.$refs.departmentleft,{});
+        this.bscroll=  new BScroll(this.$refs.departmentright,{});
       })
     }
 
@@ -153,7 +172,6 @@
 
 <style scoped lang="less" type="text/less" >
 @import "../../../common/css/variable.less";
-
   .main{
     position: absolute;
     right: 0;
