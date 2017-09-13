@@ -10,14 +10,13 @@
     <div class="main">
       <div class="docutor">
         <div class="title">挂过号的医生</div>
-
-        <!--<betterscroll class="toptitle" :data="toptitles" :scrollX="istrue" >-->
-        <div class="toptitle" ref="toptitle">
-        <ul>
-          <li v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
-        </ul>
-        </div>
-        <!--</betterscroll>-->
+        <betterscroll class="titlecenter" :data="toptitles" :scrollX="true">
+          <div class="tiltleinner"  :style="{  width:tatalheightz+'px' }">
+            <ul  class="ulwidth">
+             <li  v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
+            </ul>
+          </div>
+        </betterscroll>
       </div>
       <div class="department ">
         <betterscroll class="department_left" :data="tabs">
@@ -38,13 +37,13 @@
   </div>
 </template>
 <script>
-  import BScroll from 'better-scroll'
   import betterscroll from "../../common/betterscroll.vue"
   import {Search} from 'vux'
   import {getscreenWith,getscreenheight} from "../../../api/screenutils.js"
   export default {
     data () {
       return {
+        tatalheightz:0,
         istrue:true,
         toptitles:[{
           name:'王凯',
@@ -69,9 +68,6 @@
           },{
             name:'王凯',
             category:"儿科"
-          },{
-            name:'最后一个',
-            category:"最后一个"
           }],
         currenttype:'',
         currenttabconts:[],
@@ -152,7 +148,6 @@
               "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","末尾"]
           }
 
-
         ]
 
       }
@@ -184,12 +179,21 @@
     },
     created(){
        this.choose(0,this.tabs[0].dpt_data)
-       this.$nextTick(function () {
-//         new BScroll(this.$refs.toptitle,{
-//           scrollX:true,
-//         })
+
+    },
+    mounted(){
+      this.$nextTick(function () {
+        let itemwidth = document.getElementsByClassName("ulwidth")[0].firstChild.clientWidth;
+        console.log('宽度为'+itemwidth)
+        let tatalheight=0;
+        let nums=this.toptitles.length;
+        tatalheight=itemwidth*nums
+        console.log('总宽度为'+tatalheight)
+        this.tatalheightz=tatalheight+100
+
       })
-    }
+    },
+
 
   }
 </script>
@@ -207,29 +211,30 @@
   .docutor{
     height: 90px;
     background:@color-withe;
-
     .title{
       font-size:@font-size-five;
       padding : 14px;
     }
-    /*.toptitle{*/
-      /*overflow: hidden;*/
-      /*width: 100%;*/
-    /*}*/
-    ul{
+    .titlecenter{
+      overflow: hidden;
+      width: 100%;
+      .tiltleinner{
+        ul{
+          font-size: 0;
+          white-space:nowrap;//处理块元素中的空白符和换行
+          li{
+            font-size: @font-size-six;
+            margin-left: 15px;
+            background-color:@color-background;
+            text-align: center;
+            line-height: 35px;
+            display: inline-block;
+          }
+        }
+      }
+    }
 
-      overflow: auto;
-      font-size: 0;
-      white-space:nowrap;//处理块元素中的空白符和换行
-    }
-    ul li{
-      font-size: @font-size-six;
-      margin-left: 15px;
-      background-color:@color-background;
-      text-align: center;
-      line-height: 35px;
-      display: inline-block;
-    }
+
 
   }
   .department{
