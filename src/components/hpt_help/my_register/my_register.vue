@@ -1,12 +1,15 @@
 <template>
    <div >
-    <search
-      placeholder="请输入科室或者医生名称"
-      v-model="value"
-      @on-focus="onFocus"
-      @on-cancel="onCancel"
-      @on-submit="onSubmit"
-      ref="search"></search>
+     <search
+       @result-click="resultClick"
+       @on-change="getResult"
+       :results="results"
+       v-model="value"
+       position="absolute"
+       @on-focus="onFocus"
+       @on-cancel="onCancel"
+       @on-submit="onSubmit"
+       ref="search"></search>
     <div class="main">
       <div class="docutor">
         <div class="title">挂过号的医生</div>
@@ -43,6 +46,7 @@
   export default {
     data () {
       return {
+        results: [],
         tatalheightz:0,
         istrue:true,
         toptitles:[{
@@ -153,11 +157,25 @@
       }
     },
     methods: {
+      setFocus () {
+        this.$refs.search.setFocus()
+      },
+      resultClick (item) {
+        window.alert('you click the result item: ' + JSON.stringify(item))
+      },
+      getResult (val) {
+        this.results = val ? getResult(this.value) : []
+      },
       onSubmit () {
-        console.log('on submit')
+        this.$refs.search.setBlur()
+        this.$vux.toast.show({
+          type: 'text',
+          position: 'top',
+          text: 'on submit'
+        })
       },
       onFocus () {
-        console.log('on onfocus')
+        console.log('on focus')
       },
       onCancel () {
         console.log('on cancel')
@@ -195,6 +213,16 @@
     },
 
 
+  }
+  function getResult (val) {
+    let rs = []
+    for (let i = 0; i < 20; i++) {
+      rs.push({
+        title: `${val} result: ${i + 1} `,
+        other: i
+      })
+    }
+    return rs
   }
 </script>
 
