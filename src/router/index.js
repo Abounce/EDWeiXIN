@@ -9,8 +9,8 @@ const Hpt_msg = (resolve) => {
   })
 }
 
-const My_register = (resolve) => {
-  import('../components/hpt_help/my_register/my_register.vue').then((module) => {
+const Choosedpt = (resolve) => {
+  import('../components/hpt_help/my_register/choose_dpt.vue').then((module) => {
     resolve(module)
   })
 }
@@ -29,8 +29,8 @@ export default new Router({
       component: Hpt_msg
     },
     {
-      path: '/register',
-      component: My_register
+      path: '/choosedpt',
+      component: Choosedpt
     },
     {
       path: '/seedemo',
