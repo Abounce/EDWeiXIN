@@ -15,6 +15,17 @@ const Choosedpt = (resolve) => {
   })
 }
 
+const Choosedptdate = (resolve) => {
+  import('../components/hpt_help/my_register/choose_dpt_date.vue').then((module) => {
+    resolve(module)
+  })
+}
+const Choosedptdoctor = (resolve) => {
+  import('../components/hpt_help/my_register/choose_dpt_doctor.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 const See = (resolve) => {
   import('../components/hpt_help/report_see/see.vue').then((module) => {
     resolve(module)
@@ -31,6 +42,14 @@ export default new Router({
     {
       path: '/choosedpt',
       component: Choosedpt
+    },
+    {
+      path: '/choosedptdate',
+      component: Choosedptdate
+    },
+    {
+      path: '/choosedptdoctor',
+      component: Choosedptdoctor
     },
     {
       path: '/seedemo',

@@ -59,4 +59,12 @@
   //说明文本
 @font-size-seven:15px;
 
+ .bgimage(@bg_url){
+   background:url('../image/image@2x/@{bg_url}@2x.png') no-repeat 0 0;
+   @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+     background:url('../image/image@3x/@{bg_url}@3x.png') no-repeat 0 0;
+   }
+ }
+
+
 

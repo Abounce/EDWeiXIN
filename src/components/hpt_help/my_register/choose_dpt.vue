@@ -1,3 +1,4 @@
+<!--选择科室-->
 <template>
    <div >
      <search
@@ -16,7 +17,7 @@
         <betterscroll class="titlecenter" :data="toptitles" :scrollX="true">
           <div class="tiltleinner"  :style="{  width:tatalheightz+'px' }">
             <ul  class="ulwidth">
-             <li  v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
+             <li  @click="select_doctor"  v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
             </ul>
           </div>
         </betterscroll>
@@ -32,7 +33,7 @@
 
         <betterscroll class="department_right" :data="currenttabconts" ref="right">
           <ul>
-            <li v-for="(item,index) in currenttabconts">{{item}}</li>
+            <li @click="select_date"  v-for="(item,index) in currenttabconts">{{item}}</li>
           </ul>
         </betterscroll>
       </div>
@@ -40,9 +41,8 @@
   </div>
 </template>
 <script>
-  import betterscroll from "../../common/betterscroll.vue"
+  import betterscroll from "../../../common/component/betterscroll.vue"
   import {Search} from 'vux'
-  import {getscreenWith,getscreenheight} from "../../../api/screenutils.js"
   export default {
     data () {
       return {
@@ -157,6 +157,12 @@
       }
     },
     methods: {
+      select_doctor(){
+        this.$router.push({ path: 'choosedptdoctor' })
+      },
+      select_date(){
+        this.$router.push({ path: 'choosedptdate' })
+      },
       setFocus () {
         this.$refs.search.setFocus()
       },
