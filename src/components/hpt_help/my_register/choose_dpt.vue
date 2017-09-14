@@ -253,6 +253,7 @@
       overflow: hidden;
       width: 100%;
       .tiltleinner{
+
         ul{
           font-size: 0;
           white-space:nowrap;//处理块元素中的空白符和换行
