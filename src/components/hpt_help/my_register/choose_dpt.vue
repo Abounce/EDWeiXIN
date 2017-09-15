@@ -15,9 +15,9 @@
       <div class="docutor">
         <div class="title">挂过号的医生</div>
         <betterscroll class="titlecenter" :data="toptitles" :scrollX="true">
-          <div class="tiltleinner"  :style="{  width:tatalheightz+'px' }">
-            <ul  class="ulwidth">
-             <li  @click="select_doctor"  v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
+          <div class="tiltleinner" :style="{  width:tatalwidthz+'px' }">
+            <ul >
+             <li  class="ulwidth"  @click="select_doctor"  v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
             </ul>
           </div>
         </betterscroll>
@@ -43,11 +43,12 @@
 <script>
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {Search} from 'vux'
+  import {getElementWidth} from"../../../api/utils.js"
   export default {
     data () {
       return {
         results: [],
-        tatalheightz:0,
+        tatalwidthz:0,
         istrue:true,
         toptitles:[{
           name:'王凯',
@@ -71,6 +72,10 @@
             category:"儿科"
           },{
             name:'王凯',
+            category:"儿科"
+          }
+          ,{
+            name:'最后一个',
             category:"儿科"
           }],
         currenttype:'',
@@ -207,14 +212,15 @@
     },
     mounted(){
       this.$nextTick(function () {
-        let itemwidth = document.getElementsByClassName("ulwidth")[0].firstChild.clientWidth;
-        console.log('宽度为'+itemwidth)
-        let tatalheight=0;
-        let nums=this.toptitles.length;
-        tatalheight=itemwidth*nums
-        console.log('总宽度为'+tatalheight)
-        this.tatalheightz=tatalheight+100
-
+//        let itemwidth = document.getElementsByClassName("ulwidth")[0].firstChild.clientWidth;
+//        console.log('宽度为'+itemwidth)
+//        let tatalheight=0;
+//        let nums=this.toptitles.length;
+//        tatalheight=itemwidth*nums
+//        console.log('总宽度为'+tatalheight)
+//        this.tatalheightz=tatalheight+100
+        let ulwidth = getElementWidth("ulwidth");
+        this.tatalwidthz=ulwidth
       })
     },
 

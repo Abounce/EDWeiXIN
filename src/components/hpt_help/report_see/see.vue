@@ -1,51 +1,96 @@
+<!--选择挂号日期-->
 <template>
-
-  <div class="wrapper" ref="wrapper">
-    <div class="scroller" >
-      <ul>
-        <li>Cell 1</li>
-        <li>Cell 2</li>
-        <li>Cell 3</li>
-        <li>Cell 4</li>
-        <li>Cell 5</li>
-        <li>Cell 6</li>
-        <li>Cell 7</li>
-        <li>Cell 8</li>
-        <li>Cell 9</li>
-        <li>Cell 10</li>
-      </ul>
-    </div>
+  <div>
+    <betterscroll class="wrapper" :scrollX="true" :data="tabs">
+      <div class="inner" :style="{ width:tatalwith+'px' }">
+        <ul >
+          <li v-for="(tab,index) in tabs" class="liwidth" >
+            <div class="date">{{tab.date}}</div>
+            <div class="week">{{tab.week}}</div>
+          </li>
+        </ul>
+      </div>
+    </betterscroll>
+    <betterscroll class="doctor" :scrollX="true" >
+      <div class="doctor-inner">
+        <ul>
+          <li>
+            <div class="doctor-img">
+              <img src="" alt="">
+            </div>
+            <div class="doctor-introduce">
+              <div class="doctor-name"></div>
+              <div class="doctor-grade"></div>
+              <div class="doctor-skill"></div>
+            </div>
+            <div class="right">
+              <div class="ritht-button"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </betterscroll>
   </div>
 
 </template>
 
 <script>
-  import BScroll from 'better-scroll'
+  import betterscroll from "../../../common/component/betterscroll.vue"
+  import {getElementWidth} from"../../../api/utils.js"
   export default {
-    created(){
+    data(){
+      return{
+        tatalwith:0,
+        tabs:[{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},
+          {date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"}]
+      }
+    },
+    components: {
+      betterscroll
+    },
+    mounted(){
       this.$nextTick(function () {
-        new BScroll(this.$refs.wrapper, { scrollX: true});
+        let liwidths = getElementWidth("liwidth");
+        this.tatalwith=liwidths;
       })
     }
   }
 </script>
 
 <style scoped lang="less" type="text/less">
-   .wrapper{
-     width: 100%;
-     overflow: hidden;
-     .scroller{
-         width: 1000px;
-       ul{
-         white-space: nowrap;
-         li{
-           height: 90px;
-           width: 90px;
-           display: inline-block;
-         }
-       }
-     }
-   }
+  @import "../../../common/css/variable.less";
+  .wrapper{
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    .inner{
+      ul{
+        white-space: nowrap;
+        font-size: 0;
+        li{
+          font-size: 13px;
+          margin-left: 15px;
+          text-align: center;
+          line-height: 25px;
+          display: inline-block;
+          .date{
+            height: 25px;
+          }
+          .week{
+            height: 25px;
+          }
+        }
+      }
+    }
+  }
+  .doctor{
+    position: absolute;
+    top:60px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: red;
 
+  }
 
 </style>
