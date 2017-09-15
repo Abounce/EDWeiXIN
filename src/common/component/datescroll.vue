@@ -1,5 +1,5 @@
 <template>
-
+<div>
   <betterscroll class="wrapper" :scrollX="true" :data="tabss" >
     <div class="inner" :style="{ width:tatalwith+'px' }">
       <ul >
@@ -11,6 +11,7 @@
       </ul>
     </div>
   </betterscroll>
+</div>
 
 </template>
 

@@ -1,16 +1,8 @@
 <!--选择挂号日期-->
 <template>
   <div>
-    <betterscroll class="wrapper" :scrollX="true" :data="tabs" >
-      <div class="inner" :style="{ width:tatalwith+'px' }">
-        <ul >
-          <li v-for="(tab,index) in tabs" class="liwidth" @click="setindex(index,tab.doctors)">
-            <div class="date">{{tab.date}}</div>
-            <div class="week">{{tab.week}}</div>
-          </li>
-        </ul>
-      </div>
-    </betterscroll>
+    <datescroll :tabss="tabs" @setdoctor="setdoctor"></datescroll>
+
     <betterscroll class="doctor" :data="currentdoctors" >
       <ul>
         <li v-for="(doctor,index) in currentdoctors">
@@ -34,8 +26,8 @@
 </template>
 
 <script>
+  import datescroll from "../../../common/component/datescroll.vue"
   import betterscroll from "../../../common/component/betterscroll.vue"
-  import {getElementWidth} from"../../../api/utils.js"
   export default {
     data(){
       return{
@@ -540,51 +532,25 @@
             skill:"呼吸道感染",
             ticket:"30"
           }]}],
+
       }
     },
     components: {
+      datescroll,
       betterscroll
     },
-    mounted(){
-      this.$nextTick(function () {
-        let liwidths = getElementWidth("liwidth");
-        this.tatalwith=liwidths;
-      })
-    },
     methods:{
-      setindex(index,docoto){
-        this.currentdoctors=docoto;
+      setdoctor(index,docto){
+        console.log("我是从子组件传过来的数据"+index);
+        this.currentdoctors=docto
       }
     }
+
   }
 </script>
 
 <style scoped lang="less" type="text/less">
   @import "../../../common/css/variable.less";
-  .wrapper{
-    width: 100%;
-    height: 50px;
-    overflow: hidden;
-    .inner{
-      ul{
-        white-space: nowrap;
-        font-size: 0;
-        li{
-          font-size: 13px;
-          margin-left: 15px;
-          text-align: center;
-          line-height: 25px;
-          display: inline-block;
-          .date{
-            height: 25px;
-          }
-          .week{
-            height: 25px;
-          }
-        }
-      }
-    }
-  }
   .doctor{
     position: absolute;
     top:60px;
