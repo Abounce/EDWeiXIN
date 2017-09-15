@@ -3,7 +3,8 @@
   <betterscroll class="wrapper" :scrollX="true" :data="tabss" >
     <div class="inner" :style="{ width:tatalwith+'px' }">
       <ul >
-        <li v-for="(tab,index) in tabss" class="liwidth" >
+        <li v-for="(tab,index) in tabss" class="liwidth" @click="setindex(index,tab.doctors)">
+
           <div class="date">{{tab.date}}</div>
           <div class="week">{{tab.week}}</div>
         </li>
@@ -22,7 +23,10 @@
         tatalwith:0,
       }
     },
-    props:["tabss"],
+    props:{
+      tabss:null,
+
+    },
     components: {
       betterscroll
     },
@@ -31,6 +35,11 @@
         let liwidths = getElementWidth("liwidth");
         this.tatalwith=liwidths;
       })
+    },
+    methods:{
+      setindex(index,docoto){
+        this.$emit("setdoctor",index,docoto)
+      }
     }
   }
 </script>
