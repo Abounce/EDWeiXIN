@@ -1,12 +1,11 @@
 <!--选择科室-->
 <template>
-   <div >
+   <div>
      <search
        @result-click="resultClick"
        @on-change="getResult"
        :results="results"
        v-model="value"
-       position="absolute"
        @on-focus="onFocus"
        @on-cancel="onCancel"
        @on-submit="onSubmit"
@@ -14,26 +13,26 @@
     <div class="main">
       <div class="docutor">
         <div class="title">挂过号的医生</div>
-        <betterscroll class="titlecenter" :data="toptitles" :scrollX="true">
-          <div class="tiltleinner"  :style="{  width:tatalwidhtz+'px' }">
+        <betterscroll class="titlecenter" :data="doctorpastlist" :scrollX="true">
+          <div class="tiltleinner"  :style="{  width: horizontalwidth+'px' }">
             <ul >
-             <li  @click="select_doctor"   class="liwidth" v-for="(tab,index) in toptitles"><span class="name">{{tab.name}}</span><span class="category">({{tab.category}})</span></li>
+             <li @click="select_doctor"   class="liwidth" v-for="(item,index) in doctorpastlist"><span class="name">{{item.docName}}</span><span class="category">({{item.departName}})</span></li>
             </ul>
           </div>
         </betterscroll>
       </div>
       <div class="department ">
-        <betterscroll class="department_left" :data="tabs">
+        <betterscroll class="department_left" :data="departlist">
 
           <ul >
-            <li  v-for="(tab,index) in tabs"  @click="choose(index,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
+            <li  v-for="(item,index) in departlist"  @click="choose(index,item.data)" :class="{selectleft:currentitem===index}">{{item.departName}}</li>
           </ul>
 
         </betterscroll>
 
-        <betterscroll class="department_right" :data="currenttabconts" ref="right">
+        <betterscroll class="department_right" :data="departlistright" ref="right">
           <ul>
-            <li @click="select_date"  v-for="(item,index) in currenttabconts">{{item}}</li>
+            <li @click="select_date"  v-for="(item,index) in departlistright">{{item.departName}}</li>
           </ul>
         </betterscroll>
       </div>
@@ -48,115 +47,14 @@
     data () {
       return {
         results: [],
-        tatalwidhtz:0,
-        istrue:true,
-        toptitles:[{
-          name:'王凯',
-          category:"儿科"
-        },
-          {
-            name:'王凯',
-            category:"儿科"
-          },{
-            name:'王凯',
-            category:"儿科"
-          },{
-            name:'王凯',
-            category:"儿科"
-          }
-          ,{
-            name:'王凯',
-            category:"儿科"
-          },{
-            name:'王凯',
-            category:"儿科"
-          },{
-            name:'王凯',
-            category:"儿科"
-          },{
-            name:'最后一个王凯',
-            category:"儿科"
-          }],
-        currenttype:'',
-        currenttabconts:[],
         value: '',
-        tabs:[{
-          dpt_name:"内科",
-          type:0,
-          dpt_data:["呼吸内科","消化内科","神经内科","心血管内科","内分泌科","免疫科","消化内科","神经内科","" +
-          "心血管内科","内分泌科","免疫科","消化内科","神经内科","心血管内科","内分泌科","免疫科","消化内科","神经内科"
-            ,"心血管内科","内分泌科","免疫科","消化内科","神经内科","心血管内科","内分泌科","免疫科"]
-        },
-          {
-            dpt_name:"外科",
-            type:1,
-            dpt_data:["呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科","呼吸外科"]
-          },
-          {
-            dpt_name:"儿科",
-            type:2,
-            dpt_data:["呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
-              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
-              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
-              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
-              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
-              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"]
-          },
-          {
-            dpt_name:"五官科",
-            type:3,
-            dpt_data:["呼吸五官科","呼吸五官科","呼吸五官科科","呼吸五官科","呼吸五官科","呼吸五官科"]
-          },
-          {
-            dpt_name:"中医科",
-            type:4,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          },  {
-            dpt_name:"中医科",
-            type:5,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          },
-          {
-            dpt_name:"中医科",
-            type:6,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          },  {
-            dpt_name:"中医科",
-            type:7,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          }
-          ,  {
-            dpt_name:"中医科",
-            type:8,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          },
-          {
-            dpt_name:"中医科",
-            type:9,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          },
-          {
-            dpt_name:"中医科",
-            type:10,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科"]
-          },
-          {
-            dpt_name:"中医科",
-            type:11,
-            dpt_data:["呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸儿科","呼吸中医科","呼吸中医科","呼吸中医科","呼吸中医科"]
-          },
-          {
-            dpt_name:"儿科",
-            type:12,
-            dpt_data:["呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
-              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
-              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
-              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科"
-              ,"呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科",
-              "呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","呼吸儿科","末尾"]
-          }
 
-        ]
+        doctorpastlist:[],
+        horizontalwidth:0,
+
+        departlist:[],
+        currentitem:0,
+        departlistright:[],
 
       }
     },
@@ -168,21 +66,42 @@
         this.$router.push({ path: 'choosedptdate' })
       },
       setFocus () {
-        this.$refs.search.setFocus()
+//        this.$refs.search.setFocus()
+        console.log('on setfocus')
       },
       resultClick (item) {
-        window.alert('you click the result item: ' + JSON.stringify(item))
+        var data = JSON.stringify(item);
+        window.alert('you click the result item: ' + JSON.parse(data).title)
+
+
       },
       getResult (val) {
-        this.results = val ? getResult(this.value) : []
+//        this.results = val ? getResult(this.value) : []
+//        this.results = val ?[{title:"第一列"},{title:"第二列"},{title:"第三列"},{title:"第四列"}]: []
+        if(val){
+          let word={keyWord:val}
+          this.$api.getdoctorlist(word).then(data=>{
+             var length = data.length;
+             for(let i=0;i<length;i++){
+               this.results.push({
+                 title:data[i].docName,
+//                 other: i
+               })
+
+             }
+          });
+        }else {
+          this.results=[];
+        }
       },
       onSubmit () {
-        this.$refs.search.setBlur()
-        this.$vux.toast.show({
-          type: 'text',
-          position: 'top',
-          text: 'on submit'
-        })
+//        this.$refs.search.setBlur()
+//        this.$vux.toast.show({
+//          type: 'text',
+//          position: 'top',
+//          text: 'on submit'
+//        })
+        console.log('on Submit')
       },
       onFocus () {
         console.log('on focus')
@@ -190,12 +109,12 @@
       onCancel () {
         console.log('on cancel')
       },
-      choose(type,tabcontents){
+      choose(index,departlistright){
 
-        this.currenttype=type;
-        this.currenttabconts=tabcontents;
-        console.log('当前点击了'+this.currenttype)
-        console.log('当前点击数组'+this.currenttabconts)
+        this.currentitem=index;
+        this.departlistright=departlistright;
+//        console.log('当前点击了'+this.currentitem)
+//        console.log('当前点击数组'+this.departlistright)
         this.$nextTick(function () {
           this.$refs.right.refresh();
         })
@@ -205,21 +124,29 @@
       Search,
       betterscroll
     },
-    created(){
-
-    },
     mounted(){
       this.$nextTick(function () {
 
-       this.choose(0,this.tabs[0].dpt_data)
-       this.tatalwidhtz= getElementWidth("liwidth")
-        this.$api.login().then(data=>{
-          console.log(data)
-//          this.tabs=data;
-        })
-      })
-    },
+        this.$api.getdepartlist().then(data=>{
+//          console.log(data)
+          this.departlist=data;
+          this.$nextTick(function () {
 
+          this.choose(0,this.departlist[0].data)
+          })
+        });
+
+        this.$api.getdoctorpastlist().then(data=>{
+//          console.log(data)
+            this.doctorpastlist=data;
+            this.$nextTick(function () {
+            this.horizontalwidth= getElementWidth("liwidth")
+           })
+
+        });
+      })
+
+    },
 
   }
   function getResult (val) {
@@ -260,7 +187,7 @@
           font-size: 0;
           white-space:nowrap;//处理块元素中的空白符和换行
           li{
-            font-size: @font-size-six;
+            font-size:15px;
             margin-left: 15px;
             background-color:@color-background;
             text-align: center;
@@ -286,7 +213,7 @@
     li{
       padding: 15px;
       text-align: center;
-      font-size:@font-size-five;
+      font-size:17px;
     }
     .department_left{
       flex: 1 ;
