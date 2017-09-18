@@ -71,6 +71,7 @@
       },
       resultClick (item) {
         var data = JSON.stringify(item);
+
         window.alert('you click the result item: ' + JSON.parse(data).title)
 
 
