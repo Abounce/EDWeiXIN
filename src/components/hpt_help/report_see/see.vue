@@ -1,96 +1,74 @@
-<!--选择挂号日期-->
 <template>
   <div>
-    <betterscroll class="wrapper" :scrollX="true" :data="tabs">
-      <div class="inner" :style="{ width:tatalwith+'px' }">
-        <ul >
-          <li v-for="(tab,index) in tabs" class="liwidth" >
-            <div class="date">{{tab.date}}</div>
-            <div class="week">{{tab.week}}</div>
-          </li>
-        </ul>
-      </div>
-    </betterscroll>
-    <betterscroll class="doctor" :scrollX="true" >
-      <div class="doctor-inner">
-        <ul>
-          <li>
-            <div class="doctor-img">
-              <img src="" alt="">
-            </div>
-            <div class="doctor-introduce">
-              <div class="doctor-name"></div>
-              <div class="doctor-grade"></div>
-              <div class="doctor-skill"></div>
-            </div>
-            <div class="right">
-              <div class="ritht-button"></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </betterscroll>
-  </div>
+    <scroll ref="scroll"
+            :data="items"
 
+            :pullDownRefresh="pullDownRefreshObj"
+
+            @pullingDown="onPullingDown"
+           >
+    </scroll>
+    </div>
 </template>
-
 <script>
-  import betterscroll from "../../../common/component/betterscroll.vue"
-  import {getElementWidth} from"../../../api/utils.js"
+  import Scroll from "../../../common/component/scroll.vue"
+  const _data = [
+    '我是第 1 行',
+    '我是第 2 行',
+    '我是第 3 行',
+    '我是第 4 行',
+    '我是第 5 行',
+    '我是第 6 行',
+    '我是第 7 行',
+    '我是第 8 行',
+    '我是第 9 行',
+    '我是第 10 行',
+    '我是第 11 行',
+    '我是第 12 行',
+    '我是第 13 行',
+    '我是第 14 行',
+    '我是第 15 行',
+    '我是第 16 行',
+    '我是第 17 行',
+    '我是第 18 行',
+    '我是第 19 行',
+    '我是第 20 行'
+  ]
   export default {
-    data(){
-      return{
-        tatalwith:0,
-        tabs:[{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},
-          {date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"},{date:"08-29",week:"星期一"}]
+    data() {
+      return {
+        pullDownRefreshObj:true,
+        items: _data,
       }
-    },
-    components: {
-      betterscroll
     },
     mounted(){
       this.$nextTick(function () {
-        let liwidths = getElementWidth("liwidth");
-        this.tatalwith=liwidths;
+
       })
+    },
+    components: {
+      Scroll,
+    },
+    methods:{
+      onPullingDown() {
+        // 模拟更新数据
+        console.log('pulling down and load data')
+        setTimeout(() => {
+          if (Math.random() > 0.5) {
+            // 如果有新数据
+            this.items.unshift('我是新数据: ' + +new Date())
+          } else {
+            // 如果没有新数据
+            this.$refs.scroll.forceUpdate()
+          }
+        }, 1000)
+      },
     }
+
+
+
   }
 </script>
-
 <style scoped lang="less" type="text/less">
-  @import "../../../common/css/variable.less";
-  .wrapper{
-    width: 100%;
-    height: 50px;
-    overflow: hidden;
-    .inner{
-      ul{
-        white-space: nowrap;
-        font-size: 0;
-        li{
-          font-size: 13px;
-          margin-left: 15px;
-          text-align: center;
-          line-height: 25px;
-          display: inline-block;
-          .date{
-            height: 25px;
-          }
-          .week{
-            height: 25px;
-          }
-        }
-      }
-    }
-  }
-  .doctor{
-    position: absolute;
-    top:60px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: red;
 
-  }
-
-</style>
+  </style>

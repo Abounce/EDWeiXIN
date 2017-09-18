@@ -26,7 +26,7 @@
         <betterscroll class="department_left" :data="tabs">
 
           <ul >
-            <li  v-for="(tab,index) in tabs"  @click="choose(tab.type,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
+            <li  v-for="(tab,index) in tabs"  @click="choose(index,tab.dpt_data)" :class="{selectleft:currenttype===index}">{{tab.dpt_name}}</li>
           </ul>
 
         </betterscroll>
@@ -206,13 +206,17 @@
       betterscroll
     },
     created(){
-       this.choose(0,this.tabs[0].dpt_data)
 
     },
     mounted(){
       this.$nextTick(function () {
 
+       this.choose(0,this.tabs[0].dpt_data)
        this.tatalwidhtz= getElementWidth("liwidth")
+        this.$api.login().then(data=>{
+          console.log(data)
+//          this.tabs=data;
+        })
       })
     },
 

@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
+import * as api from './api/api'
 // import vConsole from 'vconsole'
 import './common/css/reset.css'
 Vue.config.productionTip = false
@@ -15,6 +16,7 @@ FastClick.attach(document.body)
 Vue.use(VueLazyload, {
   loading: require('./common/image/default.png')
 })
+Vue.prototype.$api = api;
 
 /* eslint-disable no-new */
 new Vue({
