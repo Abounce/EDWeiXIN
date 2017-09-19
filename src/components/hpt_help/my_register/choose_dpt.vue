@@ -2,6 +2,7 @@
 <template>
    <div>
      <search
+       placeholder="请输入科室名称或者医生名称"
        @result-click="resultClick"
        @on-change="getResult"
        :results="results"
@@ -13,13 +14,15 @@
     <div class="main">
       <div class="docutor">
         <div class="title">挂过号的医生</div>
-        <betterscroll class="titlecenter" :data="doctorpastlist" :scrollX="true">
+        <betterscroll class="titlecenter" :data="doctorpastlist" :scrollX="true" v-if="doctorpastlist.length">
           <div class="tiltleinner"  :style="{  width: horizontalwidth+'px' }">
             <ul >
              <li @click="select_doctor"   class="liwidth" v-for="(item,index) in doctorpastlist"><span class="name">{{item.docName}}</span><span class="category">({{item.departName}})</span></li>
             </ul>
           </div>
         </betterscroll>
+        <div  v-else class="titlebottom">无</div>
+
       </div>
       <div class="department ">
         <betterscroll class="department_left" :data="departlist">
@@ -138,7 +141,7 @@
         });
 
         this.$api.getdoctorpastlist().then(data=>{
-//          console.log(data)
+             console.log(data)
             this.doctorpastlist=data;
             this.$nextTick(function () {
             this.horizontalwidth= getElementWidth("liwidth")
@@ -178,6 +181,7 @@
     .title{
       font-size:@font-size-five;
       padding : 14px;
+      font-weight: 500;
     }
     .titlecenter{
       overflow: hidden;
@@ -188,6 +192,7 @@
           font-size: 0;
           white-space:nowrap;//处理块元素中的空白符和换行
           li{
+            font-weight: 500;
             font-size:15px;
             margin-left: 15px;
             background-color:@color-background;
@@ -197,6 +202,10 @@
           }
         }
       }
+    }
+    .titlebottom{
+      text-align: center;
+      height: 35px;
     }
 
 
@@ -233,6 +242,7 @@
   }
   .selectleft{
     background:@color-withe ;
+    color: #13bf72;
   }
 
 

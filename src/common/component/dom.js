@@ -1,38 +1,91 @@
-export function hasClass(el, className) {
-  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
-  return reg.test(el.className)
-}
+let elementStyle = document.createElement('div').style
 
-export function addClass(el, className) {
-  if (hasClass(el, className)) {
-    return
+let vendor = (() => {
+  let transformNames = {
+    webkit: 'webkitTransform',
+    Moz: 'MozTransform',
+    O: 'OTransform',
+    ms: 'msTransform',
+    standard: 'transform'
   }
 
-  let newClass = el.className.split(' ')
-  newClass.push(className)
-  el.className = newClass.join(' ')
-}
-
-export function removeClass(el, className) {
-  if (!hasClass(el, className)) {
-    return
+  for (let key in transformNames) {
+    if (elementStyle[transformNames[key]] !== undefined) {
+      return key
+    }
   }
 
-  let reg = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g')
-  el.className = el.className.replace(reg, ' ')
+  return false
+})()
+
+function prefixStyle(style) {
+  if (vendor === false) {
+    return false
+  }
+
+  if (vendor === 'standard') {
+    return style
+  }
+
+  return vendor + style.charAt(0).toUpperCase() + style.substr(1)
 }
 
-export function getData(el, name, val) {
-  let prefix = 'data-'
-  if (val) {
-    return el.setAttribute(prefix + name, val)
+export function addEvent(el, type, fn, capture) {
+  el.addEventListener(type, fn, {passive: false, capture: !!capture})
+}
+
+export function removeEvent(el, type, fn, capture) {
+  el.removeEventListener(type, fn, {passive: false, capture: !!capture})
+}
+
+export function offset(el) {
+  let left = 0
+  let top = 0
+
+  while (el) {
+    left -= el.offsetLeft
+    top -= el.offsetTop
+    el = el.offsetParent
   }
-  return el.getAttribute(prefix + name)
+
+  return {
+    left,
+    top
+  }
+}
+
+let transform = prefixStyle('transform')
+
+export const hasPerspective = prefixStyle('perspective') in elementStyle
+export const hasTouch = 'ontouchstart' in window
+export const hasTransform = transform !== false
+export const hasTransition = prefixStyle('transition') in elementStyle
+
+export const style = {
+  transform,
+  transitionTimingFunction: prefixStyle('transitionTimingFunction'),
+  transitionDuration: prefixStyle('transitionDuration'),
+  transitionDelay: prefixStyle('transitionDelay'),
+  transformOrigin: prefixStyle('transformOrigin'),
+  transitionEnd: prefixStyle('transitionEnd')
+}
+
+export const TOUCH_EVENT = 1
+export const MOUSE_EVENT = 2
+
+export const eventType = {
+  touchstart: TOUCH_EVENT,
+  touchmove: TOUCH_EVENT,
+  touchend: TOUCH_EVENT,
+
+  mousedown: MOUSE_EVENT,
+  mousemove: MOUSE_EVENT,
+  mouseup: MOUSE_EVENT
 }
 
 export function getRect(el) {
   if (el instanceof window.SVGElement) {
-    let rect = el.getBoundingClientRect()
+    var rect = el.getBoundingClientRect()
     return {
       top: rect.top,
       left: rect.left,
@@ -47,4 +100,45 @@ export function getRect(el) {
       height: el.offsetHeight
     }
   }
+}
+
+export function preventDefaultException(el, exceptions) {
+  for (let i in exceptions) {
+    if (exceptions[i].test(el[i])) {
+      return true
+    }
+  }
+  return false
+}
+
+export function tap(e, eventName) {
+  let ev = document.createEvent('Event')
+  ev.initEvent(eventName, true, true)
+  ev.pageX = e.pageX
+  ev.pageY = e.pageY
+  e.target.dispatchEvent(ev)
+}
+
+export function click(e) {
+  var target = e.target
+
+  if (!(/(SELECT|INPUT|TEXTAREA)/i).test(target.tagName)) {
+    let ev = document.createEvent(window.MouseEvent ? 'MouseEvents' : 'Event')
+    // cancelable 设置为 false 是为了解决和 fastclick 冲突问题
+    ev.initEvent('click', true, false)
+    ev._constructed = true
+    target.dispatchEvent(ev)
+  }
+}
+
+export function prepend(el, target) {
+  if (target.firstChild) {
+    before(el, target.firstChild)
+  } else {
+    target.appendChild(el)
+  }
+}
+
+export function before(el, target) {
+  target.parentNode.insertBefore(el, target)
 }

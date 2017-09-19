@@ -3,7 +3,8 @@
     <scroll ref="scroll"
             :data="items"
 
-            :pullDownRefresh="pullDownRefreshObj"
+            :stop="stop"
+            :pullDownRefresh="pullDownRefresh"
 
             @pullingDown="onPullingDown"
            >
@@ -37,7 +38,8 @@
   export default {
     data() {
       return {
-        pullDownRefreshObj:true,
+        stop:200,
+        pullDownRefresh:true,
         items: _data,
       }
     },
@@ -56,7 +58,7 @@
         setTimeout(() => {
           if (Math.random() > 0.5) {
             // 如果有新数据
-            this.items.unshift('我是新数据: ' + +new Date())
+            this.items.unshift(new Date())
           } else {
             // 如果没有新数据
             this.$refs.scroll.forceUpdate()

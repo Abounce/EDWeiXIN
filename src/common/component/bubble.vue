@@ -2,7 +2,7 @@
   <canvas ref="bubble" :width="width" :height="height" :style="style"></canvas>
 </template>
 
-<script >
+<script type="text/ecmascript-6">
   export default {
     props: {
       y: {
@@ -139,5 +139,4 @@
 </script>
 
 <style scoped lang="less" type="text/less">
-
 </style>
