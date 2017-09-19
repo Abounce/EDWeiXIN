@@ -46,6 +46,7 @@
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {Search} from 'vux'
   import {getElementWidth} from"../../../api/utils.js"
+//  import store from 'store'
   export default {
     data () {
       return {
@@ -131,17 +132,19 @@
     mounted(){
       this.$nextTick(function () {
 
+//            this.$loacalstore.set('user', { name:'何园鹏' })
         this.$api.getdepartlist().then(data=>{
 //          console.log(data)
           this.departlist=data;
           this.$nextTick(function () {
 
           this.choose(0,this.departlist[0].data)
+
           })
         });
 
         this.$api.getdoctorpastlist().then(data=>{
-             console.log(data)
+//             console.log(data)
             this.doctorpastlist=data;
             this.$nextTick(function () {
             this.horizontalwidth= getElementWidth("liwidth")

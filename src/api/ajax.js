@@ -3,9 +3,9 @@ import Qs from 'qs'
 // Add a request interceptor
 // axios 配置
 
-// axios.defaults.baseURL = 'http://192.168.0.222:8080/appWeChat';
+axios.defaults.baseURL = 'http://192.168.0.222:8080/appWeChat';
 //映射外网地址
-axios.defaults.baseURL = 'http://1c775781q6.iok.la:32348/appWeChat';
+// axios.defaults.baseURL = 'http://1c775781q6.iok.la:32348/appWeChat';
 axios.defaults.timeout = 5000;
 
 //添加一个请求拦截器

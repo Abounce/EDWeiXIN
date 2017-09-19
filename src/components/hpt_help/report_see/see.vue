@@ -65,6 +65,13 @@
           }
         }, 1000)
       },
+    },
+    created(){
+      this.$nextTick(function () {
+
+//      var name = this.$loacalstore.get('user').name;
+//      console.log("-----------"+name)
+      })
     }
 
 
