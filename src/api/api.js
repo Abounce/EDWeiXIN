@@ -44,6 +44,20 @@ export function getdepartlist() {
   });
 }
 
+//微信查询医生出诊信息
+export function getdoctorvisit(startDate,deptCode) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/doctorVisit/list',startDate,deptCode)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
 
 
 export function login (name) {

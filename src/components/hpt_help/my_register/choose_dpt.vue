@@ -35,7 +35,7 @@
 
         <betterscroll class="department_right" :data="departlistright" ref="right">
           <ul>
-            <li @click="select_date"  v-for="(item,index) in departlistright">{{item.departName}}</li>
+            <li @click="select_date(item)"  v-for="(item,index) in departlistright">{{item.departName}}</li>
           </ul>
         </betterscroll>
       </div>
@@ -66,8 +66,10 @@
       select_doctor(){
         this.$router.push({ path: 'choosedptdoctor' })
       },
-      select_date(){
-        this.$router.push({ path: 'choosedptdate' })
+      select_date(item){
+        let deptCode = item.code;
+        this.$loacalstore.set('deptCode',deptCode)
+        this.$router.push({ name: 'choosedptdate',params:{deptCode:deptCode}})
       },
       setFocus () {
 //        this.$refs.search.setFocus()
@@ -137,8 +139,8 @@
 //          console.log(data)
           this.departlist=data;
           this.$nextTick(function () {
-
           this.choose(0,this.departlist[0].data)
+
 
           })
         });

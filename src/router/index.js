@@ -44,7 +44,8 @@ export default new Router({
       component: Choosedpt
     },
     {
-      path: '/choosedptdate',
+      path: '/choosedptdate/:deptCode',
+      name: 'choosedptdate',
       component: Choosedptdate
     },
     {

@@ -19,12 +19,10 @@
           </div>
           <div class="doctor-introduce">
             <div class="doctor-name">{{doctor.name}}</div>
-            <div class="doctor-grade">{{doctor.grade}}</div>
-            <div class="doctor-skill">{{doctor.skill}}</div>
+            <div class="doctor-grade"><span class="grade-one">职称:</span><span class="grade-two">主任医师</span></div>
+            <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">呼吸道感染</span></div>
           </div>
-          <div class="right">
-            <div class="ritht-button">{{doctor.ticket}}</div>
-          </div>
+          <div class="right">{{doctor.ticket}}</div>
         </li>
       </ul>
 
@@ -34,6 +32,7 @@
 </template>
 
 <script>
+  import { dateFormat } from 'vux'
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {getElementWidth} from"../../../api/utils.js"
   export default {
@@ -547,13 +546,37 @@
     },
     mounted(){
       this.$nextTick(function () {
-        let liwidths = getElementWidth("liwidth");
-        this.tatalwith=liwidths;
+        this.getlist();
+        this.$nextTick(function () {
+
+        this.tatalwith = getElementWidth("liwidth");
+        })
+
       })
     },
     methods:{
       setindex(index,docoto){
         this.currentdoctors=docoto;
+      },
+      getlist(){
+        let code = this.$route.params.deptCode;
+        if (!code){
+          return;
+        }
+        console.log("传过来的数据="+code);
+        let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
+        console.log("当前时间="+dateformat);
+        let startDate={startDate:dateformat};
+        let deptCode={deptCode:code}
+        this.$api.getdoctorvisit(startDate,deptCode).then(data=>{
+          console.log(data)
+        })
+      }
+    },
+    watch:{
+      '$route' () {
+        this.getlist();
+
       }
     }
   }
@@ -565,6 +588,7 @@
     width: 100%;
     height: 50px;
     overflow: hidden;
+    border-bottom: 10px solid #cdcdcd ;
     .inner{
       ul{
         white-space: nowrap;
@@ -591,24 +615,71 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: red;
+    background: #ffffff;
     overflow: hidden;
     li{
       height: 105px;
-      background: rebeccapurple;
+      background: #ffffff;
+      border: solid 0.5px #cdcdcd;
       .doctor-img{
         float: left;
-        background: yellow;
+        background: #ffffff;
         height: 105px;
-        width: 100px;
+        width: 86px;
+        text-align: center;
+        img{
+          border-radius: 50px;
+          margin-top: 23.5px;
+          width: 56px;
+          height: 56px;
+          background: mediumvioletred;
+        }
+
 
       }
       .doctor-introduce{
         float: left;
+        .doctor-name{
+
+          font-size: 17px;
+          font-weight: 500;
+          line-height: 52px;
+        }
+        .doctor-grade{
+          font-size: 15px;
+          .grade-one{
+
+            color: #888888;
+          }
+          .grade-two{
+          color: #353535;
+          }
+        }
+        .doctor-skill{
+          margin-top: 9.5px;
+          .skill-one{
+
+            color: #888888;
+          }
+          .skill-two{
+            color: #353535;
+          }
+        }
       }
       .right{
-        margin-right:50px;
+        line-height: 24px;
+        text-align: center;
+        margin-top: 18px;
+        margin-right: 14.5px;
+        width: 54px;
+        height: 24px;
+        border-radius: 12px;
+        background-color: #ff8c19;
         float: right;
+          font-size: 14px;
+          font-weight: 500;
+          color: #ffffff;
+
       }
     }
 
