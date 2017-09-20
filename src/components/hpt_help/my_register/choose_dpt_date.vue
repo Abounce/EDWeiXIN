@@ -3,8 +3,8 @@
   <div>
     <betterscroll class="wrapper" :scrollX="true" :data="tabs" >
       <div class="inner" :style="{ width:tatalwith+'px' }">
-        <ul >
-          <li v-for="(tab,index) in tabs" class="liwidth" @click="setindex(index,tab.doctors)">
+        <ul>
+          <li v-for="(tab,index) in tabs" class="liwidth" @click="setindex(index,tab.doctors)" :class="{selectleft:currentitem===index}">
             <div class="date">{{tab.regDate}}</div>
             <div class="week">{{tab.weekDay}}</div>
           </li>
@@ -39,7 +39,8 @@
   export default {
     data(){
       return{
-        currentdoctors:0,
+        currentitem:0,
+        currentdoctors:[],
         tatalwith:0,
         tabs:[]
 
@@ -58,6 +59,7 @@
     methods:{
       setindex(index,docoto){
         this.currentdoctors=docoto;
+        this.currentitem=index;
       },
       getlist(){
         let code = this.$route.params.deptCode;
@@ -78,7 +80,6 @@
       },
       sortdata(data){
         let firstdoctors=[]
-
         let lastdoctors=[]
         let length = data.length;
         let firstday=data[0].regDate.substr(0,10);
@@ -145,30 +146,37 @@
   @import "../../../common/css/variable.less";
   .wrapper{
     width: 100%;
-    height: 50px;
+    height: 52px;
     overflow: hidden;
     border-bottom: 10px solid #cdcdcd ;
+
     .inner{
+
       ul{
         white-space: nowrap;
         font-size: 0;
+
         li{
           font-size: 13px;
           margin-left: 15px;
           text-align: center;
           line-height: 25px;
           display: inline-block;
+
           .date{
             height: 25px;
+
           }
           .week{
             height: 25px;
+
           }
         }
       }
     }
   }
   .doctor{
+
     position: absolute;
     top:60px;
     left: 0;
@@ -241,6 +249,13 @@
 
       }
     }
+
+  }
+  .selectleft{
+    color: #13bf72;
+    border-bottom: 1px solid #13bf72;
+
+
 
   }
 
