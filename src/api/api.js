@@ -45,9 +45,9 @@ export function getdepartlist() {
 }
 
 //微信查询医生出诊信息
-export function getdoctorvisit(startDate,deptCode) {
+export function getdoctorvisit(startDate) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/doctorVisit/list',startDate,deptCode)
+    ajax.post('/doctorVisit/list',startDate)
       .then(body=>{
         resovle(body)
       })

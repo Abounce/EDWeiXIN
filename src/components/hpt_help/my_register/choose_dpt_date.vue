@@ -5,8 +5,8 @@
       <div class="inner" :style="{ width:tatalwith+'px' }">
         <ul >
           <li v-for="(tab,index) in tabs" class="liwidth" @click="setindex(index,tab.doctors)">
-            <div class="date">{{tab.date}}</div>
-            <div class="week">{{tab.week}}</div>
+            <div class="date">{{tab.regDate}}</div>
+            <div class="week">{{tab.weekDay}}</div>
           </li>
         </ul>
       </div>
@@ -15,14 +15,14 @@
       <ul>
         <li v-for="(doctor,index) in currentdoctors">
           <div class="doctor-img">
-            <img src="" alt="">
+            <img v-lazy="doctor.photo">
           </div>
           <div class="doctor-introduce">
-            <div class="doctor-name">{{doctor.name}}</div>
-            <div class="doctor-grade"><span class="grade-one">职称:</span><span class="grade-two">主任医师</span></div>
-            <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">呼吸道感染</span></div>
+            <div class="doctor-name">{{doctor.docName}}</div>
+            <div class="doctor-grade"><span class="grade-one">职称:</span><span class="grade-two">{{doctor.positionalTitle}}</span></div>
+            <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">{{doctor.deptName}}</span></div>
           </div>
-          <div class="right">{{doctor.ticket}}</div>
+          <div class="right">{{doctor.surplusRegTot}}</div>
         </li>
       </ul>
 
@@ -33,6 +33,7 @@
 
 <script>
   import { dateFormat } from 'vux'
+  import {getnextday,getweek} from "../../../api/utils.js"
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {getElementWidth} from"../../../api/utils.js"
   export default {
@@ -40,505 +41,8 @@
       return{
         currentdoctors:0,
         tatalwith:0,
-        tabs:[{date:"08-29",week:"星期一",doctors:[{
-          name:"第一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"10"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"最后一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"30"
-        }]},{date:"08-29",week:"星期一",doctors:[{
-          name:"第二个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"10"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"最后一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"30"
-        }]},{date:"08-29",week:"星期一",doctors:[{
-          name:"第一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"10"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"最后一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"30"
-        }]},{date:"08-29",week:"星期一",doctors:[{
-          name:"第一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"10"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"最后一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"30"
-        }]},{date:"08-29",week:"星期一",doctors:[{
-          name:"第一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"10"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"王凯",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"50"
-        },{
-          name:"最后一个",
-          grade:"主任医生",
-          skill:"呼吸道感染",
-          ticket:"30"
-        }]},
-          {date:"08-29",week:"星期一",doctors:[{
-            name:"第一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"10"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"最后一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"30"
-          }]},{date:"08-29",week:"星期一",doctors:[{
-            name:"第一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"10"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"最后一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"30"
-          }]}
-          ,{date:"08-29",week:"星期一",doctors:[{
-            name:"第一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"10"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"最后一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"30"
-          }]},{date:"08-29",week:"星期一",doctors:[{
-            name:"第一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"10"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"最后一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"30"
-          }]},{date:"08-29",week:"星期一",doctors:[{
-            name:"第一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"10"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"最后一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"30"
-          }]},
-          {date:"08-29",week:"最后一个",doctors:[{
-            name:"第十个个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"10"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"王凯",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"50"
-          },{
-            name:"最后一个",
-            grade:"主任医生",
-            skill:"呼吸道感染",
-            ticket:"30"
-          }]}],
+        tabs:[]
+
       }
     },
     components: {
@@ -547,10 +51,7 @@
     mounted(){
       this.$nextTick(function () {
         this.getlist();
-        this.$nextTick(function () {
 
-        this.tatalwith = getElementWidth("liwidth");
-        })
 
       })
     },
@@ -566,16 +67,74 @@
         console.log("传过来的数据="+code);
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
         console.log("当前时间="+dateformat);
-        let startDate={startDate:dateformat};
-        let deptCode={deptCode:code}
-        this.$api.getdoctorvisit(startDate,deptCode).then(data=>{
+//        let startDate={startDate:dateformat};
+//        let deptCode={deptCode:code}
+        let startDate={startDate:dateformat,deptCode:code}
+        this.$api.getdoctorvisit(startDate).then(data=>{
           console.log(data)
+          this.sortdata(data)
+
+        })
+      },
+      sortdata(data){
+        let firstdoctors=[]
+
+        let lastdoctors=[]
+        let length = data.length;
+        let firstday=data[0].regDate.substr(0,10);
+        let lastday=data[data.length-1].regDate.substr(0,10)
+        for(let i=0;i<length;i++){
+           if(data[i].regDate.substr(0,10)===firstday){
+             firstdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot})
+           }
+        }
+//       console.log("第一天"+firstday)
+//        console.log("最后一天"+lastday)
+       let istrue=true
+       let newarry=[];
+       let currentday=firstday;
+       let firtweek = getweek(firstday);
+       newarry.push({weekDay:firtweek,regDate:firstday.substr(5,10),doctors:firstdoctors});
+       while(istrue){
+         let nextday = getnextday(currentday);
+         currentday=nextday;
+
+         if (currentday!==lastday){
+           let nextdoctors=[]
+           let nextweek = getweek(currentday);
+           for(let i=0;i<length;i++){
+             if(data[i].regDate.substr(0,10)===currentday){
+               nextdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot})
+             }
+           }
+
+           newarry.push({weekDay:nextweek,regDate:currentday.substr(5,10),doctors:nextdoctors})
+
+         }
+         if(currentday===lastday){
+           istrue=false;
+         }
+       }
+
+        for(let i=0;i<length;i++){
+          if(data[i].regDate.substr(0,10)===lastday){
+            lastdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot})
+          }
+        }
+        let lastweek = getweek(lastday);
+       newarry.push({weekDay:lastweek,regDate:lastday.substr(5,10),doctors:lastdoctors});
+       console.log(newarry)
+          this.tabs=newarry;
+          this.$nextTick(function () {
+          this.tatalwith = getElementWidth("liwidth");
+          this.setindex(0,this.tabs[0].doctors)
         })
       }
     },
     watch:{
       '$route' () {
         this.getlist();
+
 
       }
     }
