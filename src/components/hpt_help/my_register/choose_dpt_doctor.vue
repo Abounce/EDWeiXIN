@@ -56,14 +56,9 @@
       </div>
       <div class="introduce" v-show="isintroduce">
         <div class="introduce-a">学术任职</div>
-        <p class="introduce-b">北京胡亚美儿童医学研究院科研专家组组长
-          中华医学会儿科内分泌遗传代谢学组副组长
-          亚太儿童内分泌遗传学会会员
-          北京医学会儿科分会内分泌遗传代谢学组组长</p>
+        <p class="introduce-b">{{topdata.academicActivitiesString}}</p>
         <div class="introduce-c">擅长疾病</div>
-        <p class="introduce-d">在骨龄评估和身高预测，矮小症、体格发育迟缓、性早熟诊断与精细化治疗方面积累了丰富的临床经验，
-          尤其擅长儿童体格发育评价及干预、营养状况的评价及指导、
-          儿童肥胖症、癫痫、遗尿症、过敏性紫癜、儿童心理行为问题的指导等。</p>
+        <p class="introduce-d">{{topdata.specializeDiseaseString}}</p>
       </div>
 
   </div>
