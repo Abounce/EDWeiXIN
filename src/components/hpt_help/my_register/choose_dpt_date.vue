@@ -13,7 +13,7 @@
     </betterscroll>
     <betterscroll class="doctor" :data="currentdoctors" >
       <ul>
-        <li v-for="(doctor,index) in currentdoctors">
+        <li v-for="(doctor,index) in currentdoctors" @click="choosedoctor(doctor.doctorId)">
           <div class="doctor-img">
             <img v-lazy="doctor.photo">
           </div>
@@ -57,6 +57,9 @@
       })
     },
     methods:{
+      choosedoctor(doctorId){
+        this.$router.push({ name: 'choosedptdoctor',params:{doctorId:doctorId}})
+      },
       setindex(index,docoto){
         this.currentdoctors=docoto;
         this.currentitem=index;
@@ -66,19 +69,20 @@
         if (!code){
           return;
         }
-        console.log("传过来的数据="+code);
+        console.log("传过来的数据deptCode="+code);
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
-        console.log("当前时间="+dateformat);
+//        console.log("当前时间="+dateformat);
 //        let startDate={startDate:dateformat};
 //        let deptCode={deptCode:code}
         let startDate={startDate:dateformat,deptCode:code}
         this.$api.getdoctorvisit(startDate).then(data=>{
-          console.log(data)
+//          console.log(data)
           this.sortdata(data)
 
         })
       },
       sortdata(data){
+//        console.log(data);
         let firstdoctors=[]
         let lastdoctors=[]
         let length = data.length;
@@ -86,7 +90,7 @@
         let lastday=data[data.length-1].regDate.substr(0,10)
         for(let i=0;i<length;i++){
            if(data[i].regDate.substr(0,10)===firstday){
-             firstdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot})
+             firstdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot,doctorId:data[i].doctorId})
            }
         }
 //       console.log("第一天"+firstday)
@@ -105,7 +109,7 @@
            let nextweek = getweek(currentday);
            for(let i=0;i<length;i++){
              if(data[i].regDate.substr(0,10)===currentday){
-               nextdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot})
+               nextdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot,doctorId:data[i].doctorId})
              }
            }
 
@@ -119,12 +123,12 @@
 
         for(let i=0;i<length;i++){
           if(data[i].regDate.substr(0,10)===lastday){
-            lastdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot})
+            lastdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot,doctorId:data[i].doctorId})
           }
         }
         let lastweek = getweek(lastday);
        newarry.push({weekDay:lastweek,regDate:lastday.substr(5,10),doctors:lastdoctors});
-       console.log(newarry)
+//       console.log(newarry)
           this.tabs=newarry;
           this.$nextTick(function () {
           this.tatalwith = getElementWidth("liwidth");

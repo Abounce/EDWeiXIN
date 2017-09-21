@@ -7,15 +7,39 @@
       <div class="tab-introduce" @click="chooseintroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
     </div>
       <div class="order" v-show="isorder">
-        <div class="only-see">
-          <span>只看有号</span>
-          <div>
-          
-
+        <div class="see">
+          <group :title="(' ')"  class="only-button">
+            <x-switch :title="(' ')" v-model="value1"></x-switch>
+          </group>
+          <span class="only-see">只看有号</span>
+        </div>
+        <div class="wrapper">
+            <div>
+              <ul>
+                <li class="liwith"></li>
+              </ul>
+            </div>
+        </div>
+        <div class="showtime">
+          <div class="morning">
+            <div class="time">上午(8:00-12:00)</div>
+            <div class="price">￥6.00</div>
+            <div class="isnumber">余号13</div>
+            <div class="yuyue" >预约</div>
+          </div>
+          <div class="afternoon">
+            <div class="time">下午(8:00-12:00)</div>
+            <div class="price">￥6.00</div>
+            <div class="isnumber">余号13</div>
+            <div class="yuyue">预约</div>
+          </div>
+          <div class="night">
+            <div class="time">晚上(8:00-12:00)</div>
+            <div class="price">￥6.00</div>
+            <div class="isnumber">余号13</div>
+            <div class="yuyue">预约</div>
           </div>
         </div>
-        <div class="wrapper"></div>
-        <div class="numbers"></div>
       </div>
       <div class="introduce" v-show="isintroduce">
         <div></div>
@@ -28,10 +52,11 @@
 </template>
 
 <script>
-  import { XSwitch, Group } from 'vux'
+  import { XSwitch, Group  } from 'vux'
  export  default {
    data(){
     return{
+      value1:true,
       isorder:true,
       isintroduce:false
     }
@@ -45,14 +70,20 @@
        this.isorder=false
        this.isintroduce=true
 
-     },
-
-
+     }
  },
    components: {
      XSwitch,
-     Group
+     Group,
    },
+   mounted(){
+     this.$nextTick(function () {
+       let doctorId = this.$route.params.doctorId;
+       console.log("传递过来的数据doctorId="+doctorId)
+
+     })
+
+   }
  }
 
 </script>
@@ -79,15 +110,80 @@
   }
   .order{
     height: 240px;
-    background: yellow;
-    .only-see{
+    /*background: yellow;*/
+    .see{
+      position: relative;
       height: 49px;
+      .only-see{
+       position: absolute;
+        left: 14.5px;
+        top: 14.5px;
+      }
+      .only-button{
+
+      }
     }
     .wrapper{
+      background: yellowgreen;
       height: 49.5px;
+      width: 100%;
+      overflow: hidden;
+      ul{
+        white-space: nowrap;
+        font-size: 0;
+        li{
+          font-size: 13px;
+          margin-left: 15px;
+          text-align: center;
+          line-height: 25px;
+          display: inline-block;
+        }
+      }
     }
-    .numbers{
-      height: 140px;
+    .showtime{
+
+      .time{
+        text-align: center;
+        flex: 2;
+      }
+      .price{
+        text-align: center;
+        flex: 1;
+      }
+      .isnumber{
+        text-align: center;
+        flex: 1;
+      }
+      .yuyue{
+        text-align: center;
+        flex: 1;
+      }
+      .morning{
+        line-height: 70px;
+        height: 70px;
+        display: flex;
+        .yuyue{
+
+        }
+      }
+      .afternoon{
+        line-height: 70px;
+        height: 70px;
+        display: flex;
+        .yuyue{
+
+        }
+      }
+
+      .night{
+        line-height: 70px;
+        height: 70px;
+        display: flex;
+        .yuyue{
+
+        }
+      }
+
     }
 
   }
@@ -101,4 +197,5 @@
    border-bottom: 1px solid #13bf72;
 
  }
+
 </style>

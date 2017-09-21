@@ -49,7 +49,8 @@ export default new Router({
       component: Choosedptdate
     },
     {
-      path: '/choosedptdoctor',
+      path: '/choosedptdoctor/:doctorId',
+      name:'choosedptdoctor',
       component: Choosedptdoctor
     },
     {

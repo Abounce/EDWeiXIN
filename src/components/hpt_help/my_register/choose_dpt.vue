@@ -73,7 +73,7 @@
       },
       setFocus () {
 //        this.$refs.search.setFocus()
-        console.log('on setfocus')
+//        console.log('on setfocus')
       },
       resultClick (item) {
         var data = JSON.stringify(item);
@@ -108,13 +108,13 @@
 //          position: 'top',
 //          text: 'on submit'
 //        })
-        console.log('on Submit')
+//        console.log('on Submit')
       },
       onFocus () {
-        console.log('on focus')
+//        console.log('on focus')
       },
       onCancel () {
-        console.log('on cancel')
+//        console.log('on cancel')
       },
       choose(index,departlistright){
 

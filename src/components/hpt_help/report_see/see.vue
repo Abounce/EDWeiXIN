@@ -1,32 +1,32 @@
 <template>
   <div>
-    <ul>
-      <li>
-        <div>我是上面</div>
-        <div>我是下面</div>
-      </li>
-    </ul>
+    <group :title="(' ')">
+      <x-switch :title="(' ')" v-model="value1"></x-switch>
+    </group>
   </div>
 </template>
+
+
+
 <script>
+  import { XSwitch, Group } from 'vux'
 
-
-
+  export default {
+    components: {
+      XSwitch,
+      Group
+    },
+    methods: {
+    },
+    data () {
+      return {
+        value1: true,
+      }
+    },
+    watch:{
+       value1(val){
+         console.log(val)
+       }
+    }
+  }
 </script>
-<style scoped lang="less" type="text/less">
-         ul{
-           white-space: nowrap;
-           font-size: 0;
-           li {
-             font-size: 13px;
-             margin-left: 15px;
-             text-align: center;
-             line-height: 25px;
-             display: inline-block;
-             color: #13bf72;
-             border-bottom: 2px solid #13bf72;
-
-
-           }
-         }
-  </style>
