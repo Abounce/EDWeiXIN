@@ -9,7 +9,7 @@ axios.defaults.baseURL = 'http://192.168.0.222:8080/appWeChat';
 axios.defaults.timeout = 5000;
 
 //添加一个请求拦截器
-axios.interceptors.request.use(function(config){
+axios.interceptors.request.use((config)=>{
   //在请求发出之前进行一些操作
   config.data = Qs.stringify(config.data);
   return config;
@@ -18,7 +18,7 @@ axios.interceptors.request.use(function(config){
   return Promise.reject(err);
 });
 //添加一个响应拦截器
-axios.interceptors.response.use(function(res){
+axios.interceptors.response.use((res)=>{
   //在这里对返回的数据进行处理
   // console.log("已经处理错误的数据")
   if (res.status === 200 && res.statusText === 'OK' && res.data.status === "OK") {

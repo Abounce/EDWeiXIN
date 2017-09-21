@@ -69,20 +69,19 @@
         if (!code){
           return;
         }
-        console.log("传过来的数据deptCode="+code);
+        console.log("传过来的数据="+code);
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
-//        console.log("当前时间="+dateformat);
+        console.log("当前时间="+dateformat);
 //        let startDate={startDate:dateformat};
 //        let deptCode={deptCode:code}
         let startDate={startDate:dateformat,deptCode:code}
         this.$api.getdoctorvisit(startDate).then(data=>{
-//          console.log(data)
+          console.log(data)
           this.sortdata(data)
 
         })
       },
       sortdata(data){
-//        console.log(data);
         let firstdoctors=[]
         let lastdoctors=[]
         let length = data.length;
@@ -128,7 +127,7 @@
         }
         let lastweek = getweek(lastday);
        newarry.push({weekDay:lastweek,regDate:lastday.substr(5,10),doctors:lastdoctors});
-//       console.log(newarry)
+       console.log(newarry)
           this.tabs=newarry;
           this.$nextTick(function () {
           this.tatalwith = getElementWidth("liwidth");
@@ -203,7 +202,7 @@
           margin-top: 23.5px;
           width: 56px;
           height: 56px;
-          background: mediumvioletred;
+          background: #ffffff;
         }
 
 
