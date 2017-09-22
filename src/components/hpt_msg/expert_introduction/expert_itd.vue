@@ -3,7 +3,7 @@
    <div>
      <betterscroll class="wrapper">
        <ul>
-         <li v-for="(doctor,index) in tabs" >
+         <li v-for="(doctor,index) in tabs" @click="chooseexpert(doctor.id)">
            <div class="clearfix introduce">
            <div class="doctor-img">
              <img v-lazy="doctor.photo">
@@ -44,7 +44,10 @@
             console.log(data)
         this.tabs=data;
       })
-
+     },
+     chooseexpert(doctorId){
+      console.log("doctorId"+doctorId)
+       this.$router.push({ name:'chooseexpert',params:{doctorId:doctorId}})
      }
    }
  }

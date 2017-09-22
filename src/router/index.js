@@ -32,6 +32,12 @@ const Expert_itd = (resolve) => {
   })
 }
 
+const Chooseexpert = (resolve) => {
+  import('../components/hpt_msg/expert_introduction/choose_expert.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 const See = (resolve) => {
   import('../components/hpt_help/report_see/see.vue').then((module) => {
     resolve(module)
@@ -66,6 +72,11 @@ export default new Router({
     {
       path:'/expertitd',
       component:Expert_itd
+    },
+    {
+      path:'/chooseexpert/:doctorId',
+      name:'chooseexpert',
+      component:Chooseexpert
     }
 
   ]
