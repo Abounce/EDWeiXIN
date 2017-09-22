@@ -32,7 +32,11 @@
           <div class="time">上午(8:00-12:00)</div>
           <div class="price">￥{{doctor.sumFee}}</div>
           <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
-          <div class="yuyue" >预约</div>
+          <div class="yuyue" >
+            <span class="yuyue-inner">
+                  预约
+              </span>
+          </div>
         </div>
         <!--<div class="afternoon">-->
         <!--<div class="time">下午(8:00-12:00)</div>-->
@@ -320,8 +324,15 @@
         line-height: 70px;
         height: 70px;
         display: flex;
-        .yuyue{
+        .yuyue-inner{
 
+          /*display: inline-block;*/
+          /*width: 60px;*/
+          /*height: 30px;*/
+          /*background: red;*/
+          padding: 6px 12px;
+          border-radius: 3px;
+          border: solid 1px #13bf72;
         }
       }
       .afternoon{

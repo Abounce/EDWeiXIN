@@ -26,6 +26,12 @@ const Choosedptdoctor = (resolve) => {
   })
 }
 
+const Choosedptpatient = (resolve) => {
+  import('../components/hpt_help/my_register/choose_dpt_patient.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 const Expert_itd = (resolve) => {
   import('../components/hpt_msg/expert_introduction/expert_itd.vue').then((module) => {
     resolve(module)
@@ -77,7 +83,13 @@ export default new Router({
       path:'/chooseexpert/:doctorId',
       name:'chooseexpert',
       component:Chooseexpert
+    },
+    {
+      path:'/choosedptpatient',
+
+      component:Choosedptpatient
     }
+
 
   ]
 })
