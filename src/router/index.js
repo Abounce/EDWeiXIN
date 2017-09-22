@@ -85,7 +85,8 @@ export default new Router({
       component:Chooseexpert
     },
     {
-      path:'/choosedptpatient',
+      path:'/choosedptpatient/:doctorId',
+      name:'choosedptpatient',
 
       component:Choosedptpatient
     }

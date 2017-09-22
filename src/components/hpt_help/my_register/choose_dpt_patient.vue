@@ -42,7 +42,28 @@
 </template>
 
 <script>
+   export default {
 
+       watch:{
+         '$route' () {
+           this.getlist();
+         }
+     },
+     mounted(){
+         this.$nextTick(()=>{
+           this.getlist();
+         })
+     },
+     methods:{
+       getlist(){
+         let doctorId = this.$route.params.doctorId;
+         if (!doctorId){
+           return
+         }
+         console.log("病人界面的id"+doctorId)
+       }
+     }
+   }
 </script>
 
 <style scoped lang="less" type="text/less">

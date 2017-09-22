@@ -68,7 +68,7 @@
       },
       select_date(item){
         let deptCode = item.code;
-        this.$loacalstore.set('deptCode',deptCode)
+//        this.$loacalstore.set('deptCode',deptCode)
         this.$router.push({ name: 'choosedptdate',params:{deptCode:deptCode}})
       },
       setFocus () {

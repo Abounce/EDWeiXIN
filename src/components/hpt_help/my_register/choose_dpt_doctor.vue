@@ -39,7 +39,7 @@
             <div class="price">￥{{doctor.sumFee}}</div>
             <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
             <div class="yuyue" >
-              <span class="yuyue-inner">
+              <span class="yuyue-inner" @click="yuyyue(doctor.doctorId)">
                   预约
               </span>
             </div>
@@ -88,6 +88,9 @@
     }
    },
    methods:{
+     yuyyue(doctorId){
+       this.$router.push({name:'choosedptpatient',params:{doctorId:doctorId}})
+     },
      setindex(index,docoto){
        this.currentdoctors=docoto;
        this.currentitem=index;
@@ -124,7 +127,7 @@
        for(let i=0;i<length;i++){
          if(data[i].regDate.substr(0,10)===firstday){
            firstdoctors.push({
-            surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee})
+            surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId})
          }
        }
 //       console.log("第一天"+firstday)
@@ -144,7 +147,7 @@
            for(let i=0;i<length;i++){
              if(data[i].regDate.substr(0,10)===currentday){
                nextdoctors.push({
-                 surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee})
+                 surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId})
              }
            }
 
@@ -159,7 +162,7 @@
        for(let i=0;i<length;i++){
          if(data[i].regDate.substr(0,10)===lastday){
            lastdoctors.push({
-             surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee})
+             surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId})
          }
        }
        let lastweek = getweek(lastday);
@@ -177,7 +180,7 @@
        if (!doctorId){
          return
        }
-       console.log("传递过来的数据doctorId="+doctorId)
+       console.log("----------医生的id="+doctorId)
        let start={docCode:doctorId}
       this.$api.getdoctorlist(start).then((data=>{
              console.log(data)
