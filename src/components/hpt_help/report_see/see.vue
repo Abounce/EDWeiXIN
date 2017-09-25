@@ -1,7 +1,7 @@
 
 <template>
   <div>
-     <div class="one"></div>
+     <div class="one" @click="aaa">点击我跳回去</div>
   </div>
 </template>
 
@@ -15,7 +15,9 @@
 
     },
     methods: {
-
+      aaa(){
+        this.$router.push({name:'choosedptpatient'})
+      }
 
     },
     data () {
@@ -28,13 +30,4 @@
   }
 </script>
 <style scoped lang="less" type="text/less">
- @import "../../../common/css/variable.less";
-  .one{
-    width: 100px;
-    height: 100px;
-    .bgimage('Contacts');
-    background-size: 26px 21.5px;
-    background-position:center center
-
-  }
 </style>

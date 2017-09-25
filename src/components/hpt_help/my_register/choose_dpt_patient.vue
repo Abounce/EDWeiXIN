@@ -4,7 +4,7 @@
     <div>
       <div class="personal-head clearfix">
         <div class="head-one">
-           <img src="" alt="" class="image">
+           <img v-lazy="doctors.photo" class="image">
         </div>
         <div class="head-two">
         <span class="name">{{doctors.docName}}</span>
@@ -17,7 +17,7 @@
       </div>
       <div class="personal-time">
         <span class="one">就诊时间</span>
-        <span class="two">{{rgd}}{{istime(rgjt)}}{{jp}}</span>
+        <span class="two">{{rgd}}&nbsp;{{istime(rgjt)}}{{jp}}</span>
       </div>
       <div class="personal-choose">
         <span class="one">请选择就诊人</span>
@@ -36,7 +36,7 @@
       </div>
       <div class="personal-phone">
          <span class="one">联系电话</span>
-         <span class="two">1246531515</span>
+         <span class="two">{{doctors.mobilephone}}</span>
          <div class="three"></div>
       </div>
       <div class="personal-button">
@@ -85,7 +85,7 @@
          let openId='ogFdDwHpeOX5dGGvjptmed1pbkMo'
          let startdata={openId:openId}
          this.$api.getvisitlist(startdata).then((data=>{
-             console.log(data.length)
+//             console.log(data.length)
 
            this.vistitlist=data
          }))
@@ -127,7 +127,7 @@
        getdoctor: function (doctorId) {
          let startdata={docCode:doctorId}
          this.$api.getdoctorlist(startdata).then((data=>{
-//            console.log(data)
+            console.log(data)
             this.doctors=data[0];
          }))
 
@@ -145,6 +145,14 @@
        width: 80px;
        height: 80px;
        float: left;
+       /*background: red;*/
+      img{
+        border-radius: 50px;
+        margin-top: 15px;
+        margin-left: 15px;
+        width: 50px;
+        height: 50px;
+      }
      }
      .head-two{
        height: 80px;
