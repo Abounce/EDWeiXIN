@@ -21,7 +21,7 @@
       </div>
       <div class="personal-choose">
         <span class="one">请选择就诊人</span>
-        <span class="two">添加</span>
+        <span class="two" @click="addpatient">添加</span>
       </div>
       <div class="personal-patient">
         <ul>
@@ -42,7 +42,6 @@
       <div class="personal-button">
         <span>确认挂号</span>
       </div>
-
     </div>
  </div>
 </template>
@@ -63,7 +62,11 @@
      watch:{
          '$route' () {
            this.getlist();
-         }
+//           debugger
+         },
+//         '$store'(){
+//           this.getlist();
+//         }
      },
      mounted(){
          this.$nextTick(()=>{
@@ -71,6 +74,9 @@
          })
      },
      methods:{
+       addpatient(){
+         this.$router.push('/addpatient')
+       },
        istime(type){
 //         let type = doctor.regJobType;
          if (type==="1"){
@@ -91,28 +97,27 @@
          }))
        },
        getlist(){
-         let doctorId = this.$route.params.doctorId;
+         let doctorId = this.$store.state.doctorId;
          if (!doctorId){
            return
          }
-         let sumFee = this.$route.params.sumFee;
+         let sumFee = this.$store.state.sumFee;
          if (!sumFee){
            return
          }
          this.sumfree=sumFee;
 
-
-         let rgjt = this.$route.params.regJobType;
+         let rgjt = this.$store.state.regJobType;
          if (!rgjt){
            return
          }
          this.rgjt=rgjt
-         let jp = this.$route.params.jobtimePeriod;
+         let jp = this.$store.state.jobtimePeriod;
          if (!jp){
            return
          }
          this.jp=jp
-         let rgd = this.$route.params.regDate;
+         let rgd = this.$store.state.regDate;
          if (!rgd){
            return
          }

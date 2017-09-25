@@ -99,7 +99,12 @@
        }
      },
      yuyyue(doctor){
-       this.$router.push({name:'choosedptpatient',params:{doctorId:doctor.doctorId,sumFee:doctor.sumFee,regJobType:doctor.regJobType,jobtimePeriod:doctor.jobtimePeriod,regDate:doctor.regDate}})
+       this.$store.commit('setSumFee',doctor.sumFee);
+       this.$store.commit('setJobtimePeriod',doctor.jobtimePeriod);
+       this.$store.commit('setRegDate',doctor.regDate);
+       this.$store.commit('setRegJobType',doctor.regJobType);
+       this.$router.push({name:'choosedptpatient'})
+//       this.$router.push({name:'choosedptpatient',params:{sumFee:doctor.sumFee,regJobType:doctor.regJobType,jobtimePeriod:doctor.jobtimePeriod,regDate:doctor.regDate}})
      },
      setindex(index,docoto){
        this.currentdoctors=docoto;
@@ -115,7 +120,8 @@
 
      },
      getlist(){
-       let doctorId = this.$route.params.doctorId;
+//       let doctorId = this.$route.params.doctorId;
+       let doctorId = this.$store.state.doctorId;
        if (!doctorId){
          return
        }
@@ -186,7 +192,7 @@
        })
      },
      gettoplist(){
-       let doctorId = this.$route.params.doctorId;
+       let doctorId = this.$store.state.doctorId;
        if (!doctorId){
          return
        }

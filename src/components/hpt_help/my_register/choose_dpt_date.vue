@@ -58,7 +58,9 @@
     },
     methods:{
       choosedoctor(doctorId){
-        this.$router.push({ name: 'choosedptdoctor',params:{doctorId:doctorId}})
+//        this.$store.commit();
+        this.$store.commit('setdoctorId',doctorId);
+        this.$router.push({ name: 'choosedptdoctor'});
       },
       setindex(index,docoto){
         this.currentdoctors=docoto;

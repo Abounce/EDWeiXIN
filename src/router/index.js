@@ -32,6 +32,12 @@ const Choosedptpatient = (resolve) => {
   })
 }
 
+const Addpatient = (resolve) => {
+  import('../components/hpt_help/my_register/add_patient.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 const Expert_itd = (resolve) => {
   import('../components/hpt_msg/expert_introduction/expert_itd.vue').then((module) => {
     resolve(module)
@@ -51,6 +57,7 @@ const See = (resolve) => {
 }
 
 
+
 export default new Router({
   routes: [
     {
@@ -67,7 +74,7 @@ export default new Router({
       component: Choosedptdate
     },
     {
-      path: '/choosedptdoctor/:doctorId',
+      path: '/choosedptdoctor',
       name:'choosedptdoctor',
       component: Choosedptdoctor
     },
@@ -89,6 +96,11 @@ export default new Router({
       name:'choosedptpatient',
 
       component:Choosedptpatient
+    },
+    {
+      path:'/addpatient',
+      // name:'choosedptpatient',
+      component:Addpatient
     }
 
 
