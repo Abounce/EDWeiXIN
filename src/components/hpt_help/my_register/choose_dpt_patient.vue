@@ -7,17 +7,17 @@
            <img src="" alt="" class="image">
         </div>
         <div class="head-two">
-        <span class="name">李军</span>
-        <span class="job">副主任医师</span>
+        <span class="name">{{doctors.docName}}</span>
+        <span class="job">{{doctors.positionalName}}</span>
         </div>
       </div>
       <div class="personal-body">
-        <div class="body-one"><span class="one">挂号科室</span><span class="two">普通外科</span></div>
-        <div class="body-two"><span class="three">挂号费用</span><span class="four">￥6.00</span></div>
+        <div class="body-one"><span class="one">挂号科室</span><span class="two">{{doctors.departName}}</span></div>
+        <div class="body-two"><span class="three">挂号费用</span><span class="four">￥{{sumfree}}</span></div>
       </div>
       <div class="personal-time">
         <span class="one">就诊时间</span>
-        <span class="two">2017-08-10</span>
+        <span class="two">{{rgd}}{{istime(rgjt)}}{{jp}}</span>
       </div>
       <div class="personal-choose">
         <span class="one">请选择就诊人</span>
@@ -25,7 +25,13 @@
       </div>
       <div class="personal-patient">
         <ul>
-          <li></li>
+          <li v-for="(item,index) in vistitlist">
+            <div class="vist">
+                <div class="vistname">{{item.name}}({{item.isChildren===1?"儿童":"成年"}})</div>
+                <div class="vistnumber">{{item.idcartCode}}</div>
+                <div class="isgx">{{item.isChildren===1?"儿童":"成年"}}</div>
+            </div>
+          </li>
         </ul>
       </div>
       <div class="personal-phone">
@@ -43,8 +49,18 @@
 
 <script>
    export default {
+     data(){
+       return{
+         doctors:{},
+         vistitlist:[],
+         sumfree:'',
+         rgjt:'',
+         jp:'',
+         rgd:''
 
-       watch:{
+       }
+     },
+     watch:{
          '$route' () {
            this.getlist();
          }
@@ -55,12 +71,66 @@
          })
      },
      methods:{
+       istime(type){
+//         let type = doctor.regJobType;
+         if (type==="1"){
+           return "上午"
+         }else if(type==="2"){
+           return "中午"
+         }else {
+           return "晚上"
+         }
+       },
+       getvisit: function () {
+         let openId='ogFdDwHpeOX5dGGvjptmed1pbkMo'
+         let startdata={openId:openId}
+         this.$api.getvisitlist(startdata).then((data=>{
+             console.log(data.length)
+
+           this.vistitlist=data
+         }))
+       },
        getlist(){
          let doctorId = this.$route.params.doctorId;
          if (!doctorId){
            return
          }
-         console.log("病人界面的id"+doctorId)
+         let sumFee = this.$route.params.sumFee;
+         if (!sumFee){
+           return
+         }
+         this.sumfree=sumFee;
+
+
+         let rgjt = this.$route.params.regJobType;
+         if (!rgjt){
+           return
+         }
+         this.rgjt=rgjt
+         let jp = this.$route.params.jobtimePeriod;
+         if (!jp){
+           return
+         }
+         this.jp=jp
+         let rgd = this.$route.params.regDate;
+         if (!rgd){
+           return
+         }
+         this.rgd=rgd
+
+
+         console.log("传过来费用为"+sumFee)
+//         console.log("病人界面的id"+doctorId)
+         this.getdoctor(doctorId)
+         this.getvisit()
+       },
+       getdoctor: function (doctorId) {
+         let startdata={docCode:doctorId}
+         this.$api.getdoctorlist(startdata).then((data=>{
+//            console.log(data)
+            this.doctors=data[0];
+         }))
+
        }
      }
    }
@@ -166,8 +236,29 @@
      }
 
    }
+    .personal-patient{
+      margin-top: 15px;
+/*36 50 12*/
+      .vist{
+        height: 50px;
+        display: flex;
+        .vistname{
+          text-align: center;
+          flex: 36;
+        }
+        .vistnumber{
+          text-align: center;
+          flex: 50;
+        }
+        .isgx{
+          text-align: left;
+          flex: 12;
+        }
+      }
+
+    }
    .personal-phone{
-    margin-top: 100px;
+    /*margin-top: 50px;*/
      height: 49px;
      line-height: 49px;
      .one{

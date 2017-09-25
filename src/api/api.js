@@ -45,9 +45,9 @@ export function getdepartlist() {
 }
 
 //微信查询医生出诊信息
-export function getdoctorvisit(startDate) {
+export function getdoctorvisit(startdata) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/doctorVisit/list',startDate)
+    ajax.post('/doctorVisit/list',startdata)
       .then(body=>{
         resovle(body)
       })
@@ -58,6 +58,19 @@ export function getdoctorvisit(startDate) {
   });
 }
 
+// http://192.168.0.222:8080/weChat/visit/list
+export function getvisitlist(startdata) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/visit/list',startdata)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
 
 
 export function login (name) {

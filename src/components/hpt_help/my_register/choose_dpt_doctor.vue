@@ -35,11 +35,11 @@
         </betterscroll>
         <div class="showtime">
           <div class="morning"v-for="(doctor,index) in currentdoctors">
-            <div class="time">上午(8:00-12:00)</div>
+            <div class="time">{{istime(doctor)}}{{doctor.jobtimePeriod}}</div>
             <div class="price">￥{{doctor.sumFee}}</div>
             <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
             <div class="yuyue" >
-              <span class="yuyue-inner" @click="yuyyue(doctor.doctorId)">
+              <span class="yuyue-inner" @click="yuyyue(doctor)">
                   预约
               </span>
             </div>
@@ -88,8 +88,18 @@
     }
    },
    methods:{
-     yuyyue(doctorId){
-       this.$router.push({name:'choosedptpatient',params:{doctorId:doctorId}})
+     istime(doctor){
+       let type = doctor.regJobType;
+       if (type==="1"){
+         return "上午"
+       }else if(type==="2"){
+         return "中午"
+       }else {
+         return "晚上"
+       }
+     },
+     yuyyue(doctor){
+       this.$router.push({name:'choosedptpatient',params:{doctorId:doctor.doctorId,sumFee:doctor.sumFee,regJobType:doctor.regJobType,jobtimePeriod:doctor.jobtimePeriod,regDate:doctor.regDate}})
      },
      setindex(index,docoto){
        this.currentdoctors=docoto;
@@ -127,7 +137,7 @@
        for(let i=0;i<length;i++){
          if(data[i].regDate.substr(0,10)===firstday){
            firstdoctors.push({
-            surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId})
+            surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId,jobtimePeriod:data[i].jobtimePeriod,regJobType:data[i].regJobType,regDate:data[i].regDate.substr(0,10)})
          }
        }
 //       console.log("第一天"+firstday)
@@ -147,7 +157,7 @@
            for(let i=0;i<length;i++){
              if(data[i].regDate.substr(0,10)===currentday){
                nextdoctors.push({
-                 surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId})
+                 surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId,jobtimePeriod:data[i].jobtimePeriod,regJobType:data[i].regJobType,regDate:data[i].regDate.substr(0,10)})
              }
            }
 
@@ -162,7 +172,7 @@
        for(let i=0;i<length;i++){
          if(data[i].regDate.substr(0,10)===lastday){
            lastdoctors.push({
-             surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId})
+             surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId,jobtimePeriod:data[i].jobtimePeriod,regJobType:data[i].regJobType,regDate:data[i].regDate.substr(0,10)})
          }
        }
        let lastweek = getweek(lastday);
@@ -180,10 +190,10 @@
        if (!doctorId){
          return
        }
-       console.log("----------医生的id="+doctorId)
+//       console.log("----------医生的id="+doctorId)
        let start={docCode:doctorId}
       this.$api.getdoctorlist(start).then((data=>{
-             console.log(data)
+//             console.log(data)
         this.topdata=data[0]
       }))
      }
@@ -199,6 +209,9 @@
        this.getlist();
 
      })
+
+   },
+   computed:{
 
    },
    watch:{
