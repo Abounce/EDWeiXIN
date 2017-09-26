@@ -165,13 +165,13 @@
         line-height: 49px;
         text-align: center;
         flex: 1;
-        background: red;
+        /*background: red;*/
       }
       .tab-child{
         line-height: 49px;
         text-align: center;
         flex: 1;
-        background: yellow;
+        /*background: yellow;*/
       }
     }
     .man{
@@ -298,7 +298,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 40;
+          flex: 30;
         }
         .three{
           flex: 8;
@@ -306,7 +306,7 @@
           text-align: center;
         }
         a{
-          flex: 27;
+          flex: 37;
           line-height: 49px;
           text-align: center;
         }
@@ -471,7 +471,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 40;
+          flex: 30;
         }
         .three{
           flex: 8;
@@ -479,7 +479,7 @@
           text-align: center;
         }
         a{
-          flex: 27;
+          flex: 37;
           line-height: 49px;
           text-align: center;
         }
@@ -488,7 +488,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 35;
           text-align: right;
           line-height: 49px;
         }
@@ -496,7 +496,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 65;
+          flex: 60;
         }
         .three{
           flex: 10;
@@ -542,7 +542,7 @@
     }
     .selectleft{
       color: #13bf72;
-      /*border-bottom: 1px solid #13bf72;*/
+      border-bottom: 1px solid #13bf72;
 
     }
 
