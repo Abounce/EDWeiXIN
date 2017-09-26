@@ -153,7 +153,7 @@
     width: 100%;
     height: 52px;
     overflow: hidden;
-    border-bottom: 10px solid #cdcdcd ;
+    border-bottom: 10px solid #eeeeee ;
 
     .inner{
 

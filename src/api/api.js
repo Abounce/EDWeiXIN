@@ -59,6 +59,7 @@ export function getdoctorvisit(startdata) {
 }
 
 // http://192.168.0.222:8080/weChat/visit/list
+//获取就诊人列表
 export function getvisitlist(startdata) {
   return new Promise((resovle,reject)=>{
     ajax.post('/visit/list',startdata)
@@ -71,6 +72,20 @@ export function getvisitlist(startdata) {
       })
   });
 }
+
+export function getvisitsave(startdata) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/visit/save',startdata)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
 
 
 export function login (name) {

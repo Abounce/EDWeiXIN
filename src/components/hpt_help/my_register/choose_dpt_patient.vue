@@ -180,7 +180,7 @@
    }
    .personal-body{
      height: 64.5px;
-     border-bottom: 10px solid #cdcdcd;
+     border-bottom: 10px solid #eeeeee;
      .body-one{
       margin-top:15.5px;
      .one{
@@ -215,7 +215,7 @@
    .personal-time{
      height: 45px;
      line-height: 45px;
-     border-bottom: 10px solid #cdcdcd;
+     border-bottom: 10px solid #eeeeee;
      .one{
        margin-left: 15px;
        margin-top: 14.5px;
