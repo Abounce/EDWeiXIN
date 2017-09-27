@@ -25,14 +25,15 @@
          <input type="text" id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
          <div class="weui-icon-clear three" ></div>
        </div>
-       <div class="phone">
-         <label for="nameinput" class="one">手机号码:</label>
-         <input type="text" id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
-         <div class="weui-icon-clear three" ></div>
-       </div>
+
        <div class="iscard">
          <label for="iscardinput" class="one">就诊卡号:</label>
          <input type="text" id="iscardinput" v-model="iscardmsg" class="two"  placeholder="请填写就诊卡号" >
+         <div class="weui-icon-clear three" ></div>
+       </div>
+       <div class="phone">
+         <label for="nameinput" class="one">手机号码:</label>
+         <input type="text" id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="autocode">
@@ -62,21 +63,13 @@
          <check-icon :value.sync="demo3" class="four"  @click.native="baomi">保密</check-icon>
        </div>
        <div class="birthday">
-         <label for="birthdayinputa" class="one">出身日期:</label>
-         <input type="text" id="birthdayinputa" v-model="birthdaymsg" class="two"  >
-         <div class="weui-icon-clear three" ></div>
+         <datetime v-model="value1"  :title="('出生日期:')" placeholder="请选择"></datetime>
        </div>
        <div class="card">
          <label for="cardinputa" class="one"  >患者身份证:</label>
          <input type="text" id="cardinputa" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
          <div class="weui-icon-clear three" ></div>
        </div>
-       <div class="phone">
-         <label for="nameinputa" class="one">监护人手机:</label>
-         <input type="text" id="phoneinputa" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
-         <div class="weui-icon-clear three" ></div>
-       </div>
-
 
        <div class="jhcard">
          <label for="jhcardinput" class="one">监护人身份证:</label>
@@ -86,6 +79,11 @@
        <div class="iscard">
          <label for="iscardinputa" class="one">就诊卡号:</label>
          <input type="text" id="iscardinputa" v-model="iscardmsg" class="two"  placeholder="请填写就诊卡号" >
+         <div class="weui-icon-clear three" ></div>
+       </div>
+       <div class="phone">
+         <label for="nameinputa" class="one">监护人手机:</label>
+         <input type="text" id="phoneinputa" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="autocode">

@@ -71,14 +71,14 @@
         if (!code){
           return;
         }
-        console.log("所在科室的id="+code);
+//        console.log("所在科室的id="+code);
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
-        console.log("当前时间="+dateformat);
+//        console.log("当前时间="+dateformat);
 //        let startDate={startDate:dateformat};
 //        let deptCode={deptCode:code}
         let startDate={startDate:dateformat,deptCode:code}
         this.$api.getdoctorvisit(startDate).then(data=>{
-          console.log(data)
+//          console.log(data)
           this.sortdata(data)
 
         })

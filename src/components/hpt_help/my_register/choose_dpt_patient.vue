@@ -132,7 +132,7 @@
        getdoctor: function (doctorId) {
          let startdata={docCode:doctorId}
          this.$api.getdoctorlist(startdata).then((data=>{
-            console.log(data)
+//            console.log(data)
             this.doctors=data[0];
          }))
 
