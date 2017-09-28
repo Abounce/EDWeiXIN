@@ -38,6 +38,12 @@ const Addpatient = (resolve) => {
   })
 }
 
+const BuildCard = (resolve) => {
+  import('../components/hpt_help/my_register/build_card.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 const Expert_itd = (resolve) => {
   import('../components/hpt_msg/expert_introduction/expert_itd.vue').then((module) => {
     resolve(module)
@@ -101,6 +107,10 @@ export default new Router({
       path:'/addpatient',
       // name:'choosedptpatient',
       component:Addpatient
+    },
+    {
+      path:'/buildcard',
+      component:BuildCard
     }
 
 
