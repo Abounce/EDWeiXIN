@@ -50,7 +50,7 @@
      </div>
      <div class="msg">
          <div class="warpper">
-           <div class="one"></div>&nbsp;成人用户上传身份证照片<span>（正反面)</span>;
+           <div style="vertical-align: top" class="one"></div>&nbsp;+成人用户上传身份证照片<span>（正反面)</span>;
          </div>
        <div class="warpper">
          <div class="one"></div>&nbsp;<span>儿童</span>如果没有身份证的需上传<span>户口证户主页面和本人当页</span>；新生儿上传<span>母亲户口当页和本人出生证明</span>,身份证号码栏填写<span>母亲的身份证号</span>

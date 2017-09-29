@@ -62,6 +62,12 @@ const See = (resolve) => {
   })
 }
 
+const OrderQuery = (resolve) => {
+  import('../components/my/query/OrderQuery.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 
 export default new Router({
@@ -111,7 +117,12 @@ export default new Router({
     {
       path:'/buildcard',
       component:BuildCard
+    },
+    {
+      path:'/orderquery',
+      component:OrderQuery
     }
+
 
 
   ]
