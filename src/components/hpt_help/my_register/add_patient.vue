@@ -32,7 +32,7 @@
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="phone">
-         <label for="nameinput" class="one">手机号码:</label>
+         <label for="phoneinput" class="one">手机号码:</label>
          <input type="text" id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="weui-icon-clear three" ></div>
        </div>
@@ -40,11 +40,11 @@
          <label for="autoinput" class="one">验证码:</label>
          <input type="text" id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
          <div class="weui-icon-clear three" ></div>
-         <a href="javascript:">获取验证</a>
+         <span >获取验证</span>
        </div>
        <div class="visitcard" style="text-align: right">
 
-           <span>没有就诊卡?</span> <a href="javascript:" @click="buildcard">在线建卡</a>
+           <span class="one">没有就诊卡?</span> <span class="two" @click="buildcard">在线建卡</span>
        </div>
        <div class="button" @click="commitMan">
          <span>添加</span>
@@ -53,48 +53,48 @@
      <div v-if="ischild" class="child">
        <div class="name">
          <label for="nameinputa" class="one" >真实姓名:</label>
-         <input type="text" id="nameinputa" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+         <input type="text" id="nameinputa" v-model="namemsga" class="two" placeholder="请填写就诊人姓名" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="sex">
          <span class="one">性别:</span>
-         <check-icon :value.sync="demo1" class="two"   @click.native="nan">男</check-icon>
-         <check-icon :value.sync="demo2" class="three" @click.native="nv">女</check-icon>
-         <check-icon :value.sync="demo3" class="four"  @click.native="baomi">保密</check-icon>
+         <check-icon :value.sync="demo4" class="two"   @click.native="nan">男</check-icon>
+         <check-icon :value.sync="demo5" class="three" @click.native="nv">女</check-icon>
+         <check-icon :value.sync="demo6" class="four"  @click.native="baomi">保密</check-icon>
        </div>
        <div class="birthday">
-         <datetime v-model="value1"  :title="('出生日期:')" placeholder="请选择"></datetime>
+         <datetime v-model="value2"  :title="('出生日期:')" placeholder="请选择"></datetime>
        </div>
        <div class="card">
          <label for="cardinputa" class="one"  >患者身份证:</label>
-         <input type="text" id="cardinputa" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
+         <input type="text" id="cardinputa" v-model="cardmsga" class="two"  placeholder="请填写就诊人身份证号">
          <div class="weui-icon-clear three" ></div>
        </div>
 
        <div class="jhcard">
          <label for="jhcardinput" class="one">监护人身份证:</label>
-         <input type="text" id="jhcardinput" v-model="automsg" class="two"  placeholder="请填写监护人身份证">
+         <input type="text" id="jhcardinput" v-model="jianhumsga" class="two"  placeholder="请填写监护人身份证">
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="iscard">
          <label for="iscardinputa" class="one">就诊卡号:</label>
-         <input type="text" id="iscardinputa" v-model="iscardmsg" class="two"  placeholder="请填写就诊卡号" >
+         <input type="text" id="iscardinputa" v-model="iscardmsga" class="two"  placeholder="请填写就诊卡号" >
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="phone">
-         <label for="nameinputa" class="one">监护人手机:</label>
-         <input type="text" id="phoneinputa" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
+         <label for="phoneinputa" class="one">监护人手机:</label>
+         <input type="text" id="phoneinputa" v-model="phonemsga" class="two"  placeholder="请填写建卡预留手机号">
          <div class="weui-icon-clear three" ></div>
        </div>
        <div class="autocode">
          <label for="autoinputa" class="one">验证码:</label>
-         <input type="text" id="autoinputa" v-model="automsg" class="two"  placeholder="请填写验证码">
+         <input type="text" id="autoinputa" v-model="automsga" class="two"  placeholder="请填写验证码">
          <div class="weui-icon-clear three" ></div>
-         <a href="javascript:">获取验证</a>
+         <span >获取验证</span>
        </div>
        <div class="visitcard" style="text-align: right">
 
-         <span>没有就诊卡?</span> <a href="javascript:" @click="buildcard">在线建卡</a>
+         <span>没有就诊卡?</span> <span style="color: #1793e6;" @click="buildcard">在线建卡</span>
        </div>
        <div class="button" @click="commitChild">
          <span>添加</span>
@@ -105,7 +105,6 @@
 </template>
 
 <script>
-
   import { CheckIcon,Datetime } from 'vux'
   import * as check from '../../../api/check.js'
   export default {
@@ -123,6 +122,19 @@
         phonemsg:'',
         automsg:'',
         iscardmsg:'',
+
+        value2:'',
+        demo4: false,
+        demo5:false,
+        demo6:false,
+        namemsga:'',
+        birthdaymsga:'',
+        cardmsga:'',
+        phonemsga:'',
+        automsga:'',
+        iscardmsga:'',
+        jianhumsga:''
+
 
     }
     },
@@ -176,27 +188,27 @@
         let mobile='';
         let name=''
         let birthday=''
-        if(!check.checkName(this.namemsg)){
+        if(!check.checkName(this.namemsga)){
           console.log('真实姓名填写有误')
           return ;
         }
-        if(this.demo1){
+        if(this.demo4){
           sex=1
         }
-        if(this.demo2){
+        if(this.demo5){
           sex=2
         }
-        if(this.demo3){
+        if(this.demo6){
           sex=3
         }
         if(!sex){
           return ;
         }
-        if (!check.checkCard(this.cardmsg)){
+        if (!check.checkCard(this.cardmsga)){
           console.log('身份证号有误')
           return
         }
-        if (!check.checkPhone(this.phonemsg)){
+        if (!check.checkPhone(this.phonemsga)){
           console.log('手机号输入不正确')
           return
         }
@@ -263,7 +275,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 25;
           text-align: right;
           line-height: 49px;
         }
@@ -312,28 +324,13 @@
       .birthday{
         height: 49px;
         display: flex;
-        .one{
-          flex: 30;
-          text-align: right;
-          line-height: 49px;
-        }
-        .two{
-          border: none;
-          outline: medium;
-          line-height: 49px;
-          flex: 65;
-        }
-        .three{
-          flex: 10;
-          line-height: 49px;
-          text-align: center;
-        }
+
       }
       .card{
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 25;
           text-align: right;
           line-height: 49px;
         }
@@ -353,7 +350,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 28;
+          flex: 25;
           text-align: right;
           line-height: 49px;
         }
@@ -361,15 +358,19 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 30;
+          flex: 40;
+          width: 40%;
         }
         .three{
-          flex: 8;
+          flex: 10;
           line-height: 49px;
           text-align: center;
         }
-        a{
-          flex: 37;
+        span{
+          font-size: 14px;
+
+          color: #1793e6;
+          flex: 25;
           line-height: 49px;
           text-align: center;
         }
@@ -378,7 +379,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 25;
           text-align: right;
           line-height: 49px;
         }
@@ -399,7 +400,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 25;
           text-align: right;
           line-height: 49px;
         }
@@ -417,14 +418,20 @@
       }
       .visitcard{
         margin-top: 15px;
-
+        font-size: 14px;
+       .one{
+         color: #888888;
+       }
+        .two{
+          color: #1793e6;
+        }
       }
       .button{
         margin-top: 30px;
         text-align: center;
         span{
           color: white;
-          padding:2% 42%;
+          padding:5% 42%;
           background-color: #13bf72;;
           border-radius: 5px;
           border: solid 1px #11ad67;
@@ -437,7 +444,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 35;
           text-align: right;
           line-height: 49px;
         }
@@ -445,7 +452,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 65;
+          flex: 55;
         }
         .three{
           flex: 10;
@@ -486,28 +493,13 @@
       .birthday{
         height: 49px;
         display: flex;
-        .one{
-          flex: 30;
-          text-align: right;
-          line-height: 49px;
-        }
-        .two{
-          border: none;
-          outline: medium;
-          line-height: 49px;
-          flex: 65;
-        }
-        .three{
-          flex: 10;
-          line-height: 49px;
-          text-align: center;
-        }
+
       }
       .card{
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 35;
           text-align: right;
           line-height: 49px;
         }
@@ -515,7 +507,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 65;
+          flex: 55;
         }
         .three{
           flex: 10;
@@ -527,7 +519,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 35;
           text-align: right;
           line-height: 49px;
         }
@@ -535,7 +527,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 65;
+          flex: 55;
         }
         .three{
           flex: 10;
@@ -547,7 +539,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 28;
+          flex: 35;
           text-align: right;
           line-height: 49px;
         }
@@ -556,14 +548,17 @@
           outline: medium;
           line-height: 49px;
           flex: 30;
+          width: 30%;
         }
         .three{
-          flex: 8;
+          flex: 10;
           line-height: 49px;
           text-align: center;
         }
-        a{
-          flex: 37;
+        span{
+          font-size: 14px;
+          color: #1793e6;
+          flex: 25;
           line-height: 49px;
           text-align: center;
         }
@@ -580,7 +575,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 60;
+          flex: 55;
         }
         .three{
           flex: 10;
@@ -592,7 +587,7 @@
         height: 49px;
         display: flex;
         .one{
-          flex: 30;
+          flex: 35;
           text-align: right;
           line-height: 49px;
         }
@@ -600,7 +595,7 @@
           border: none;
           outline: medium;
           line-height: 49px;
-          flex: 65;
+          flex: 55;
         }
         .three{
           flex: 10;
@@ -610,14 +605,20 @@
       }
       .visitcard{
         margin-top: 15px;
-
+        font-size: 14px;
+        .one{
+          color: #888888;
+        }
+        .two{
+          color: #1793e6;
+        }
       }
       .button{
         margin-top: 30px;
         text-align: center;
         span{
           color: white;
-          padding:2% 42%;
+          padding:5% 42%;
           background-color: #13bf72;;
           border-radius: 5px;
           border: solid 1px #11ad67;
