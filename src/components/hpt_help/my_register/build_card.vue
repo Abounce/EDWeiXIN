@@ -1,3 +1,4 @@
+
 <template>
    <div>
      <div class="user">
@@ -34,13 +35,17 @@
        </div>
      </div>
      <div class="credentials">
-       <div>
-         <div></div>
-         <div>上传身份证正面</div>
+       <div class="zm">
+         <div class="zm-inner">
+         <div class="icon iconfont icon-zengjia "></div>
+         </div>
+         <div class="font">上传身份证正面</div>
        </div>
-       <div>
-         <div></div>
-         <div>上传身份证反面</div>
+       <div class="fm">
+         <div class="fm-inner">
+         <div class="icon iconfont icon-zengjia "></div>
+         </div>
+         <div class="font">上传身份证反面</div>
        </div>
      </div>
      <div class="msg">
@@ -66,6 +71,7 @@
 
 <script>
   import { CheckIcon } from 'vux'
+
   export default {
      data(){
        return{
@@ -81,6 +87,7 @@
 </script>
 
 <style scoped lang="less" type="text/less">
+@import "../../../common/iconfont/iconfont.css";
    .user{
      margin-top: 10px;
      .name{
@@ -183,7 +190,46 @@
        }
      }
    }
+   .credentials{
+     .font{
+       font-size: 14px;
+      margin-top: 12px;
+       color: #888888;
+     }
+     display: flex;
+     .icon{
+       font-size: 73px;
+       color: #cdcdcd;
+     }
+     .zm{
 
+       text-align: center;
+       flex: 1;
+       .zm-inner{
+         padding-top: 27px;
+         margin: 0 auto;
+         text-align: center;
+         width: 145.5px;
+         height: 115px;
+         border-radius: 5px;
+         border: solid 0.5px #cdcdcd;
+       }
+     }
+     .fm{
+       text-align: center;
+       flex: 1;
+       .fm-inner{
+         padding-top: 27px;
+         margin: 0 auto;
+         text-align: center;
+         width: 145.5px;
+         height: 115px;
+         border-radius: 5px;
+         border: solid 0.5px #cdcdcd;
+       }
+     }
+
+   }
   .msg{
     .warpper{
       margin-left: 15px;

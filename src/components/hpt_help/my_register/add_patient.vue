@@ -44,7 +44,7 @@
        </div>
        <div class="visitcard" style="text-align: right">
 
-           <span>没有就诊卡?</span> <a href="javascript:">在线建卡</a>
+           <span>没有就诊卡?</span> <a href="javascript:" @click="buildcard">在线建卡</a>
        </div>
        <div class="button" @click="commitMan">
          <span>添加</span>
@@ -94,7 +94,7 @@
        </div>
        <div class="visitcard" style="text-align: right">
 
-         <span>没有就诊卡?</span> <a href="javascript:">在线建卡</a>
+         <span>没有就诊卡?</span> <a href="javascript:" @click="buildcard">在线建卡</a>
        </div>
        <div class="button" @click="commitChild">
          <span>添加</span>
@@ -127,6 +127,10 @@
     }
     },
     methods:{
+      buildcard(){
+        console.log("建卡点击了")
+        this.$router.push({path:'/buildcard'})
+      },
       commitMan(){
 //        let idcartCode='5137345454545454';
 //        let visitCardId='351458'
