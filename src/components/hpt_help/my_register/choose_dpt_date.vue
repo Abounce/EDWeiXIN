@@ -37,6 +37,9 @@
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {getElementWidth} from"../../../api/utils.js"
   export default {
+    beforeRouteUpdate (to, from, next) {
+      this.getlist();
+    },
     data(){
       return{
         currentitem:0,
@@ -59,7 +62,8 @@
     methods:{
       choosedoctor(doctorId){
 //        this.$store.commit();
-        this.$store.commit('setdoctorId',doctorId);
+//        this.$store.commit('setdoctorId',doctorId);
+        this.$loacalstore.set('doctorId',doctorId)
         this.$router.push({ name: 'choosedptdoctor'});
       },
       setindex(index,docoto){
@@ -67,7 +71,10 @@
         this.currentitem=index;
       },
       getlist(){
-        let code = this.$route.params.deptCode;
+//        let code = this.$route.params.deptCode;
+//        let code =  this.$store.state.deptCode;
+//        console.log('科室id为'+code)
+        let code =    this.$loacalstore.get('deptCode')
         if (!code){
           return;
         }
@@ -140,8 +147,9 @@
     watch:{
       '$route' () {
         this.getlist();
-
-
+      },
+      '$store'(){
+        this.getlist();
       }
     }
   }

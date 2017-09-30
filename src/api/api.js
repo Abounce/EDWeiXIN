@@ -86,6 +86,21 @@ export function getvisitsave(startdata) {
   });
 }
 
+//在线建卡
+//http://192.168.0.222:8080/weChat/CardRegister/reg
+export function getCardRegister(tempData) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/CardRegister/reg',tempData)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
 
 
 export function login (name) {

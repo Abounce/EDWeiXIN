@@ -48,18 +48,16 @@
   import {getElementWidth} from"../../../api/utils.js"
 //  import store from 'store'
   export default {
+
     data () {
       return {
         results: [],
         value: '',
-
         doctorpastlist:[],
         horizontalwidth:0,
-
         departlist:[],
         currentitem:0,
         departlistright:[],
-
       }
     },
     methods: {
@@ -68,8 +66,9 @@
       },
       select_date(item){
         let deptCode = item.code;
-//        this.$loacalstore.set('deptCode',deptCode)
-        this.$router.push({ name: 'choosedptdate',params:{deptCode:deptCode}})
+
+        this.$loacalstore.set('deptCode',deptCode)
+        this.$router.push({ name: 'choosedptdate'})
       },
       setFocus () {
 //        this.$refs.search.setFocus()

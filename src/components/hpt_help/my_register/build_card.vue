@@ -63,7 +63,7 @@
        </div>
 
      </div>
-     <div class="button">
+     <div class="button" @click="buildCard">
           <span>确定</span>
      </div>
    </div>
@@ -82,6 +82,18 @@
          picked:''
        }
      },
+    methods:{
+      buildCard(){
+        let tempData={idCard:'513425122333345464',name:'tests',mobile:'2412421421421',isChildren:'1'
+          ,idCardAUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
+           ,idCardBUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'}
+        this.$api.getCardRegister(tempData).then((data)=>{
+                 console.log(data)
+        })
+
+      }
+    }
+
 
   }
 </script>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import index from 'index.html'
 
 Vue.use(Router)
 
@@ -9,8 +10,8 @@ const Hpt_msg = (resolve) => {
   })
 }
 
-const Choosedpt = (resolve) => {
-  import('../components/hpt_help/my_register/choose_dpt.vue').then((module) => {
+const chooseDpt = (resolve) => {
+  import('../components/hpt_help/my_register/choose-dpt.vue').then((module) => {
     resolve(module)
   })
 }
@@ -71,17 +72,20 @@ const OrderQuery = (resolve) => {
 
 
 export default new Router({
+  mode: 'history',
   routes: [
+    // { path: '*', component: index },
     {
       path: '/hptmsg',
       component: Hpt_msg
     },
     {
-      path: '/choosedpt',
-      component: Choosedpt
+      path: '/chooseDpt',
+      name:'微信查询医生信息',
+      component: chooseDpt
     },
     {
-      path: '/choosedptdate/:deptCode',
+      path: '/choosedptdate',
       name: 'choosedptdate',
       component: Choosedptdate
     },

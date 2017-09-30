@@ -97,27 +97,31 @@
          }))
        },
        getlist(){
-         let doctorId = this.$store.state.doctorId;
+
+
+
+
+         let doctorId = this.$loacalstore.get('doctorId');
          if (!doctorId){
            return
          }
-         let sumFee = this.$store.state.sumFee;
+         let sumFee = this.$loacalstore.get('sumFee');
          if (!sumFee){
            return
          }
          this.sumfree=sumFee;
 
-         let rgjt = this.$store.state.regJobType;
+         let rgjt = this.$loacalstore.get('regJobType');
          if (!rgjt){
            return
          }
          this.rgjt=rgjt
-         let jp = this.$store.state.jobtimePeriod;
+         let jp =  this.$loacalstore.get('jobTimePeriod');
          if (!jp){
            return
          }
          this.jp=jp
-         let rgd = this.$store.state.regDate;
+         let rgd = this.$loacalstore.get('regDate');
          if (!rgd){
            return
          }

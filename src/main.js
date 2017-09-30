@@ -5,7 +5,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/index'
-// import store from 'store'
+import stores from 'store'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import * as api from './api/api'
@@ -18,7 +18,7 @@ Vue.use(VueLazyload, {
   loading: require('./common/image/default.png')
 })
 Vue.prototype.$api = api;
-// Vue.prototype.$loacalstore=store;
+Vue.prototype.$loacalstore=stores;
 
 /* eslint-disable no-new */
 new Vue({
