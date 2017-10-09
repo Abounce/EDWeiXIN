@@ -69,6 +69,13 @@ const OrderQuery = (resolve) => {
   })
 }
 
+//就诊人列表
+const visitlIist = (resolve) => {
+  import('../components/my/manage/visit-list.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 
 export default new Router({
@@ -127,6 +134,11 @@ export default new Router({
     {
       path:'/orderquery',
       component:OrderQuery
+    },
+    {
+     path:'/visitList',
+      name:'就诊人列表',
+      component:visitlIist
     }
 
 

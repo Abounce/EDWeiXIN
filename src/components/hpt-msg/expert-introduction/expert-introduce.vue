@@ -3,7 +3,7 @@
    <div>
      <betterscroll class="wrapper">
        <ul>
-         <li v-for="(doctor,index) in tabs" @click="chooseEpert(doctor.id)">
+         <li v-for="(doctor,index) in tabs" @click="chooseExpert(doctor.id)">
            <div class="clearfix introduce">
            <div class="doctor-img">
              <img v-lazy="doctor.photo">
@@ -45,7 +45,7 @@
         this.tabs=data;
       })
      },
-     chooseEpert(doctorId){
+     chooseExpert(doctorId){
       console.log("doctorId"+doctorId)
        this.$loacalstore.set('doctorId',doctorId)
        this.$router.push({ name:'专家详情'})

@@ -11,9 +11,11 @@ import VueLazyload from 'vue-lazyload'
 import * as api from './api/api'
 // import vConsole from 'vconsole'
 import './common/css/reset.css'
+import './common/iconfont/iconfont.css'
+import VueBarcode from '@xkeshi/vue-barcode'
 Vue.config.productionTip = false
 FastClick.attach(document.body)
-
+Vue.component('barcode', VueBarcode);
 Vue.use(VueLazyload, {
   loading: require('./common/image/default.png')
 })
