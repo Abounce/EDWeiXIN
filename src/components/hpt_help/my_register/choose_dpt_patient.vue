@@ -21,7 +21,7 @@
       </div>
       <div class="personal-choose">
         <span class="one">请选择就诊人</span>
-        <span class="two" @click="addpatient">添加</span>
+        <span class="two" @click="addPatient">添加</span>
       </div>
       <div class="personal-patient">
         <ul>
@@ -29,7 +29,8 @@
             <div class="vist">
                 <div class="vistname">{{item.name}}({{item.isChildren===1?"儿童":"成年"}})</div>
                 <div class="vistnumber">{{item.idcartCode}}</div>
-                <div class="isgx">{{item.isChildren===1?"儿童":"成年"}}</div>
+                <!--<div class="isgx">{{item.isChildren===1?"儿童":"成年"}}</div>-->
+              <check-icon :value.sync="demo5" class="isgx" @click.native="nv"  >女</check-icon>
             </div>
           </li>
         </ul>
@@ -39,7 +40,7 @@
          <span class="two">{{doctors.mobilephone}}</span>
          <div class="three"></div>
       </div>
-      <div class="personal-button">
+      <div class="personal-button" @click="register">
         <span>确认挂号</span>
       </div>
     </div>
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+  import { CheckIcon} from 'vux'
    export default {
      data(){
        return{
@@ -55,7 +57,8 @@
          sumfree:'',
          rgjt:'',
          jp:'',
-         rgd:''
+         rgd:'',
+         demo5:false,
 
        }
      },
@@ -74,8 +77,16 @@
          })
      },
      methods:{
-       addpatient(){
-         this.$router.push('/addpatient')
+       nv(){
+
+       },
+       //确认挂号
+       register(){
+
+       },
+       //添加就诊人
+       addPatient(){
+         this.$router.push({name:'添加就诊人'})
        },
        istime(type){
 //         let type = doctor.regJobType;
@@ -141,7 +152,10 @@
          }))
 
        }
-     }
+     },
+     components: {
+       CheckIcon,
+     },
    }
 </script>
 

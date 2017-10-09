@@ -44,7 +44,7 @@
        </div>
        <div class="visitcard" style="text-align: right">
 
-           <span class="one">没有就诊卡?</span> <span class="two" @click="buildcard">在线建卡</span>
+           <span class="one">没有就诊卡?</span> <span class="two" @click="buildCard">在线建卡</span>
        </div>
        <div class="button" @click="commitMan">
          <span>添加</span>
@@ -94,7 +94,7 @@
        </div>
        <div class="visitcard" style="text-align: right">
 
-         <span>没有就诊卡?</span> <span style="color: #1793e6;" @click="buildcard">在线建卡</span>
+         <span>没有就诊卡?</span> <span style="color: #1793e6;" @click="buildCard">在线建卡</span>
        </div>
        <div class="button" @click="commitChild">
          <span>添加</span>
@@ -139,13 +139,13 @@
     }
     },
     methods:{
-      buildcard(){
-        console.log("建卡点击了")
-        this.$router.push({path:'/buildcard'})
+      //在线建卡
+      buildCard(){
+        this.$router.push({name:'在线建卡'})
+
       },
+      //成人建卡
       commitMan(){
-//        let idcartCode='5137345454545454';
-//        let visitCardId='351458'
         let sex = 0;
         let mobile='';
         let name=''
@@ -181,9 +181,8 @@
         this.$router.push({ path:'choosedptpatient' })
       })
       },
+      //儿童建卡
       commitChild(){
-        //        let idcartCode='5137345454545454';
-//        let visitCardId='351458'
         let sex = 0;
         let mobile='';
         let name=''
@@ -203,6 +202,10 @@
         }
         if(!sex){
           return ;
+        }
+        if(!check.checkCard(this.jianhumsga)){
+          console.log('监护人身份证号有误')
+          return
         }
         if (!check.checkCard(this.cardmsga)){
           console.log('身份证号有误')

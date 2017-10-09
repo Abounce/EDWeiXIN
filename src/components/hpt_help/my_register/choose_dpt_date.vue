@@ -13,7 +13,7 @@
     </betterscroll>
     <betterscroll class="doctor" :data="currentdoctors" >
       <ul>
-        <li v-for="(doctor,index) in currentdoctors" @click="choosedoctor(doctor.doctorId)">
+        <li v-for="(doctor,index) in currentdoctors" @click="chooseDoctor(doctor.doctorId)">
           <div class="doctor-img">
             <img v-lazy="doctor.photo">
           </div>
@@ -60,32 +60,27 @@
       })
     },
     methods:{
-      choosedoctor(doctorId){
-//        this.$store.commit();
-//        this.$store.commit('setdoctorId',doctorId);
+      //选择医生
+      chooseDoctor(doctorId){
         this.$loacalstore.set('doctorId',doctorId)
-        this.$router.push({ name: 'choosedptdoctor'});
+        this.$router.push({ name: '选择挂号医生'});
       },
       setindex(index,docoto){
         this.currentdoctors=docoto;
         this.currentitem=index;
       },
       getlist(){
-//        let code = this.$route.params.deptCode;
-//        let code =  this.$store.state.deptCode;
-//        console.log('科室id为'+code)
+
         let code =    this.$loacalstore.get('deptCode')
         if (!code){
           return;
         }
-//        console.log("所在科室的id="+code);
+
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
-//        console.log("当前时间="+dateformat);
-//        let startDate={startDate:dateformat};
-//        let deptCode={deptCode:code}
+
         let startDate={startDate:dateformat,deptCode:code}
         this.$api.getdoctorvisit(startDate).then(data=>{
-//          console.log(data)
+
           this.sortdata(data)
 
         })
@@ -101,8 +96,7 @@
              firstdoctors.push({photo:data[i].photo,docName:data[i].docName,positionalTitle:data[i].positionalTitle,deptName:data[i].deptName,surplusRegTot:data[i].surplusRegTot,doctorId:data[i].doctorId})
            }
         }
-//       console.log("第一天"+firstday)
-//        console.log("最后一天"+lastday)
+
        let istrue=true
        let newarry=[];
        let currentday=firstday;

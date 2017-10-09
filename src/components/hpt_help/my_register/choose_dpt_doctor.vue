@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="order-or-introduce">
-      <div class="tab-order" @click="chooseorder(isorder,isintroduce)" :class="{selectleft:isorder}">预约</div>
-      <div class="tab-introduce" @click="chooseintroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
+      <div class="tab-order" @click="chooseOrder(isorder,isintroduce)" :class="{selectleft:isorder}">预约</div>
+      <div class="tab-introduce" @click="chooseIntroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
     </div>
       <div class="order" v-show="isorder">
         <div class="see">
@@ -39,7 +39,7 @@
             <div class="price">￥{{doctor.sumFee}}</div>
             <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
             <div class="yuyue" >
-              <span class="yuyue-inner" @click="yuyyue(doctor)">
+              <span class="yuyue-inner" @click="order(doctor)">
                   预约
               </span>
             </div>
@@ -88,6 +88,25 @@
     }
    },
    methods:{
+     //预约医生
+     order(doctor){
+       this.$loacalstore.set('sumFee',doctor.sumFee)
+       this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
+       this.$loacalstore.set('regDate',doctor.regDate)
+       this.$loacalstore.set('regJobType',doctor.regJobType)
+       this.$router.push({name:'choosedptpatient'})
+     },
+     //预约
+     chooseOrder(isorder,isintroduce){
+       this.isorder=true
+       this.isintroduce=false
+     },
+     //介绍
+     chooseIntroduce(isorder,isintroduce){
+       this.isorder=false
+       this.isintroduce=true
+
+     },
      istime(doctor){
        let type = doctor.regJobType;
        if (type==="1"){
@@ -98,31 +117,11 @@
          return "晚上"
        }
      },
-     yuyyue(doctor){
-//       this.$store.commit('setSumFee',doctor.sumFee);
-//       this.$store.commit('setJobtimePeriod',doctor.jobtimePeriod);
-//       this.$store.commit('setRegDate',doctor.regDate);
-//       this.$store.commit('setRegJobType',doctor.regJobType);
-       this.$loacalstore.set('sumFee',doctor.sumFee)
-       this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
-       this.$loacalstore.set('regDate',doctor.regDate)
-       this.$loacalstore.set('regJobType',doctor.regJobType)
-       this.$router.push({name:'choosedptpatient'})
-//       this.$router.push({name:'choosedptpatient',params:{sumFee:doctor.sumFee,regJobType:doctor.regJobType,jobtimePeriod:doctor.jobtimePeriod,regDate:doctor.regDate}})
-     },
      setindex(index,docoto){
        this.currentdoctors=docoto;
        this.currentitem=index;
      },
-     chooseorder(isorder,isintroduce){
-       this.isorder=true
-       this.isintroduce=false
-     },
-     chooseintroduce(isorder,isintroduce){
-       this.isorder=false
-       this.isintroduce=true
 
-     },
      getlist(){
 //       let doctorId = this.$route.params.doctorId;
 //       let doctorId = this.$store.state.doctorId;

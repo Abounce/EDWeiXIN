@@ -17,7 +17,7 @@
         <betterscroll class="titlecenter" :data="doctorpastlist" :scrollX="true" v-if="doctorpastlist.length">
           <div class="tiltleinner"  :style="{  width: horizontalwidth+'px' }">
             <ul >
-             <li @click="select_doctor"   class="liwidth" v-for="(item,index) in doctorpastlist"><span class="name">{{item.docName}}</span><span class="category">({{item.departName}})</span></li>
+             <li @click="chooseHistoryDocotor"   class="liwidth" v-for="(item,index) in doctorpastlist"><span class="name">{{item.docName}}</span><span class="category">({{item.departName}})</span></li>
             </ul>
           </div>
         </betterscroll>
@@ -35,7 +35,7 @@
 
         <betterscroll class="department_right" :data="departlistright" ref="right">
           <ul>
-            <li @click="select_date(item)"  v-for="(item,index) in departlistright">{{item.departName}}</li>
+            <li @click="chooseDepartment(item)"  v-for="(item,index) in departlistright">{{item.departName}}</li>
           </ul>
         </betterscroll>
       </div>
@@ -46,7 +46,6 @@
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {Search} from 'vux'
   import {getElementWidth} from"../../../api/utils.js"
-//  import store from 'store'
   export default {
 
     data () {
@@ -61,14 +60,15 @@
       }
     },
     methods: {
-      select_doctor(){
+      //选择挂过号的医生
+      chooseHistoryDocotor(){
         this.$router.push({ path: 'choosedptdoctor' })
       },
-      select_date(item){
+      //选择科室
+      chooseDepartment(item){
         let deptCode = item.code;
-
         this.$loacalstore.set('deptCode',deptCode)
-        this.$router.push({ name: 'choosedptdate'})
+        this.$router.push({ name: '选择挂号日期'})
       },
       setFocus () {
 //        this.$refs.search.setFocus()

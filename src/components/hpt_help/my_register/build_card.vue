@@ -71,7 +71,7 @@
 
 <script>
   import { CheckIcon } from 'vux'
-
+  import * as check from '../../../api/check.js'
   export default {
      data(){
        return{
@@ -84,7 +84,22 @@
      },
     methods:{
       buildCard(){
-        let tempData={idCard:'513425122333345464',name:'tests',mobile:'2412421421421',isChildren:'1'
+
+        if(!check.checkName(this.namemsg)){
+          console.log('真实姓名填写有误')
+          return ;
+        }
+
+        if (!check.checkCard(this.cardmsg)){
+          console.log('身份证号有误')
+          return
+        }
+        if (!check.checkPhone(this.phonemsg)){
+          console.log('手机号输入不正确')
+          return
+        }
+
+        let tempData={idCard:this.cardmsg,name:this.namemsg,mobile:this.phonemsg,isChildren:this.picked
           ,idCardAUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
            ,idCardBUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'}
         this.$api.getCardRegister(tempData).then((data)=>{

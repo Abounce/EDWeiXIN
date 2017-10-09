@@ -16,12 +16,14 @@ const chooseDpt = (resolve) => {
   })
 }
 
-const Choosedptdate = (resolve) => {
+//Choosedptdate
+const chooseDptDate = (resolve) => {
   import('../components/hpt_help/my_register/choose_dpt_date.vue').then((module) => {
     resolve(module)
   })
 }
-const Choosedptdoctor = (resolve) => {
+//Choosedptdoctor
+const chooseDptDoctor = (resolve) => {
   import('../components/hpt_help/my_register/choose_dpt_doctor.vue').then((module) => {
     resolve(module)
   })
@@ -33,13 +35,13 @@ const Choosedptpatient = (resolve) => {
   })
 }
 
-const Addpatient = (resolve) => {
+const addPatient = (resolve) => {
   import('../components/hpt_help/my_register/add_patient.vue').then((module) => {
     resolve(module)
   })
 }
 
-const BuildCard = (resolve) => {
+const buildCard = (resolve) => {
   import('../components/hpt_help/my_register/build_card.vue').then((module) => {
     resolve(module)
   })
@@ -81,18 +83,18 @@ export default new Router({
     },
     {
       path: '/chooseDpt',
-      name:'微信查询医生信息',
+      name:'选择科室',
       component: chooseDpt
     },
     {
-      path: '/choosedptdate',
-      name: 'choosedptdate',
-      component: Choosedptdate
+      path: '/chooseDptDate',
+      name: '选择挂号日期',
+      component: chooseDptDate
     },
     {
-      path: '/choosedptdoctor',
-      name:'choosedptdoctor',
-      component: Choosedptdoctor
+      path: '/chooseDptDoctor',
+      name:'选择挂号医生',
+      component: chooseDptDoctor
     },
     {
       path: '/seedemo',
@@ -114,13 +116,14 @@ export default new Router({
       component:Choosedptpatient
     },
     {
-      path:'/addpatient',
-      // name:'choosedptpatient',
-      component:Addpatient
+      path:'/addPatient',
+      name:'添加就诊人',
+      component:addPatient
     },
     {
-      path:'/buildcard',
-      component:BuildCard
+      path:'/buildCard',
+      name:'在线建卡',
+      component:buildCard
     },
     {
       path:'/orderquery',
