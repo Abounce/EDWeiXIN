@@ -33,7 +33,7 @@
           <div class="price">￥{{doctor.sumFee}}</div>
           <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
           <div class="yuyue" >
-            <span class="yuyue-inner">
+            <span class="yuyue-inner" @click="order(doctor)">
                   预约
               </span>
           </div>
@@ -67,7 +67,7 @@
   import { XSwitch, Group  } from 'vux'
   import { dateFormat } from 'vux'
   import {getnextday,getweek} from "../../../api/utils.js"
-  import {getElementWidth} from"../../../api/utils.js"
+  import {getElementWidth} from "../../../api/utils.js"
   export  default {
     data(){
       return{
@@ -82,6 +82,14 @@
       }
     },
     methods:{
+      //预约专家
+      order(doctor){
+        this.$loacalstore.set('sumFee',doctor.sumFee)
+        this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
+        this.$loacalstore.set('regDate',doctor.regDate)
+        this.$loacalstore.set('regJobType',doctor.regJobType)
+        this.$router.push({name:'choosedptpatient'})
+      },
       setindex(index,docoto){
         this.currentdoctors=docoto;
         this.currentitem=index;
@@ -96,7 +104,8 @@
 
       },
       getlist(){
-        let doctorId = this.$route.params.doctorId;
+//        let doctorId = this.$route.params.doctorId;
+        let doctorId =   this.$loacalstore.get('doctorId')
         if (!doctorId){
           return
         }
@@ -167,7 +176,8 @@
         })
       },
       gettoplist(){
-        let doctorId = this.$route.params.doctorId;
+//        let doctorId = this.$route.params.doctorId;
+        let doctorId =   this.$loacalstore.get('doctorId')
         if (!doctorId){
           return
         }

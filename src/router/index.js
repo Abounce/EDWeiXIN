@@ -5,7 +5,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const Hpt_msg = (resolve) => {
-  import('../components/hpt_msg/hpt_msg/hpt_msg.vue').then((module) => {
+  import('../components/hpt-msg/hpt-msg/hpt-msg.vue').then((module) => {
     resolve(module)
   })
 }
@@ -16,13 +16,11 @@ const chooseDpt = (resolve) => {
   })
 }
 
-//Choosedptdate
 const chooseDptDate = (resolve) => {
   import('../components/hpt_help/my_register/choose_dpt_date.vue').then((module) => {
     resolve(module)
   })
 }
-//Choosedptdoctor
 const chooseDptDoctor = (resolve) => {
   import('../components/hpt_help/my_register/choose_dpt_doctor.vue').then((module) => {
     resolve(module)
@@ -47,14 +45,14 @@ const buildCard = (resolve) => {
   })
 }
 
-const Expert_itd = (resolve) => {
-  import('../components/hpt_msg/expert_introduction/expert_itd.vue').then((module) => {
+const expertIntroduce = (resolve) => {
+  import('../components/hpt-msg/expert-introduction/expert-introduce.vue').then((module) => {
     resolve(module)
   })
 }
 
-const Chooseexpert = (resolve) => {
-  import('../components/hpt_msg/expert_introduction/choose_expert.vue').then((module) => {
+const experetDetails = (resolve) => {
+  import('../components/hpt-msg/expert-introduction/expert-details.vue').then((module) => {
     resolve(module)
   })
 }
@@ -101,13 +99,14 @@ export default new Router({
       component: See
     },
     {
-      path:'/expertitd',
-      component:Expert_itd
+      path:'/expertIntroduce',
+      name:'专家介绍',
+      component:expertIntroduce
     },
     {
-      path:'/chooseexpert/:doctorId',
-      name:'chooseexpert',
-      component:Chooseexpert
+      path:'/experetDetails',
+      name:'专家详情',
+      component:experetDetails
     },
     {
       path:'/choosedptpatient',
