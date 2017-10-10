@@ -14,6 +14,5 @@
   .line{
     height: 0.5px;
     background-color: #cdcdcd;
-    border: solid 0.5px #cdcdcd;
   }
 </style>

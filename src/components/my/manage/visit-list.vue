@@ -6,13 +6,13 @@
           <div class="wrapper">
              <div class="left-one">
                 <span class="name">{{item.name}}</span>
-                <span class="sex">{{item.sex==='1'? '男':'女'}}</span>
+                <span class="sex">{{item.sex===1? '男' : '女'}}</span>
              </div>
              <div class="left-two">
                <span >身份证号</span>
                <span class="card">{{item.idcartCode}}</span>
              </div>
-             <div class="right-one" @click="alertFrame(item)">
+             <div class="right-one" @click.stop="alertFrame(item)">
                <img src="../../../common/image/image@3x/editing-image-QR-code@3x.png" height="18" width="18">
                <span class="icon iconfont icon-fanhui"></span>
              </div>
@@ -57,7 +57,7 @@
   export default {
     data(){
       return{
-       visitList:[],
+        visitList:[],
         showDialogStyle:false,
         value1: 'https://www.baidu.com',
         value2:'514564733',
@@ -69,6 +69,7 @@
       addVisit(){
         this.$router.push({name:'添加就诊人'})
       },
+      //获取就诊人列表
       getVisitList(){
         let starData={openId:'ogFdDwHpeOX5dGGvjptmed1pbkMo'}
        this.$api.getvisitlist(starData).then((data)=>{
@@ -76,24 +77,35 @@
          this.visitList=data;
         })
       },
+      //弹出二维码
       alertFrame(item){
-        console.log('对话框启动')
+//        console.log('对话框启动')
         this.currentItem=item
        this.showDialogStyle=true
       },
+      //编辑就诊人
       chooseItem(item){
-        console.log('条目启动')
+//        console.log('条目启动')
         if(item.isChildren==='1'){
           //跳转编辑儿童
+          this.$loacalstore.set('visitId',item.id)
+          this.$router.push({name:'编辑儿童就诊'})
         }else {
           //跳转编辑成人
+          this.$loacalstore.set('visitId',item.id)
+          this.$router.push({name:'编辑成人就诊'})
         }
       }
     },
     mounted(){
-      this.$nextTick(function () {
+      this.$nextTick(()=> {
           this.getVisitList();
       })
+    },
+    watch:{
+      '$route'(){
+        this.getVisitList();
+      }
     },
     components:{
       myLine,
@@ -133,8 +145,8 @@
        top: 28.5px;
       right: 15px;
       img{
-        vertical-align: top;
-      }
+           vertical-align: top;
+         }
       .icon{
         font-size: 17px;
         vertical-align: top;

@@ -8,10 +8,15 @@ axios.defaults.baseURL = 'http://192.168.0.222:8080/weChat';
 // axios.defaults.baseURL = 'http://1c775781q6.iok.la:32348/appWeChat';
 axios.defaults.timeout = 5000;
 
+let openId='ogFdDwHpeOX5dGGvjptmed1pbkMo';
+let hospitalCode='pz0001';
+let token='f84a9bd19517454eb66e5b3ff4962e2a';
 //添加一个请求拦截器
 axios.interceptors.request.use((config)=>{
+  // console.log('config--------:'+config)
   //在请求发出之前进行一些操作
   config.data = Qs.stringify(config.data);
+  config.url+=`?openId=${openId}&token=${token}&hospitalCode=${hospitalCode}`;
   return config;
 },function(err){
   //Do something with request error
@@ -19,6 +24,8 @@ axios.interceptors.request.use((config)=>{
 });
 //添加一个响应拦截器
 axios.interceptors.response.use((res)=>{
+  // console.log('res--------:'+res)
+
   //在这里对返回的数据进行处理
   // console.log("已经处理错误的数据")
   if (res.status === 200 && res.statusText === 'OK' && res.data.status === "OK") {

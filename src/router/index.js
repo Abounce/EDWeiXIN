@@ -57,6 +57,8 @@ const experetDetails = (resolve) => {
   })
 }
 
+
+
 const See = (resolve) => {
   import('../components/hpt_help/report_see/see.vue').then((module) => {
     resolve(module)
@@ -75,8 +77,31 @@ const visitlIist = (resolve) => {
     resolve(module)
   })
 }
+//编辑就诊成人
+const editMan = (resolve) => {
+  import('../components/my/manage/edit-man.vue').then((module) => {
+    resolve(module)
+  })
+}
+//编辑就诊儿童
+const editChild = (resolve) => {
+  import('../components/my/manage/edit-child.vue').then((module) => {
+    resolve(module)
+  })
+}
 
+//更换绑定手机
+const editPhone = (resolve) => {
+  import('../components/my/manage/edit-phone.vue').then((module) => {
+    resolve(module)
+  })
+}
 
+const manageCard = (resolve) => {
+  import('../components/my/personal-center/manage-card.vue').then((module) => {
+    resolve(module)
+  })
+}
 
 export default new Router({
   mode: 'history',
@@ -139,6 +164,26 @@ export default new Router({
      path:'/visitList',
       name:'就诊人列表',
       component:visitlIist
+    },
+    {
+      path:'/editChild',
+      name:'编辑儿童就诊',
+      component:editChild
+    },
+    {
+      path:'/editMan',
+      name:'编辑成人就诊',
+      component:editMan
+    },
+    {
+      path:'/editPhone',
+      name:'更换绑定手机',
+      component:editPhone
+    },
+    {
+      path:'/manageCard',
+      name:'管理就诊卡',
+      component:manageCard
     }
 
 

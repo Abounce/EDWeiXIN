@@ -73,9 +73,39 @@ export function getvisitlist(startdata) {
   });
 }
 
+
+
 export function getvisitsave(startdata) {
   return new Promise((resovle,reject)=>{
     ajax.post('/visit/save',startdata)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+//更换就诊人号码
+export function getVisitUpdata(startdata) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/visit/updata',startdata)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
+
+//解除就诊人绑定
+export function getVistRemoveBind(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/visit/removeBind',params)
       .then(body=>{
         resovle(body)
       })
