@@ -97,8 +97,16 @@ const editPhone = (resolve) => {
   })
 }
 
+//管理就诊卡
 const manageCard = (resolve) => {
   import('../components/my/personal-center/manage-card.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//我的中心
+const myCenter = (resolve) => {
+  import('../components/my/personal-center/my-center.vue').then((module) => {
     resolve(module)
   })
 }
@@ -184,6 +192,11 @@ export default new Router({
       path:'/manageCard',
       name:'管理就诊卡',
       component:manageCard
+    },
+    {
+      path:'/myCenter',
+      name:'我的中心',
+      component:myCenter
     }
 
 
