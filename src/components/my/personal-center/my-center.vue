@@ -72,15 +72,15 @@
     methods:{
       //挂号记录
       buttonHistory(){
-
+       this.$router.push({name:'挂号记录'})
       },
       //管理就诊卡
       buttonCard(){
-
+       this.$router.push({name:'管理就诊卡'})
      },
       //我的医生
       buttonDoctor(){
-
+        this.$router.push({name:'我的医生'})
       },
       //就诊记录
       buttonJZHistory(){

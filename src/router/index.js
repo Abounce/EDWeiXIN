@@ -97,6 +97,14 @@ const editPhone = (resolve) => {
   })
 }
 
+//我的中心
+const myCenter = (resolve) => {
+  import('../components/my/personal-center/my-center.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+
 //管理就诊卡
 const manageCard = (resolve) => {
   import('../components/my/personal-center/manage-card.vue').then((module) => {
@@ -104,9 +112,18 @@ const manageCard = (resolve) => {
   })
 }
 
-//我的中心
-const myCenter = (resolve) => {
-  import('../components/my/personal-center/my-center.vue').then((module) => {
+
+
+//挂号记录
+const regHistory = (resolve) => {
+  import('../components/my/personal-center/reg-history.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//挂号记录
+const myDoctor = (resolve) => {
+  import('../components/my/personal-center/my-doctor.vue').then((module) => {
     resolve(module)
   })
 }
@@ -188,16 +205,28 @@ export default new Router({
       name:'更换绑定手机',
       component:editPhone
     },
+
+    {
+      path:'/myCenter',
+      name:'我的中心',
+      component:myCenter
+    },
+    {
+      path:'/regHistory',
+      name:'挂号记录',
+      component:regHistory
+    },
     {
       path:'/manageCard',
       name:'管理就诊卡',
       component:manageCard
     },
     {
-      path:'/myCenter',
-      name:'我的中心',
-      component:myCenter
+      path:'/myDoctor',
+      name:'我的医生',
+      component:myDoctor
     }
+
 
 
 

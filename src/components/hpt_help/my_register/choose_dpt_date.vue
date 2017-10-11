@@ -250,9 +250,9 @@
         border-radius: 12px;
         background-color: #ff8c19;
         float: right;
-          font-size: 14px;
-          font-weight: 500;
-          color: #ffffff;
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
 
       }
     }
