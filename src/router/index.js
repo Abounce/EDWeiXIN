@@ -4,43 +4,44 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const Hpt_msg = (resolve) => {
+const hptMsg = (resolve) => {
   import('../components/hpt-msg/hpt-msg/hpt-msg.vue').then((module) => {
     resolve(module)
   })
 }
 
+//预约挂号
 const chooseDpt = (resolve) => {
-  import('../components/hpt_help/my_register/choose-dpt.vue').then((module) => {
+  import('../components/hpt-help/my-register/choose-dpt.vue').then((module) => {
     resolve(module)
   })
 }
 
 const chooseDptDate = (resolve) => {
-  import('../components/hpt_help/my_register/choose_dpt_date.vue').then((module) => {
+  import('../components/hpt-help/my-register/choose-dpt-date.vue').then((module) => {
     resolve(module)
   })
 }
 const chooseDptDoctor = (resolve) => {
-  import('../components/hpt_help/my_register/choose_dpt_doctor.vue').then((module) => {
+  import('../components/hpt-help/my-register/choose-dpt-doctor.vue').then((module) => {
     resolve(module)
   })
 }
 
 const Choosedptpatient = (resolve) => {
-  import('../components/hpt_help/my_register/choose_dpt_patient.vue').then((module) => {
+  import('../components/hpt-help/my-register/choose-dpt-patient.vue').then((module) => {
     resolve(module)
   })
 }
 
 const addPatient = (resolve) => {
-  import('../components/hpt_help/my_register/add_patient.vue').then((module) => {
+  import('../components/hpt-help/my-register/add-patient.vue').then((module) => {
     resolve(module)
   })
 }
 
 const buildCard = (resolve) => {
-  import('../components/hpt_help/my_register/build_card.vue').then((module) => {
+  import('../components/hpt-help/my-register/build-card.vue').then((module) => {
     resolve(module)
   })
 }
@@ -60,13 +61,13 @@ const experetDetails = (resolve) => {
 
 
 const See = (resolve) => {
-  import('../components/hpt_help/report_see/see.vue').then((module) => {
+  import('../components/hpt-help/report-see/see.vue').then((module) => {
     resolve(module)
   })
 }
 
-const OrderQuery = (resolve) => {
-  import('../components/my/query/OrderQuery.vue').then((module) => {
+const orderQuery = (resolve) => {
+  import('../components/my/query/order-query.vue').then((module) => {
     resolve(module)
   })
 }
@@ -133,12 +134,23 @@ export default new Router({
   routes: [
     // { path: '*', component: index },
     {
-      path: '/hptmsg',
-      component: Hpt_msg
+      path: '/seedemo',
+      component: See
     },
     {
+      path: '/hptMsg',
+      component: hptMsg
+    },
+    {
+      path:'/orderQuery',
+      component:orderQuery
+    },
+
+
+    //---------预约挂号------------
+    {
       path: '/chooseDpt',
-      name:'选择科室',
+      name:'预约挂号',
       component: chooseDpt
     },
     {
@@ -152,23 +164,8 @@ export default new Router({
       component: chooseDptDoctor
     },
     {
-      path: '/seedemo',
-      component: See
-    },
-    {
-      path:'/expertIntroduce',
-      name:'专家介绍',
-      component:expertIntroduce
-    },
-    {
-      path:'/experetDetails',
-      name:'专家详情',
-      component:experetDetails
-    },
-    {
-      path:'/choosedptpatient',
-      name:'choosedptpatient',
-
+      path:'/chooseDptPatient',
+      name:'选择就诊人',
       component:Choosedptpatient
     },
     {
@@ -181,10 +178,24 @@ export default new Router({
       name:'在线建卡',
       component:buildCard
     },
+   //--------------------------
+
+   //---------专家介绍------
     {
-      path:'/orderquery',
-      component:OrderQuery
+      path:'/expertIntroduce',
+      name:'专家介绍',
+      component:expertIntroduce
     },
+    {
+      path:'/experetDetails',
+      name:'专家详情',
+      component:experetDetails
+    },
+    //--------------------------
+
+
+
+    //-------就诊人列表----------
     {
      path:'/visitList',
       name:'就诊人列表',
@@ -205,7 +216,9 @@ export default new Router({
       name:'更换绑定手机',
       component:editPhone
     },
+   //-----------------------
 
+    //----------我的中心-----------
     {
       path:'/myCenter',
       name:'我的中心',
@@ -226,8 +239,7 @@ export default new Router({
       name:'我的医生',
       component:myDoctor
     }
-
-
+    //-----------------------
 
 
   ]

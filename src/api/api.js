@@ -1,9 +1,9 @@
 import ajax from './ajax.js'
 
 //微信查询医生信息
-export function  getdoctorlist(word) {
+export function  getDoctorList(params) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/doctor/list',word)
+    ajax.post('/doctor/list',params)
       .then(body=>{
         resovle(body)
       })
@@ -15,7 +15,7 @@ export function  getdoctorlist(word) {
 }
 
 //微信查询挂过号的医生信息
-export function getdoctorpastlist() {
+export function getDoctorPastList() {
   return new Promise((resovle,reject)=>{
     ajax.post('/doctorPast/list')
       .then(body=>{
@@ -31,7 +31,7 @@ export function getdoctorpastlist() {
 
 
 //微信查询科室分类和科室信息
-export function getdepartlist() {
+export function getDepartList() {
   return new Promise((resovle,reject)=>{
     ajax.post('/depart/list')
       .then(body=>{
@@ -45,9 +45,9 @@ export function getdepartlist() {
 }
 
 //微信查询医生出诊信息
-export function getdoctorvisit(startdata) {
+export function getDoctorVisit(params) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/doctorVisit/list',startdata)
+    ajax.post('/doctorVisit/list',params)
       .then(body=>{
         resovle(body)
       })
@@ -60,9 +60,9 @@ export function getdoctorvisit(startdata) {
 
 // http://192.168.0.222:8080/weChat/visit/list
 //获取就诊人列表
-export function getvisitlist(startdata) {
+export function getVisitList(params) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/visit/list',startdata)
+    ajax.post('/visit/list',params)
       .then(body=>{
         resovle(body)
       })
@@ -74,10 +74,9 @@ export function getvisitlist(startdata) {
 }
 
 
-
-export function getvisitsave(startdata) {
+export function getVisitSave(params) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/visit/save',startdata)
+    ajax.post('/visit/save',params)
       .then(body=>{
         resovle(body)
       })
@@ -88,9 +87,9 @@ export function getvisitsave(startdata) {
   });
 }
 //更换就诊人号码
-export function getVisitUpdata(startdata) {
+export function getVisitUpdata(params) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/visit/updata',startdata)
+    ajax.post('/visit/updata',params)
       .then(body=>{
         resovle(body)
       })
@@ -100,7 +99,6 @@ export function getVisitUpdata(startdata) {
       })
   });
 }
-
 
 //解除就诊人绑定
 export function getVistRemoveBind(params) {
@@ -118,9 +116,9 @@ export function getVistRemoveBind(params) {
 
 //在线建卡
 //http://192.168.0.222:8080/weChat/CardRegister/reg
-export function getCardRegister(tempData) {
+export function getCardRegister(params) {
   return new Promise((resovle,reject)=>{
-    ajax.post('/CardRegister/reg',tempData)
+    ajax.post('/CardRegister/reg',params)
       .then(body=>{
         resovle(body)
       })
@@ -133,9 +131,9 @@ export function getCardRegister(tempData) {
 
 
 
-export function login (name) {
+export function login (params) {
   return new Promise((resolve, reject) => {
-    ajax.post('/doctor/list',name)
+    ajax.post('/doctor/list',params)
       .then(body => {
         resolve(body)
       })

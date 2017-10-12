@@ -73,7 +73,7 @@
   import { XSwitch, Group  } from 'vux'
   import { dateFormat } from 'vux'
   import {getnextday,getweek} from "../../../api/utils.js"
-  import {getElementWidth} from"../../../api/utils.js"
+  import {getElementWidth} from "../../../api/utils.js"
  export  default {
    data(){
     return{
@@ -94,7 +94,7 @@
        this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
        this.$loacalstore.set('regDate',doctor.regDate)
        this.$loacalstore.set('regJobType',doctor.regJobType)
-       this.$router.push({name:'choosedptpatient'})
+       this.$router.push({name:'选择就诊人'})
      },
      //预约
      chooseOrder(isorder,isintroduce){
@@ -133,7 +133,7 @@
        let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
 
        let startDate={startDate:dateformat,doctorId:doctorId}
-       this.$api.getdoctorvisit(startDate).then((data)=>{
+       this.$api.getDoctorVisit(startDate).then((data)=>{
          this.sortdata(data)
        })
      },
@@ -203,7 +203,7 @@
        }
 //       console.log("----------医生的id="+doctorId)
        let start={docCode:doctorId}
-      this.$api.getdoctorlist(start).then((data=>{
+      this.$api.getDoctorList(start).then((data=>{
 //             console.log(data)
         this.topdata=data[0]
       }))

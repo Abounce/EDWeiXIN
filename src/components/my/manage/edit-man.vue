@@ -70,7 +70,7 @@
       getVisit(visitId){
 //        console.log(visitId)
         let params={visitId:visitId}
-        this.$api.getvisitlist(params).then((data)=>{
+        this.$api.getVisitList(params).then((data)=>{
           this.visit=data[0]
           console.log(data[0])
         })

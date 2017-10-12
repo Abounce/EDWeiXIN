@@ -45,7 +45,7 @@
 <script>
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {Search} from 'vux'
-  import {getElementWidth} from"../../../api/utils.js"
+  import {getElementWidth} from "../../../api/utils.js"
   export default {
 
     data () {
@@ -62,7 +62,7 @@
     methods: {
       //选择挂过号的医生
       chooseHistoryDocotor(){
-        this.$router.push({ path: 'choosedptdoctor' })
+        this.$router.push({ path: '选择挂号医生' })
       },
       //选择科室
       chooseDepartment(item){
@@ -86,7 +86,7 @@
 //        this.results = val ?[{title:"第一列"},{title:"第二列"},{title:"第三列"},{title:"第四列"}]: []
         if(val){
           let word={keyWord:val}
-          this.$api.getdoctorlist(word).then(data=>{
+          this.$api.getDoctorList(word).then(data=>{
              var length = data.length;
              for(let i=0;i<length;i++){
                this.results.push({
@@ -134,7 +134,7 @@
       this.$nextTick(function () {
 
 //            this.$loacalstore.set('user', { name:'何园鹏' })
-        this.$api.getdepartlist().then(data=>{
+        this.$api.getDepartList().then(data=>{
 //          console.log(data)
           this.departlist=data;
           this.$nextTick(function () {
@@ -144,7 +144,7 @@
           })
         });
 
-        this.$api.getdoctorpastlist().then(data=>{
+        this.$api.getDoctorPastList().then(data=>{
 //             console.log(data)
             this.doctorpastlist=data;
             this.$nextTick(function () {

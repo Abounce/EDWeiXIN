@@ -35,7 +35,7 @@
   import { dateFormat } from 'vux'
   import {getnextday,getweek} from "../../../api/utils.js"
   import betterscroll from "../../../common/component/betterscroll.vue"
-  import {getElementWidth} from"../../../api/utils.js"
+  import {getElementWidth} from "../../../api/utils.js"
   export default {
     beforeRouteUpdate (to, from, next) {
       this.getlist();
@@ -79,7 +79,7 @@
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
 
         let startDate={startDate:dateformat,deptCode:code}
-        this.$api.getdoctorvisit(startDate).then(data=>{
+        this.$api.getDoctorVisit(startDate).then(data=>{
 
           this.sortdata(data)
 
@@ -130,7 +130,7 @@
         }
         let lastweek = getweek(lastday);
        newarry.push({weekDay:lastweek,regDate:lastday.substr(5,10),doctors:lastdoctors});
-       console.log(newarry)
+//       console.log(newarry)
           this.tabs=newarry;
           this.$nextTick(function () {
           this.tatalwith = getElementWidth("liwidth");

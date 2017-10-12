@@ -88,7 +88,7 @@
         this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
         this.$loacalstore.set('regDate',doctor.regDate)
         this.$loacalstore.set('regJobType',doctor.regJobType)
-        this.$router.push({name:'choosedptpatient'})
+        this.$router.push({name:'选择就诊人'})
       },
       setindex(index,docoto){
         this.currentdoctors=docoto;
@@ -113,7 +113,7 @@
         let dateformat = dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss');
 
         let startDate={startDate:dateformat,doctorId:doctorId}
-        this.$api.getdoctorvisit(startDate).then((data)=>{
+        this.$api.getDoctorVisit(startDate).then((data)=>{
           this.sortdata(data)
         })
       },
@@ -181,9 +181,9 @@
         if (!doctorId){
           return
         }
-        console.log("传递过来的数据doctorId="+doctorId)
+//        console.log("传递过来的数据doctorId="+doctorId)
         let start={docCode:doctorId}
-        this.$api.getdoctorlist(start).then((data=>{
+        this.$api.getDoctorList(start).then((data=>{
           console.log(data)
           this.topdata=data[0]
         }))

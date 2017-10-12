@@ -40,7 +40,7 @@
    methods:{
     getlist(){
       let start={isExpert:1}
-      this.$api.getdoctorlist(start).then((data)=>{
+      this.$api.getDoctorList(start).then((data)=>{
             console.log(data)
         this.tabs=data;
       })

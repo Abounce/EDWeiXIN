@@ -176,9 +176,9 @@
       }
       let startdata={idcartCode:this.cardmsg,isChildren:2,mobile:this.phonemsg,name:this.namemsg,
         sex:sex,birthday:this.value1,visitCardId:this.iscardmsg}
-      this.$api.getvisitsave(startdata).then((data)=>{
-            console.log(data)
-        this.$router.push({ path:'choosedptpatient' })
+      this.$api.getVisitSave(startdata).then((data)=>{
+//            console.log(data)
+        this.$router.push({ path:'选择就诊人' })
       })
       },
       //儿童建卡
@@ -215,11 +215,11 @@
           console.log('手机号输入不正确')
           return
         }
-        let startdata={idcartCode:this.cardmsg,isChildren:1,mobile:this.phonemsg,name:this.namemsg,
+        let params={idcartCode:this.cardmsg,isChildren:1,mobile:this.phonemsg,name:this.namemsg,
           sex:sex,birthday:this.value1,visitCardId:this.iscardmsg}
-        this.$api.getvisitsave(startdata).then((data)=>{
-          console.log(data)
-          this.$router.push({ path:'choosedptpatient' })
+        this.$api.getVisitSave(params).then((data)=>{
+//          console.log(data)
+          this.$router.push({ path:'选择就诊人' })
         })
 
       },

@@ -72,8 +72,8 @@
       //获取就诊人列表
       getVisitList(){
         let starData={openId:'ogFdDwHpeOX5dGGvjptmed1pbkMo'}
-       this.$api.getvisitlist(starData).then((data)=>{
-//           console.log(data)
+       this.$api.getVisitList(starData).then((data)=>{
+           console.log(data)
          this.visitList=data;
         })
       },

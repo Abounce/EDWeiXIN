@@ -101,7 +101,7 @@
        getvisit: function () {
          let openId='ogFdDwHpeOX5dGGvjptmed1pbkMo'
          let startdata={openId:openId}
-         this.$api.getvisitlist(startdata).then((data=>{
+         this.$api.getVisitList(startdata).then((data=>{
 //             console.log(data.length)
 
            this.vistitlist=data
@@ -139,14 +139,14 @@
          this.rgd=rgd
 
 
-         console.log("传过来费用为"+sumFee)
+//         console.log("传过来费用为"+sumFee)
 //         console.log("病人界面的id"+doctorId)
          this.getdoctor(doctorId)
          this.getvisit()
        },
        getdoctor: function (doctorId) {
          let startdata={docCode:doctorId}
-         this.$api.getdoctorlist(startdata).then((data=>{
+         this.$api.getDoctorList(startdata).then((data=>{
 //            console.log(data)
             this.doctors=data[0];
          }))
