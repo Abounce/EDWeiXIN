@@ -1,5 +1,6 @@
+
 <template>
-  <div>
+  <div class="aa">
       <better-scroll class="wrapper">
         <ul>
           <li>
@@ -50,21 +51,25 @@
           </li>
         </ul>
       </better-scroll>
+       <is-reg></is-reg>
   </div>
 </template>
 
 <script>
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
+  import isReg from '../../../common/component/is-reg.vue'
   export default {
     components:{
       myLine,
-      betterScroll
+      betterScroll,
+      isReg
     }
   }
 </script>
 
 <style scoped lang="less" type="text/less">
+  
  .wrapper{
    position: absolute;
    top: 0;
