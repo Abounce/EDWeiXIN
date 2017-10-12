@@ -7,22 +7,26 @@
          <input  id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
          <div class="weui-icon-clear three" ></div>
        </div>
+       <my-line></my-line>
        <div class="card">
          <label for="cardinput" class="one"  >身份证号:</label>
          <input  id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
          <div class="weui-icon-clear three" ></div>
        </div>
+       <my-line></my-line>
        <div class="phone">
          <label for="phoneinput" class="one">手机号码:</label>
          <input  id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="weui-icon-clear three" ></div>
          <div  class="four">获取验证</div>
        </div>
+       <my-line></my-line>
        <div class="auto-code">
          <label for="autoinput" class="one">验证码:</label>
          <input  id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
          <div class="weui-icon-clear three" ></div>
        </div>
+       <my-line></my-line>
        <div class="man-child">
          <div class="man">
          <input type="radio" id="one" value=1 v-model="picked">
@@ -80,9 +84,11 @@
   import { CheckIcon } from 'vux'
   import { TransferDom, Popup} from 'vux'
   import * as check from '../../../api/check.js'
+  import myLine from '../../../common/component/myLine.vue'
   export default {
     components: {
-      Popup
+      Popup,
+      myLine
     },
     directives: {
       TransferDom

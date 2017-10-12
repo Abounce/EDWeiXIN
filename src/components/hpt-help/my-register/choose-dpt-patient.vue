@@ -11,6 +11,8 @@
         <span class="job">{{doctors.positionalName}}</span>
         </div>
       </div>
+      <my-line></my-line>
+
       <div class="personal-body">
         <div class="body-one"><span class="one">挂号科室</span><span class="two">{{doctors.departName}}</span></div>
         <div class="body-two"><span class="three">挂号费用</span><span class="four">￥{{sumfree}}</span></div>
@@ -25,16 +27,19 @@
       </div>
       <div class="personal-patient">
         <ul>
-          <li v-for="(item,index) in vistitlist">
+          <li v-for="(item,index) in vistitlist" @click="chooseItem(index)">
             <div class="vist">
                 <div class="vistname">{{item.name}}({{item.isChildren===1?"儿童":"成年"}})</div>
                 <div class="vistnumber">{{item.idcartCode}}</div>
                 <!--<div class="isgx">{{item.isChildren===1?"儿童":"成年"}}</div>-->
-              <check-icon :value.sync="demo5" class="isgx" @click.native="nv"  >女</check-icon>
+              <check-icon :value.sync="demo5" class="isgx" @click.native="nv()"  ></check-icon>
             </div>
+            <my-line></my-line>
+
           </li>
         </ul>
       </div>
+
       <div class="personal-phone">
          <span class="one">联系电话</span>
          <span class="two">{{doctors.mobilephone}}</span>
@@ -49,6 +54,7 @@
 
 <script>
   import { CheckIcon} from 'vux'
+  import myLine from '../../../common/component/myLine.vue'
    export default {
      data(){
        return{
@@ -59,6 +65,7 @@
          jp:'',
          rgd:'',
          demo5:false,
+         currentItem:0
 
        }
      },
@@ -77,7 +84,11 @@
          })
      },
      methods:{
+       chooseItem(index){
+         this.currentItem=index
+       },
        nv(){
+
 
        },
        //确认挂号
@@ -155,6 +166,7 @@
      },
      components: {
        CheckIcon,
+       myLine
      },
    }
 </script>
@@ -274,14 +286,17 @@
         height: 50px;
         display: flex;
         .vistname{
+          line-height: 50px;
           text-align: center;
           flex: 36;
         }
         .vistnumber{
+          line-height: 50px;
           text-align: center;
           flex: 50;
         }
         .isgx{
+          line-height: 50px;
           text-align: left;
           flex: 12;
         }

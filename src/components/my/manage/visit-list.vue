@@ -118,6 +118,7 @@
 <style scoped lang="less" type="text/less">
 
   .wrapper{
+    position: relative;
     height: 73.5px;
     .left-one{
       margin-left: 15.5px;
@@ -142,7 +143,7 @@
     }
     .right-one{
       position: absolute;
-       top: 28.5px;
+       top: 18px;
       right: 15px;
       img{
            vertical-align: top;

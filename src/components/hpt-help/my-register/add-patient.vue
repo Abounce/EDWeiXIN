@@ -1,5 +1,6 @@
+
 <template>
- <div>
+ <div >
      <div class="tab">
        <div class="tab-man" @click="chooseman" :class="{selectleft:isman}">成人</div>
        <div class="tab-child" @click="choosechild" :class="{selectleft:ischild}">儿童/新生儿</div>
@@ -8,43 +9,65 @@
        <div class="name">
          <label for="nameinput" class="one" >真实姓名:</label>
          <input type="text" id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearNamemsg" v-show="namemsg" ></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="sex">
          <span class="one">性别:</span>
          <check-icon :value.sync="demo1" class="two"   @click.native="nan">男</check-icon>
          <check-icon :value.sync="demo2" class="three" @click.native="nv">女</check-icon>
          <check-icon :value.sync="demo3" class="four"  @click.native="baomi">保密</check-icon>
        </div>
+       <my-line></my-line>
        <div class="birthday">
        <datetime v-model="value1"  :title="('出生日期:')" placeholder="请选择"></datetime>
        </div>
+       <my-line></my-line>
        <div class="card">
          <label for="cardinput" class="one"  >身份证号:</label>
          <input type="text" id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
-         <div class="weui-icon-clear three " @click="clearCardmsg" v-show="cardmsg"></div>
-       </div>
+         <div class="three">
 
+         <div class="weui-icon-clear three " @click="clearCardmsg" v-show="cardmsg"></div>
+         </div>
+       </div>
+       <my-line></my-line>
        <div class="iscard">
          <label for="iscardinput" class="one">就诊卡号:</label>
          <input type="text" id="iscardinput" v-model="iscardmsg" class="two"  placeholder="请填写就诊卡号" >
+         <div class="three">
+
          <div class="weui-icon-clear three clear-iscardmsg" @click="clearIscardmsg" v-show="iscardmsg" ></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="phone">
          <label for="phoneinput" class="one">手机号码:</label>
          <input type="text" id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearPhonemsg" v-show="phonemsg"></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="autocode">
          <label for="autoinput" class="one">验证码:</label>
          <input type="text" id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearAutomsg" v-show="automsg"></div>
+         </div>
          <span >获取验证</span>
        </div>
+       <my-line></my-line>
        <div class="visitcard" style="text-align: right">
 
            <span class="one">没有就诊卡?</span> <span class="two" @click="buildCard">在线建卡</span>
        </div>
+       <!--<my-line></my-line>-->
        <div class="button" @click="commitMan">
          <span>添加</span>
        </div>
@@ -52,51 +75,77 @@
      <div v-if="ischild" class="child">
        <div class="name">
          <label for="nameinputa" class="one" >真实姓名:</label>
-         <input type="text" id="nameinputa" v-model="namemsga" class="two" placeholder="请填写就诊人姓名" onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')">
+         <input type="text" id="nameinputa" v-model="namemsga" class="two" placeholder="请填写就诊人姓名" >
+         <div class="three">
          <div class="weui-icon-clear three" @click="clearNamemsga" v-show="namemsga"></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="sex">
          <span class="one">性别:</span>
          <check-icon :value.sync="demo4" class="two"   @click.native="nan">男</check-icon>
          <check-icon :value.sync="demo5" class="three" @click.native="nv">女</check-icon>
          <check-icon :value.sync="demo6" class="four"  @click.native="baomi">保密</check-icon>
        </div>
+       <my-line></my-line>
        <div class="birthday">
          <datetime v-model="value2"  :title="('出生日期:')" placeholder="请选择"></datetime>
        </div>
+       <my-line></my-line>
        <div class="card">
          <label for="cardinputa" class="one"  >患者身份证:</label>
          <input type="text" id="cardinputa" v-model="cardmsga" class="two"  placeholder="请填写就诊人身份证号">
-         <div class="weui-icon-clear three"  @click="clearCardmsga" v-show="cardmsga"></div>
-       </div>
+         <div class="three">
 
+         <div class="weui-icon-clear three"  @click="clearCardmsga" v-show="cardmsga"></div>
+         </div>
+       </div>
+       <my-line></my-line>
        <div class="jhcard">
          <label for="jhcardinput" class="one">监护人身份证:</label>
          <input type="text" id="jhcardinput" v-model="jianhumsga" class="two"  placeholder="请填写监护人身份证">
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearJianhumsga" v-show="jianhumsga" ></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="iscard">
          <label for="iscardinputa" class="one">就诊卡号:</label>
          <input type="text" id="iscardinputa" v-model="iscardmsga" class="two"  placeholder="请填写就诊卡号" >
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearIscardmsga" v-show="iscardmsga"></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="phone">
          <label for="phoneinputa" class="one">监护人手机:</label>
          <input type="text" id="phoneinputa" v-model="phonemsga" class="two"  placeholder="请填写建卡预留手机号">
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearPhonemsga" v-show="phonemsga"></div>
+         </div>
        </div>
+       <my-line></my-line>
        <div class="autocode">
          <label for="autoinputa" class="one">验证码:</label>
          <input type="text" id="autoinputa" v-model="automsga" class="two"  placeholder="请填写验证码">
+         <div class="three">
+
          <div class="weui-icon-clear three" @click="clearAutomsga" v-show="automsga"></div>
+         </div>
          <span >获取验证</span>
        </div>
+       <my-line></my-line>
+       <div class="bg">
        <div class="visitcard" style="text-align: right">
 
          <span>没有就诊卡?</span> <span style="color: #1793e6;" @click="buildCard">在线建卡</span>
        </div>
        <div class="button" @click="commitChild">
          <span>添加</span>
+       </div>
        </div>
      </div>
    <div v-transfer-dom>
@@ -113,6 +162,7 @@
   import { CheckIcon,Datetime } from 'vux'
   import { TransferDom, Popup} from 'vux'
   import * as check from '../../../api/check.js'
+  import myLine from '../../../common/component/myLine.vue'
   export default {
     directives: {
       TransferDom
@@ -328,8 +378,8 @@
     components: {
       CheckIcon,
       Datetime,
-      Popup
-
+      Popup,
+      myLine
     },
     watch: {
       show10 (val) {
@@ -345,6 +395,7 @@
 
 <style scoped lang="less" type="text/less">
     .tab{
+      border-bottom:10px solid  #cdcdcd;
       display: flex;
       height: 49px;
       .tab-man{
@@ -518,7 +569,7 @@
         }
       }
       .button{
-        margin-top: 30px;
+        margin-top: 40px;
         text-align: center;
         span{
           color: white;
@@ -705,7 +756,7 @@
         }
       }
       .button{
-        margin-top: 30px;
+        margin-top: 40px;
         text-align: center;
         span{
           color: white;

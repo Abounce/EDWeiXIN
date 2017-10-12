@@ -9,13 +9,17 @@
   <div class="card">
     <label for="cardinput" class="one" >新手机号码:</label>
     <input type="text" id="cardinput" v-model="phonemsg" class="two"  placeholder="请填输入新手机号码">
-    <div class="weui-icon-clear three" ></div>
+    <div class="three">
+    <div class="weui-icon-clear three" @click="clearPhonemsg" v-show="phonemsg"></div>
+    </div>
   </div>
 
   <div class="autocode">
     <label for="autoinput" class="one">验证码:</label>
     <input type="text" id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
-    <div class="weui-icon-clear three" ></div>
+    <div class="three">
+    <div class="weui-icon-clear three" @click="clearAutomsg" v-show="automsg"></div>
+    </div>
     <span >获取验证</span>
   </div>
   <div class="button" @click="edit">
@@ -48,7 +52,14 @@
           console.log(data);
 
       })
+      },
+      clearPhonemsg(){
+        this.phonemsg=''
+      },
+      clearAutomsg(){
+        this.automsg=''
       }
+
     },
     mounted(){
       this.$nextTick(()=>{
