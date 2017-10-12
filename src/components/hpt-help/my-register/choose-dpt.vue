@@ -62,7 +62,7 @@
     methods: {
       //选择挂过号的医生
       chooseHistoryDocotor(){
-        this.$router.push({ path: '选择挂号医生' })
+        this.$router.push({ name: '选择挂号医生' })
       },
       //选择科室
       chooseDepartment(item){

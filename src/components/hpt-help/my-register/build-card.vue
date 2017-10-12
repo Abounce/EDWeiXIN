@@ -25,11 +25,11 @@
        </div>
        <div class="man-child">
          <div class="man">
-         <input type="radio" id="one" value="1" v-model="picked">
+         <input type="radio" id="one" value=1 v-model="picked">
          <label for="one">成人</label>
          </div>
          <div class="child">
-         <input type="radio" id="two" value="2" v-model="picked">
+         <input type="radio" id="two" value=2 v-model="picked">
          <label for="two">新生儿</label>
          </div>
        </div>
@@ -66,46 +66,85 @@
      <div class="button" @click="buildCard">
           <span>确定</span>
      </div>
+     <div v-transfer-dom>
+       <popup v-model="show10" position="top" :show-mask="false">
+         <div class="position-vertical-demo">
+           {{showMsg}}
+         </div>
+       </popup>
+     </div>
    </div>
 </template>
 
 <script>
   import { CheckIcon } from 'vux'
+  import { TransferDom, Popup} from 'vux'
   import * as check from '../../../api/check.js'
   export default {
+    components: {
+      Popup
+    },
+    directives: {
+      TransferDom
+    },
      data(){
        return{
          namemsg:'',
          cardmsg:'',
          phonemsg:'',
          automsg:'',
-         picked:''
+         picked:-1,
+         show10:false,
+         showMsg:''
        }
      },
     methods:{
       buildCard(){
-
+//         let picked=-1;
         if(!check.checkName(this.namemsg)){
-          console.log('真实姓名填写有误')
+//          console.log('真实姓名填写有误')
+          this.show10 = true;
+          this.showMsg='真实姓名填写有误';
           return ;
         }
 
         if (!check.checkCard(this.cardmsg)){
-          console.log('身份证号有误')
+//          console.log('身份证号有误')
+          this.show10 = true;
+          this.showMsg='身份证号有误';
           return
         }
         if (!check.checkPhone(this.phonemsg)){
-          console.log('手机号输入不正确')
+//          console.log('手机号输入不正确')
+          this.show10 = true;
+          this.showMsg='手机号填写有误';
           return
         }
-
-        let tempData={idCard:this.cardmsg,name:this.namemsg,mobile:this.phonemsg,isChildren:this.picked
-          ,idCardAUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
+//        picked= this.picked;
+        if (this.picked<0){
+          this.show10 = true;
+          this.showMsg='请选择成人还是儿童';
+          return
+        }
+        let params={idCard:this.cardmsg,name:this.namemsg,mobile:this.phonemsg,isChildren:this.picked
+           ,idCardAUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'
            ,idCardBUrl:'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png'}
-        this.$api.getCardRegister(tempData).then((data)=>{
-                 console.log(data)
-        })
+         this.$api.getCardRegister(params).then((data)=>{
+//                 console.log(data)
+           this.$vux.toast.text('建卡成功', 'middle')
+        }).catch((err)=>{
+           this.$vux.toast.text(err.data.errorMsg,'middle')
+         })
 
+      }
+    },
+    watch: {
+      show10 (val) {
+        if (val) {
+          setTimeout(() => {
+            this.show10 = false
+          }, 1000)
+        }
       }
     }
 
@@ -286,4 +325,10 @@
       border: solid 1px #11ad67;
     }
   }
+.position-vertical-demo {
+  background-color:red;
+  color: #000;
+  text-align: center;
+  padding: 15px;
+}
 </style>

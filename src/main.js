@@ -9,10 +9,12 @@ import stores from 'store'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import * as api from './api/api'
+import  { ToastPlugin } from 'vux'
 // import vConsole from 'vconsole'
 import './common/css/reset.css'
 import './common/iconfont/iconfont.css'
 import VueBarcode from '@xkeshi/vue-barcode'
+Vue.use(ToastPlugin)
 Vue.config.productionTip = false
 FastClick.attach(document.body)
 Vue.component('barcode', VueBarcode);
