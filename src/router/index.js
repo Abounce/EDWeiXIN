@@ -66,11 +66,27 @@ const See = (resolve) => {
   })
 }
 
+//预约查询
 const orderQuery = (resolve) => {
   import('../components/my/query/order-query.vue').then((module) => {
     resolve(module)
   })
 }
+
+//预约查询就诊号
+const orderQueryNumber = (resolve) => {
+  import('../components/my/query/order-query-number.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//已完成预约查看
+const finishOrder = (resolve) => {
+  import('../components/my/query/finish-order.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 //就诊人列表
 const visitlIist = (resolve) => {
@@ -141,10 +157,24 @@ export default new Router({
       path: '/hptMsg',
       component: hptMsg
     },
+
+    //-------预约查询------
     {
       path:'/orderQuery',
+      name:'预约查询',
       component:orderQuery
     },
+    {
+      path:'/orderQueryNumber',
+      name:'预约查询就诊号',
+      component:orderQueryNumber
+    },
+    {
+      path:'/finishOrder',
+      name:'已完成预约查看',
+      component:finishOrder
+    },
+    //---------------------
 
 
     //---------预约挂号------------

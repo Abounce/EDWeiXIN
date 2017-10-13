@@ -9,15 +9,15 @@
        <div class="heaer-bind-card">去绑卡</div>
        <my-line></my-line>
        <div class="header-wrapper">
-       <div class="com">
+       <div class="com" @click="buttonGH">
          <div class="icon iconfont icon-yuyueguahao" style="color: #13bf72"></div>
          <div class="text">预约挂号</div>
        </div>
-       <div class="com">
+       <div class="com" @click="buttonJK">
          <div class="icon iconfont icon-jiuzhenqiatubiao" style="color: #ff8c19"></div>
          <div  class="text">在线建卡</div>
        </div>
-       <div class="com">
+       <div class="com" @click="buttonJF">
          <div class="icon iconfont icon-jiaofei" style="color:#1793e6;"></div>
          <div  class="text">门诊缴费</div>
        </div>
@@ -60,6 +60,17 @@
     components:{
       myLine,
       betterScroll
+    },
+    methods:{
+      buttonGH(){
+
+      },
+      buttonJK(){
+
+      },
+      buttonJF(){
+
+      }
     }
   }
 </script>

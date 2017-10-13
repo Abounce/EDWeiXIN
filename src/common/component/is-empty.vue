@@ -1,10 +1,10 @@
 <template>
-   <div class="wrapper">
-     <div class="head">
-       <img src="../image/image@3x/doctor@3x.png" height="170" width="274"/>
-     </div>
-     <div class="text">您目前还没有挂过号哦!</div>
-   </div>
+  <div class="wrapper">
+    <div class="head">
+      <img src="../image/image@3x/Empty@3x.png" height="149" width="135"/>
+    </div>
+    <div class="text">这里暂无挂号记录哦!</div>
+  </div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@
     right: 0;
     bottom: 0;
     .head{
-      margin-top: 76.5px;
+      margin-top: 95.5px;
       text-align: center;
     }
     .text{

@@ -1,7 +1,7 @@
 
 <template>
-  <div class="aa">
-      <better-scroll class="wrapper">
+  <div>
+      <better-scroll class="wrapper" >
         <ul>
           <li>
             <div class="inner">
@@ -51,7 +51,7 @@
           </li>
         </ul>
       </better-scroll>
-       <is-reg></is-reg>
+      <is-reg></is-reg>
   </div>
 </template>
 
@@ -69,8 +69,9 @@
 </script>
 
 <style scoped lang="less" type="text/less">
-  
+
  .wrapper{
+   /*display: none;*/
    position: absolute;
    top: 0;
    left: 0;
@@ -115,4 +116,5 @@
      }
    }
  }
+
 </style>

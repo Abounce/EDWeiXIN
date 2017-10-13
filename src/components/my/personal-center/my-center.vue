@@ -97,7 +97,7 @@
       ,
       //预约挂号
       buttonGH(){
-
+        this.$router.push({name:'预约挂号'})
       }
       ,
       //门诊缴费
@@ -107,7 +107,7 @@
       ,
       //在线建卡
       buttonJK(){
-
+        this.$router.push({name:'在线建卡'})
       }
       ,
       //就医攻略
