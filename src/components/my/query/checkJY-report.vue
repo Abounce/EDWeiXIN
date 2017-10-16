@@ -12,7 +12,7 @@
          <span>检验人员:</span>
          <span>李伟</span>
        </div>
-       <div class="com" style="margin-bottom: 14.5px">
+       <div class="com" style="margin-bottom: 14px">
          <span>检验时间:</span>
          <span>2017-08-05 15:00:00</span>
        </div>
@@ -32,25 +32,123 @@
      </div>
      </div>
      <div class="wrapper">
-          <div class="tab">
+        <div class="tab">
            <div class="tab-com">项目</div>
            <div class="tab-com">结果</div>
            <div class="tab-com">单位</div>
            <div class="tab-com">参考值</div>
          </div>
-          <my-line></my-line>
-        <better-scroll>
+        <my-line></my-line>
+        <better-scroll class="li-wrapper">
           <ul>
             <li>
-               <div>
-                 <div>血小板计数(PL)</div>
-                 <div></div>
-                 <div></div>
-                 <div></div>
+               <div class="li">
+                 <div class="li-com">血小板计数(PL)</div>
+                 <div class="li-com">
+                   <span>287.0</span>
+                   <span></span>
+                 </div>
+                 <div class="li-com">10^9/L</div>
+                 <div class="li-com">
+                   <div>68.0~383.0</div>
+                   <div>(10^9/L)</div>
+                 </div>
                </div>
+                <my-line></my-line>
+            </li>
+            <li>
+            <div class="li">
+              <div class="li-com">血小板计数(PL)</div>
+              <div class="li-com">
+                <span>287.0</span>
+                <span></span>
+              </div>
+              <div class="li-com">10^9/L</div>
+              <div class="li-com">
+                <div>68.0~383.0</div>
+                <div>(10^9/L)</div>
+              </div>
+            </div>
+            <my-line></my-line>
+          </li>
+            <li>
+              <div class="li">
+                <div class="li-com">血小板计数(PL)</div>
+                <div class="li-com">
+                  <span>287.0</span>
+                  <span></span>
+                </div>
+                <div class="li-com">10^9/L</div>
+                <div class="li-com">
+                  <div>68.0~383.0</div>
+                  <div>(10^9/L)</div>
+                </div>
+              </div>
+              <my-line></my-line>
+            </li>
+            <li>
+              <div class="li">
+                <div class="li-com">血小板计数(PL)</div>
+                <div class="li-com">
+                  <span>287.0</span>
+                  <span></span>
+                </div>
+                <div class="li-com">10^9/L</div>
+                <div class="li-com">
+                  <div>68.0~383.0</div>
+                  <div>(10^9/L)</div>
+                </div>
+              </div>
+              <my-line></my-line>
+            </li>
+            <li>
+              <div class="li">
+                <div class="li-com">血小板计数(PL)</div>
+                <div class="li-com">
+                  <span>287.0</span>
+                  <span></span>
+                </div>
+                <div class="li-com">10^9/L</div>
+                <div class="li-com">
+                  <div>68.0~383.0</div>
+                  <div>(10^9/L)</div>
+                </div>
+              </div>
+              <my-line></my-line>
+            </li>
+            <li>
+              <div class="li">
+                <div class="li-com">血小板计数(PL)</div>
+                <div class="li-com">
+                  <span>287.0</span>
+                  <span></span>
+                </div>
+                <div class="li-com">10^9/L</div>
+                <div class="li-com">
+                  <div>68.0~383.0</div>
+                  <div>(10^9/L)</div>
+                </div>
+              </div>
+              <my-line></my-line>
+            </li>
+            <li>
+              <div class="li">
+                <div class="li-com">血小板计数(PL)</div>
+                <div class="li-com">
+                  <span>287.0</span>
+                  <span></span>
+                </div>
+                <div class="li-com">10^9/L</div>
+                <div class="li-com">
+                  <div>68.0~383.0</div>
+                  <div>(10^9/L)</div>
+                </div>
+              </div>
+              <my-line></my-line>
             </li>
           </ul>
         </better-scroll>
+        <div class="bottom">申明：此报告仅对该检测负责，仅供临床医生参考！</div>
      </div>
    </div>
 </template>
@@ -99,6 +197,7 @@
  }
  .wrapper{
    .tab{
+     border-top: 10px solid #cdcdcd;
      height: 45px;
      display: flex;
      .tab-com{
@@ -108,8 +207,40 @@
        font-weight: 500;
        line-height: 45px;
        color: #888888;
-
      }
+   }
+   .li-wrapper{
+     overflow: hidden;
+     position: absolute;
+     /*background: red;*/
+     top: 318px;
+     right: 0;
+     left: 0;
+     bottom: 30px;
+     .li{
+       margin-top: 15px;
+       display: flex;
+       height: 47.5px;
+       padding-bottom: 30px;
+       .li-com{
+         /*line-height: 62.5px;*/
+         flex: 1;
+         text-align: center;
+       }
+     }
+   }
+
+   .bottom{
+     background: #cdcdcd;
+     position: absolute;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     height: 30px;
+     text-align: center;
+     line-height: 30px;
+     font-size: 13px;
+     color: #888888;
    }
  }
 </style>

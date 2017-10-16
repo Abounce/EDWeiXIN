@@ -116,10 +116,10 @@
     },
     methods:{
       buttonJY(){
-        this.$router.push({name:'检查报告'})
+        this.$router.push({name:'检验报告'})
       },
       buttonJC(){
-        this.$router.push({name:'检验报告'})
+        this.$router.push({name:'检查报告'})
       }
     }
   }
