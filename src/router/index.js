@@ -65,6 +65,27 @@ const See = (resolve) => {
     resolve(module)
   })
 }
+//门诊支付
+const outpatientPay = (resolve) => {
+  import('../components/hpt-help/payment/outpatient-pay.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//订单详情
+const orderDetail = (resolve) => {
+  import('../components/hpt-help/payment/order-detail.vue').then((module) => {
+    resolve(module)
+  })
+}
+//个人支付
+const goPay = (resolve) => {
+  import('../components/hpt-help/payment/go-pay.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+
 
 //预约查询
 const orderQuery = (resolve) => {
@@ -292,8 +313,25 @@ export default new Router({
       name:'我的医生',
       component:myDoctor
     }
-    //-----------------------
+    //-----------------
 
+
+    //------就医助手------
+    ,{
+      path:'/outpatientPay',
+      name:'门诊支付',
+      component:outpatientPay
+    }
+    ,{
+      path:'/orderDetail',
+      name:'订单详情',
+      component:orderDetail
+    }
+    ,{
+      path:'/goPay',
+      name:'个人支付',
+      component:goPay
+    }
 
   ]
 })

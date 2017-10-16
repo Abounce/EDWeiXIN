@@ -37,8 +37,8 @@
           <div class="one-title">处方明细</div>
             <better-scroll :data="list" class="wrapper-one-b" >
               <ul>
-                <li v-for="(item,index) in list">
-                  <div class="one">
+                <li v-for="(item,index) in list" >
+                  <div class="one" style="padding-top: 10px">
                       <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
                         （基本） 0.25g*30粒/盒</div>
                       <div class="one-right">
@@ -46,6 +46,7 @@
                              <div class="price">¥60.00</div>
                       </div>
                   </div>
+                  <my-line></my-line>
                 </li>
               </ul>
             </better-scroll>
