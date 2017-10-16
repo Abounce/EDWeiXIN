@@ -86,6 +86,19 @@ const finishOrder = (resolve) => {
     resolve(module)
   })
 }
+//检验报告
+const checkJCReport = (resolve) => {
+  import('../components/my/query/checkJC-report.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//检查报告
+const checkJYReport = (resolve) => {
+  import('../components/my/query/checkJY-report.vue').then((module) => {
+    resolve(module)
+  })
+}
 
 
 //就诊人列表
@@ -173,6 +186,16 @@ export default new Router({
       path:'/finishOrder',
       name:'已完成预约查看',
       component:finishOrder
+    },
+    {
+      path:'/checkJCReport',
+      name:'检查报告',
+      component:checkJCReport
+    },
+    {
+      path:'/checkJYReport',
+      name:'检验报告',
+      component:checkJYReport
     },
     //---------------------
 

@@ -34,14 +34,52 @@
       <swiper v-model="index" :height="verticalHeight+'px'"  style="background: #cdcdcd" :show-dots="false" class="swiper">
         <swiper-item v-for="(item, index) in list2" :key="index"  >
           <div class="wrapper-one"    v-show="index===0">
+          <div class="one-title">处方明细</div>
             <better-scroll :data="list" class="wrapper-one-b" >
               <ul>
-                <li v-for="(item,index) in list">{{item}}</li>
+                <li v-for="(item,index) in list">
+                  <div class="one">
+                      <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
+                        （基本） 0.25g*30粒/盒</div>
+                      <div class="one-right">
+                             <div>1盒</div>
+                             <div class="price">¥60.00</div>
+                      </div>
+                  </div>
+                </li>
               </ul>
             </better-scroll>
           </div >
-          <div class="wrapper-two"    v-show="index===1">第二个页面</div>
-          <div class="wrapper-three"  v-show="index===2">第三个页面</div>
+          <div class="wrapper-two"    v-show="index===1">
+            <better-scroll :data="list" class="wrapper-one-c" >
+              <ul>
+                <li v-for="(item,index) in list" @click="buttonJY">
+                 <div class="two">
+                   <div class="two-left">
+                     <div class="two-one">X线检查</div>
+                     <div class="two-two">2017-08-29 15:00:00</div>
+                   </div>
+                   <div  class="icon iconfont icon-fanhui two-right"></div>
+                 </div>
+                </li>
+              </ul>
+            </better-scroll>
+          </div>
+          <div class="wrapper-three"  v-show="index===2">
+            <better-scroll :data="list" class="wrapper-one-d" >
+              <ul>
+                <li v-for="(item,index) in list" @click="buttonJC">
+                  <div class="two">
+                    <div class="two-left">
+                      <div class="two-one">X线检查</div>
+                      <div class="two-two">2017-08-29 15:00:00</div>
+                    </div>
+                    <div  class="icon iconfont icon-fanhui two-right"></div>
+                  </div>
+                </li>
+              </ul>
+            </better-scroll>
+          </div>
         </swiper-item>
       </swiper>
     </div>
@@ -77,7 +115,12 @@
       console.log(this.verticalHeight)
     },
     methods:{
-
+      buttonJY(){
+        this.$router.push({name:'检查报告'})
+      },
+      buttonJC(){
+        this.$router.push({name:'检验报告'})
+      }
     }
   }
 </script>
@@ -129,23 +172,116 @@
       /*position: relative;*/
       .wrapper-one{
         background: white;
+        .one-title{
+          height: 54px;
+          line-height: 54px;
+          font-size: 17px;
+          color: #353535;
+          margin-left: 14.5px;
+        }
         .wrapper-one-b{
           position: absolute;
-          top: 0;
+          top: 54px;
           left: 0;
           right: 0;
           bottom: 0;
           overflow: hidden;
+          .one{
+            display: flex;
+            height: 67.5px;
+            font-size: 15px;
+            color: #353535;
+            .one-left{
+              flex: 75;
+              /*padding-left: 14.5px;*/
+              /*text-align: right;*/
+            }
+            .one-right{
+              flex: 25;
+              /*text-align: left;*/
+              margin-right: 15.5px;
+              .price{
+                margin-top: 10px;
+              }
+            }
+          }
         }
-        li{
+          li{
           background: white;
         }
       }
       .wrapper-two{
         background: white;
+        .wrapper-one-c{
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          overflow: hidden;
+          .two{
+            background: white;
+            display: flex;
+            height: 70px;
+            .two-left{
+              flex: 9;
+              margin-left: 15px;
+              .two-one{
+                margin-top: 15px;
+                font-size: 17px;
+                font-weight: 500;
+                color: #353535;
+              }
+              .two-two{
+                margin-top: 13.5px;
+                font-size: 13px;
+                color: #888888;
+              }
+            }
+            .two-right{
+            line-height: 70px;
+              flex: 1;
+            }
+
+          }
+        }
       }
       .wrapper-three{
         background: white;
+        .wrapper-one-d{
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          overflow: hidden;
+          .two{
+            background: white;
+            display: flex;
+            height: 70px;
+            .two-left{
+              flex: 9;
+              margin-left: 15px;
+              .two-one{
+                margin-top: 15px;
+                font-size: 17px;
+                font-weight: 500;
+                color: #353535;
+              }
+              .two-two{
+                margin-top: 13.5px;
+                font-size: 13px;
+                color: #888888;
+              }
+            }
+            .two-right{
+              line-height: 70px;
+              flex: 1;
+            }
+
+          }
+        }
+
       }
 
     }
