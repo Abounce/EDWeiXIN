@@ -32,7 +32,7 @@
                 <div class="vistname">{{item.name}}({{item.isChildren===1?"儿童":"成年"}})</div>
                 <div class="vistnumber">{{item.idcartCode}}</div>
                 <!--<div class="isgx">{{item.isChildren===1?"儿童":"成年"}}</div>-->
-              <check-icon :value.sync="demo5" class="isgx" @click.native="nv()"  ></check-icon>
+                <check-icon :value.sync="item.isIcon" class="isgx" @click.native="nv(index)"  ></check-icon>
             </div>
             <my-line></my-line>
 
@@ -64,8 +64,10 @@
          rgjt:'',
          jp:'',
          rgd:'',
-         demo5:false,
-         currentItem:0
+//         demo5:false,
+         currentItem:0,
+         currentIndex:0,
+
 
        }
      },
@@ -87,8 +89,8 @@
        chooseItem(index){
          this.currentItem=index
        },
-       nv(){
-
+       nv(index){
+//         this.demo5=false
 
        },
        //确认挂号
@@ -114,6 +116,9 @@
          let startdata={openId:openId}
          this.$api.getVisitList(startdata).then((data=>{
 //             console.log(data.length)
+           data.forEach(item=>{
+               item.isIcon=false;
+           });
 
            this.vistitlist=data
          }))
