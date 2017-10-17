@@ -1,39 +1,133 @@
 <template>
+  <better-scroll class="allwrapper">
   <div class="wrapper-outer">
-     <div class="head-wrapper" @click="seeNumber">
-     <div class="head-one">
-        <div class="one">
-           <div class="twoo">0013</div>
-        </div>
-        <div class="two">
-           <span>患者姓名:</span>
-           <span>李伟</span>
-         </div>
-        <div class="three">
-               退号
+       <div>
+       <ul>
+         <li style="margin-top: 1px">
+           <div class="head-wrapper " @click="seeNumber">
+        <div class="head-one  clearfix" >
+          <div class="one">
+            <div class="twoo">0013</div>
           </div>
-     </div>
-       <my-line></my-line>
-     <div class="head-two">
-        <div class="one"></div>
-        <div class="two">
-         <div class="two-a">
-           <span>预约科室:</span>
-           <span>普通内科</span>
-         </div>
-         <div class="two-a">
-
-             <span>医生姓名:</span>
-             <span>刘伟</span>
-
-         </div>
+          <div class="two">
+            <span>患者姓名:</span>
+            <span>李伟</span>
+          </div>
+          <div class="three">
+            退号
+          </div>
+        </div>
+        <!--<my-line></my-line>-->
+        <div class="head-two clearfix">
+          <div class="one"></div>
+          <div class="two">
+            <div class="two-a">
+              <span>预约科室:</span>
+              <span>普通内科</span>
+            </div>
+            <div class="two-a">
+              <span>医生姓名:</span>
+              <span>刘伟</span>
+            </div>
+          </div>
+        </div>
+      </div>
+          </li>
+         <li style="margin-top: 1px">
+           <div class="head-wrapper " @click="seeNumber">
+             <div class="head-one  clearfix" >
+               <div class="one">
+                 <div class="twoo">0013</div>
+               </div>
+               <div class="two">
+                 <span>患者姓名:</span>
+                 <span>李伟</span>
+               </div>
+               <div class="three">
+                 退号
+               </div>
+             </div>
+             <!--<my-line></my-line>-->
+             <div class="head-two clearfix">
+               <div class="one"></div>
+               <div class="two">
+                 <div class="two-a">
+                   <span>预约科室:</span>
+                   <span>普通内科</span>
+                 </div>
+                 <div class="two-a">
+                   <span>医生姓名:</span>
+                   <span>刘伟</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </li>
+         <li style="margin-top: 1px">
+           <div class="head-wrapper " @click="seeNumber">
+             <div class="head-one  clearfix" >
+               <div class="one">
+                 <div class="twoo">0013</div>
+               </div>
+               <div class="two">
+                 <span>患者姓名:</span>
+                 <span>李伟</span>
+               </div>
+               <div class="three">
+                 退号
+               </div>
+             </div>
+             <!--<my-line></my-line>-->
+             <div class="head-two clearfix">
+               <div class="one"></div>
+               <div class="two">
+                 <div class="two-a">
+                   <span>预约科室:</span>
+                   <span>普通内科</span>
+                 </div>
+                 <div class="two-a">
+                   <span>医生姓名:</span>
+                   <span>刘伟</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </li>
+         <li style="margin-top: 1px">
+           <div class="head-wrapper " @click="seeNumber">
+             <div class="head-one  clearfix" >
+               <div class="one">
+                 <div class="twoo">0013</div>
+               </div>
+               <div class="two">
+                 <span>患者姓名:</span>
+                 <span>李伟</span>
+               </div>
+               <div class="three">
+                 退号
+               </div>
+             </div>
+             <!--<my-line></my-line>-->
+             <div class="head-two clearfix">
+               <div class="one"></div>
+               <div class="two">
+                 <div class="two-a">
+                   <span>预约科室:</span>
+                   <span>普通内科</span>
+                 </div>
+                 <div class="two-a">
+                   <span>医生姓名:</span>
+                   <span>刘伟</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </li>
+      </ul>
        </div>
-
-  </div>
-    </div>
       <div class="history">
       <div class="title"><span class="icon iconfont icon-lishijilu" style="font-size: 15px; color: #888888;"></span>历史就诊</div>
-      <better-scroll class="wrapper">
+      <div class="wrapper">
         <ul>
           <li @click="finishOrder">
             <div>
@@ -55,10 +149,71 @@
               </div>
             </div>
           </li>
+          <li @click="finishOrder">
+            <div>
+              <div class="info">
+                <div class="name">和园鹏</div>
+                <div class="isUse">已退号</div>
+                <div class="time">2017.10.5 12.51</div>
+              </div>
+              <my-line></my-line>
+              <div class="com">
+                <span class="com-one">就诊科室:</span><span>普通内科</span>
+              </div>
+              <div class="com">
+                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
+              </div>
+              <div class="com">
+                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
+                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
+              </div>
+            </div>
+          </li>
+          <li @click="finishOrder">
+            <div>
+              <div class="info">
+                <div class="name">和园鹏</div>
+                <div class="isUse">已退号</div>
+                <div class="time">2017.10.5 12.51</div>
+              </div>
+              <my-line></my-line>
+              <div class="com">
+                <span class="com-one">就诊科室:</span><span>普通内科</span>
+              </div>
+              <div class="com">
+                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
+              </div>
+              <div class="com">
+                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
+                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
+              </div>
+            </div>
+          </li>
+          <li @click="finishOrder">
+            <div>
+              <div class="info">
+                <div class="name">和园鹏</div>
+                <div class="isUse">已退号</div>
+                <div class="time">2017.10.5 12.51</div>
+              </div>
+              <my-line></my-line>
+              <div class="com">
+                <span class="com-one">就诊科室:</span><span>普通内科</span>
+              </div>
+              <div class="com">
+                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
+              </div>
+              <div class="com">
+                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
+                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
+              </div>
+            </div>
+          </li>
         </ul>
-      </better-scroll>
+      </div>
     </div>
   </div>
+  </better-scroll>
 </template>
 
 <script>
@@ -83,15 +238,21 @@
 </script>
 
 <style scoped lang="less" type="text/less">
-  .wrapper-outer{
+   .allwrapper{
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top:0;
     left: 0;
     right: 0;
+    bottom: 0;
+    overflow: hidden;
+    /*background: yellow;*/
+  }
+   .wrapper-outer{
+
     background:  #cdcdcd;
   }
- .head-wrapper{
+   .head-wrapper{
+ /*position: relative;*/
    background: white;
    height: 152px;
    .head-one{
@@ -150,7 +311,7 @@
 
    }
  }
- .history{
+   .history{
    .title{
      text-align: center;
      margin-top: 20px;
@@ -166,14 +327,15 @@
        margin-right: 10px;
        margin-top: 10px;
      }
-     position: absolute;
-     top:200px;
-     left: 0;
-     right: 0;
-     bottom: 0;
-     overflow: hidden;
+     position: relative;
+     /*top:200px;*/
+     /*left: 0;*/
+     /*right: 0;*/
+     /*bottom: 0;*/
+     /*overflow: hidden;*/
      /*background: yellow;*/
      .info{
+       position: relative;
        height: 46px;
        line-height: 46px;
        margin-left: 9.5px;
@@ -228,4 +390,11 @@
      }
    }
  }
+   .clearfix:after{
+     content: ' ';
+     display: block;
+     height: 0;
+     clear: both;
+     visibility: hidden;
+   }
 </style>
