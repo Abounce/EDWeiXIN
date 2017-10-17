@@ -63,13 +63,13 @@
     },
     methods:{
       buttonGH(){
-
+        this.$router.push({name:'预约挂号'})
       },
       buttonJK(){
-
+        this.$router.push({name:'在线建卡'})
       },
       buttonJF(){
-
+        this.$router.push({name:'缴费记录'})
       }
     }
   }

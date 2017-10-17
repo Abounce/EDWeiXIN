@@ -49,7 +49,7 @@
 </script>
 
 <style scoped lang="less" type="text/less">
- .head{
+  .head{
    border-top: 10px solid #cdcdcd;
    .com{
      margin-left: 15px;

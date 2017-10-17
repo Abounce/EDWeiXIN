@@ -32,48 +32,26 @@
         <div class="bottom-two">合计:¥480.00</div>
         <div class="bottom-three" @click="surePay">确认支付</div>
       </div>
-   <div v-transfer-dom>
+      <div v-transfer-dom class="alert">
      <popup v-model="show7" position="bottom" max-height="65%">
-
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>   <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>   <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>   <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
-       <div>aa</div>
+       <div>
+           <div class="title">西药费</div>
+           <ul>
+             <li v-for="(item,index) in list" >
+               <div class="mlili" style="padding-top: 10px">
+                 <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
+                   （基本） 0.25g*30粒/盒</div>
+                 <div class="one-right">
+                   <div>1盒</div>
+                   <div class="price">¥60.00</div>
+                 </div>
+               </div >
+               <my-line></my-line>
+             </li>
+           </ul>
+       </div>
      </popup>
-   </div>
+     </div>
  </div>
 </template>
 
@@ -90,7 +68,8 @@
       return{
         demo5:false,
         demo6:false,
-        show7:false
+        show7:false,
+        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11]
       }
     },
     components:{
@@ -210,4 +189,33 @@
       line-height: 49px;
     }
   }
+  .alert{
+    .title{
+      height: 44px;
+      text-align: center;
+      line-height: 44px;
+      font-size: 17px;
+      font-weight: 500;
+      color: #888888;
+    }
+    .mlili{
+      background: white;
+      display: flex;
+      height: 67.5px;
+      font-size: 15px;
+      color: #353535;
+      .one-left{
+        flex: 75;
+
+      }
+      .one-right{
+        flex: 25;
+        margin-right: 15.5px;
+        .price{
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
 </style>

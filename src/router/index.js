@@ -163,6 +163,14 @@ const manageCard = (resolve) => {
   })
 }
 
+//缴费记录
+const payDetail = (resolve) => {
+  import('../components/my/personal-center/pay-detail.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+
 
 
 //挂号记录
@@ -312,6 +320,11 @@ export default new Router({
       path:'/myDoctor',
       name:'我的医生',
       component:myDoctor
+    },
+    {
+      path:'/payDetail',
+      name:'缴费记录',
+      component:payDetail
     }
     //-----------------
 

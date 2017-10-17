@@ -4,6 +4,8 @@
      <betterscroll class="wrapper">
        <ul>
          <li v-for="(doctor,index) in tabs" @click="chooseExpert(doctor.id)">
+           <div>
+
            <div class="clearfix introduce">
            <div class="doctor-img">
              <img v-lazy="doctor.photo">
@@ -14,8 +16,8 @@
              <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">{{doctor.deptName}}</span></div>
            </div>
            </div>
-           <div class="detail"></div>
-
+           <div class="detail">1989年毕业于8年制的中国协和医科大学，获医学博士学位。随后在中国协和医科大学附属协和医院担任妇产科住院医师，主治医师，副主任医生，主任医师。</div>
+           </div>
          </li>
        </ul>
      </betterscroll>
@@ -57,6 +59,7 @@
 
 <style scoped lang="less" type="text/less">
  .wrapper{
+   background: #cdcdcd;
    position: absolute;
    left: 0;
    top: 0;
@@ -65,6 +68,9 @@
    overflow: hidden;
    ul{
      li{
+        border-radius: 5px;
+       padding: 9.5px;
+       background: white;
        margin: 10px;
        .introduce{
          border-bottom: solid 0.5px #cdcdcd;
@@ -119,7 +125,7 @@
        .detail{
          margin-top: 2px;
          height: 100px;
-         background: red;
+         /*background: red;*/
        }
      };
    }

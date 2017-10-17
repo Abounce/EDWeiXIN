@@ -88,7 +88,7 @@
       },
       //缴费记录
       buttonJFHistory(){
-
+        this.$router.push({name:'缴费记录'})
       },
       //报告查看
       buttonReportSee(){
