@@ -125,7 +125,7 @@
          </li>
       </ul>
        </div>
-      <div class="history">
+       <div class="history">
       <div class="title"><span class="icon iconfont icon-lishijilu" style="font-size: 15px; color: #888888;"></span>历史就诊</div>
       <div class="wrapper">
         <ul>

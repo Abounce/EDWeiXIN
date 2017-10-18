@@ -155,6 +155,13 @@ const myCenter = (resolve) => {
   })
 }
 
+//就诊记录
+const medicalDetail = (resolve) => {
+  import('../components/my/personal-center/medical-detail.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 //管理就诊卡
 const manageCard = (resolve) => {
@@ -325,6 +332,11 @@ export default new Router({
       path:'/payDetail',
       name:'缴费记录',
       component:payDetail
+    },
+    {
+      path:'/medicalDetail',
+      name:'就诊记录',
+      component:medicalDetail
     }
     //-----------------
 

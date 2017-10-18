@@ -84,7 +84,7 @@
       },
       //就诊记录
       buttonJZHistory(){
-       this.$router.push({name:'就诊人列表'})
+       this.$router.push({name:'就诊记录'})
       },
       //缴费记录
       buttonJFHistory(){
