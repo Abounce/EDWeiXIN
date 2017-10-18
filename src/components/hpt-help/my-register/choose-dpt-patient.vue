@@ -32,7 +32,7 @@
                 <div class="vistname">{{item.name}}({{item.isChildren===1?"儿童":"成年"}})</div>
                 <div class="vistnumber">{{item.idcartCode}}</div>
                 <!--<div class="isgx">{{item.isChildren===1?"儿童":"成年"}}</div>-->
-                <check-icon :value.sync="item.isIcon" class="isgx" @click.native="nv(index)"  ></check-icon>
+                <check-icon :value.sync="item.isIcon" class="isgx" @click.native="nv(item)"  ></check-icon>
             </div>
             <my-line></my-line>
 
@@ -67,6 +67,7 @@
 //         demo5:false,
          currentItem:0,
          currentIndex:0,
+         currentTrue:{}
 
 
        }
@@ -89,12 +90,23 @@
        chooseItem(index){
          this.currentItem=index
        },
-       nv(index){
+       nv(itemdata){
 //         this.demo5=false
-
+         this.vistitlist.forEach((item=>{
+           item.isIcon=false
+         }))
+         itemdata.isIcon=true
+         this.currentTrue=itemdata
        },
        //确认挂号
        register(){
+
+         let params={orderType:1,orderChannel:1,orderTitle:'挂号',orderMoney:this.sumfree,cardNo:this.currentTrue.visitCardIds[0],regJobType:this.rgjt
+         ,deptId:this.doctors.deptCode,deptName:this.doctors.departName,doctorId:this.doctors.id,doctorName:this.doctors.docName,registerType:'',regData:this.rgd}
+         this.$api.getRegistSub(params).then((data=>{
+
+
+         }))
 
        },
        //添加就诊人
@@ -121,6 +133,7 @@
            });
 
            this.vistitlist=data
+
          }))
        },
        getlist(){

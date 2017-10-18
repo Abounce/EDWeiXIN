@@ -130,6 +130,64 @@ export function getCardRegister(params) {
 }
 
 
+//发起订单
+export function getRegistSub(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/regist/sub',params)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
+
+//退号
+export function getRegistCancleReg(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/regist/cancleReg',params)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
+//查询已缴费列表
+export function getSelectPayHis(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/OutDepartPay/selectPayHis',params)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
+//查询已缴费详情
+export function getSelectPayHisDef(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/OutDepartPay/selectPayHisDef',params)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
+
 
 export function login (params) {
   return new Promise((resolve, reject) => {

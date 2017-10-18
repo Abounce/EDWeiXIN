@@ -47,7 +47,6 @@
   import {Search} from 'vux'
   import {getElementWidth} from "../../../api/utils.js"
   export default {
-
     data () {
       return {
         results: [],
