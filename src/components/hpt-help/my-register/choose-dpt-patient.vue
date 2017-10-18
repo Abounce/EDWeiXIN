@@ -100,13 +100,13 @@
        },
        //确认挂号
        register(){
-
          let params={orderType:1,orderChannel:1,orderTitle:'挂号',orderMoney:this.sumfree,cardNo:this.currentTrue.visitCardIds[0],regJobType:this.rgjt
-         ,deptId:this.doctors.deptCode,deptName:this.doctors.departName,doctorId:this.doctors.id,doctorName:this.doctors.docName,registerType:'',regData:this.rgd}
+         ,deptId:this.doctors.deptCode,deptName:this.doctors.departName,doctorId:this.doctors.id,doctorName:this.doctors.docName,registerType:1,regData:this.rgd}
          this.$api.getRegistSub(params).then((data=>{
-
-
-         }))
+           this.$vux.toast.text('挂号成功', 'middle')
+         })).catch((err)=>{
+           this.$vux.toast.text(err.data.errorMsg,'middle')
+         })
 
        },
        //添加就诊人

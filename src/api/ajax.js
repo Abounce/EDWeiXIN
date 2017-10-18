@@ -10,7 +10,7 @@ axios.defaults.timeout = 5000;
 
 let openId='ogFdDwHpeOX5dGGvjptmed1pbkMo';
 let hospitalCode='pz0001';
-let token='8f46190f805f413696ab52d3606b496f';
+let token='fc0198290edd43da8f1290cd32c9abc3';
 //添加一个请求拦截器
 axios.interceptors.request.use((config)=>{
   // console.log('config--------:'+config)

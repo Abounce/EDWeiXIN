@@ -187,6 +187,20 @@ export function getSelectPayHisDef(params) {
   });
 }
 
+//挂号记录
+export function getRegistList(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/regist/list',params)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
 
 
 export function login (params) {

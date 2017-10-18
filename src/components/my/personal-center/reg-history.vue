@@ -3,48 +3,28 @@
       <div>
         <better-scroll class="better">
         <ul class="better-inner">
-          <li>
+          <li v-for="(item,index) in regList">
             <div class="wrapper">
               <div class="wrapper-info">
                 <span class="name">和园鹏</span>
-                <span class="isUse">已就诊</span>
+                <span class="isUse">{{isUse(item)}}</span>
               </div>
               <my-line></my-line>
               <div class="inner">
                 <span>挂号医生:</span>
-                <span>和园鹏</span>
+                <span>{{item.doctorName}}</span>
               </div>
               <div class="inner">
                 <span>挂号科室:</span>
-                <span>外科</span>
+                <span>{{item.deptName}}</span>
               </div>
               <div class="inner">
                 <span>挂号时间:</span>
-                <span>2017-10.1</span>
+                <span>{{item.regDate.substring(0,10)}}</span>
               </div>
             </div>
           </li>
-          <li>
-            <div class="wrapper">
-              <div class="wrapper-info">
-                <span class="name">和园鹏</span>
-                <span class="isUse">已就诊</span>
-              </div>
-              <my-line></my-line>
-              <div class="inner">
-                <span>挂号医生:</span>
-                <span>和园鹏</span>
-              </div>
-              <div class="inner">
-                <span>挂号科室:</span>
-                <span>外科</span>
-              </div>
-              <div class="inner">
-                <span>挂号时间:</span>
-                <span>2017-10.1</span>
-              </div>
-            </div>
-          </li>
+
         </ul>
         </better-scroll>
       </div>
@@ -53,10 +33,40 @@
 <script>
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
+  import { dateFormat } from 'vux'
   export default {
+    data(){
+      return{
+        regList:[]
+      }
+    },
+    methods:{
+      isUse(item){
+        if(item.actTreatTime){
+          return '已就诊'
+        }else if(item.orderstatus==='4'){
+          return '已退号'
+        }else {
+          if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)>item.regDate.substring(0,10)){
+            return '未就诊'
+          }else {
+            return '已过期'
+          }
+        }
+      }
+    },
     components:{
       myLine,
       betterScroll
+    },
+    mounted(){
+      this.$nextTick(()=>{
+        let params={}
+        this.$api.getRegistList().then((data=>{
+//           console.log(data)
+            this.regList=data
+        }))
+      })
     }
   }
 </script>
