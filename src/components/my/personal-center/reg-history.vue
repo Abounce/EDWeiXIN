@@ -1,7 +1,7 @@
 
 <template>
       <div>
-        <better-scroll class="better">
+        <better-scroll class="better" ref="refbs">
         <ul class="better-inner">
           <li v-for="(item,index) in regList">
             <div class="wrapper">
@@ -24,7 +24,6 @@
               </div>
             </div>
           </li>
-
         </ul>
         </better-scroll>
       </div>
@@ -48,11 +47,23 @@
           return '已退号'
         }else {
           if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)>item.regDate.substring(0,10)){
-            return '未就诊'
-          }else {
+
             return '已过期'
+          }else {
+            return '未就诊'
           }
         }
+
+      },
+      getList(){
+        let params={}
+        this.$api.getRegistList().then((data=>{
+//           console.log(data)
+            this.regList=data
+        this.$nextTick(()=>{
+          this.$refs.refbs.refresh()
+        })
+        }))
       }
     },
     components:{
@@ -61,12 +72,13 @@
     },
     mounted(){
       this.$nextTick(()=>{
-        let params={}
-        this.$api.getRegistList().then((data=>{
-//           console.log(data)
-            this.regList=data
-        }))
+          this.getList();
       })
+    },
+    watch:{
+      '$route' (){
+        this.getList();
+      }
     }
   }
 </script>

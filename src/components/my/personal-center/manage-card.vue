@@ -6,9 +6,9 @@
          </div>
        </div>
        <div class="heaer-text">您暂未绑定就诊卡</div>
-       <div class="heaer-bind-card">去绑卡</div>
-       <my-line></my-line>
-       <div class="header-wrapper">
+        <div class="heaer-bind-card">去绑卡</div>
+        <my-line></my-line>
+        <div class="header-wrapper">
        <div class="com" @click="buttonGH">
          <div class="icon iconfont icon-yuyueguahao" style="color: #13bf72"></div>
          <div class="text">预约挂号</div>
@@ -25,25 +25,24 @@
      </div>
      <div class="history">
         <div class="title"><span class="icon iconfont icon-lishijilu" style="font-size: 15px; color: #888888;"></span>历史就诊</div>
-       <better-scroll class="wrapper">
+       <better-scroll class="wrapper" ref="refbs">
         <ul>
-          <li>
+          <li v-for="(item,index) in itemList">
             <div>
             <div class="info">
-              <div class="name">和园鹏</div>
-              <div class="isUse">已退号</div>
-              <div class="time">2017.10.5 12.51</div>
+              <div class="name">{{item.patName}}</div>
+              <div class="isUse">{{isUse(item)}}</div>
+              <div class="time">{{item.regDate.substring(0,10)}}</div>
             </div>
               <my-line></my-line>
             <div class="com">
-              <span class="com-one">就诊科室:</span><span>普通内科</span>
+              <span class="com-one">就诊科室:</span><span>{{item.deptName}}</span>
             </div>
             <div class="com">
-              <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
+              <span  class="com-one">就诊医生:</span><span>{{item.doctorName}}</span>
             </div>
               <div class="com">
-                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
-                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
+                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">{{item.diagnosis}}</span>
               </div>
             </div>
           </li>
@@ -56,7 +55,13 @@
 <script>
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
+  import { dateFormat } from 'vux'
   export default {
+    data(){
+      return{
+       itemList:[]
+      }
+    },
     components:{
       myLine,
       betterScroll
@@ -70,9 +75,57 @@
       },
       buttonJF(){
         this.$router.push({name:'缴费记录'})
+      },
+      isUse(item){
+        if(item.actTreatTime){
+          return '已就诊'
+        }else if(item.orderstatus==='4'){
+          return '已退号'
+        }else {
+          if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)>item.regDate.substring(0,10)){
+            return '未就诊'
+          }else {
+            return '已过期'
+          }
+        }
+      },
+      getList(){
+        this.$api.getRegistList().then((data=>{
+          data.forEach((item=>{
+            if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
+              this.itemList.push(item)
+            }
+          }))
+          this.$nextTick(()=>{
+          this.$refs.refbs.refresh()
+          })
+        }))
+      }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+         this.getList()
+      })
+    },
+    watch:{
+      '$route' (){
+        this.getList()
       }
     }
   }
+//  isUse(item){
+//    if(item.actTreatTime){
+//      return '已就诊'
+//    }else if(item.orderstatus==='4'){
+//      return '已退号'
+//    }else {
+//      if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)>item.regDate.substring(0,10)){
+//        return '未就诊'
+//      }else {
+//        return '已过期'
+//      }
+//    }
+//  }
 </script>
 
 <style scoped lang="less" type="text/less">
@@ -159,6 +212,7 @@
       overflow: hidden;
       /*background: yellow;*/
       .info{
+        position: relative;
         height: 46px;
         line-height: 46px;
         margin-left: 9.5px;
