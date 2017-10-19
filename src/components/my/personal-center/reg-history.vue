@@ -1,7 +1,7 @@
 
 <template>
       <div>
-        <better-scroll class="better" ref="refbs">
+        <better-scroll class="better" ref="refbs" :data="regList">
         <ul class="better-inner">
           <li v-for="(item,index) in regList">
             <div class="wrapper">
@@ -60,9 +60,9 @@
         this.$api.getRegistList().then((data=>{
 //           console.log(data)
             this.regList=data
-        this.$nextTick(()=>{
-          this.$refs.refbs.refresh()
-        })
+//        this.$nextTick(()=>{
+//          this.$refs.refbs.refresh()
+//        })
         }))
       }
     },

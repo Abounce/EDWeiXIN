@@ -1,12 +1,12 @@
 
 <template>
   <div>
-      <better-scroll class="wrapper" >
+      <better-scroll class="wrapper" ref="refbs" >
         <ul>
           <li v-for="(item,index) in doctorList">
             <div class="inner">
                 <div class="head-wrapper">
-                 <img src="" alt="" class="head">
+                 <img v-lazy="item.photo" class="head">
                 </div>
                 <div class="info">
                   <div class="one">
@@ -28,7 +28,7 @@
           </li>
         </ul>
       </better-scroll>
-      <is-reg v-show="false"></is-reg>
+      <is-reg v-show="!doctorList"></is-reg>
   </div>
 </template>
 
@@ -44,20 +44,31 @@
     },
     mounted(){
       this.$nextTick(()=>{
-        this.$api.getDoctorPastList().then((data)=>{
-            this.doctorList=data
-        })
+            this.getList()
       })
     },
     methods:{
       order(){
         this.$router.push({name:'预约挂号'})
+      },
+      getList(){
+        this.$api.getDoctorPastList().then((data)=>{
+          this.doctorList=data
+          this.$nextTick(()=>{
+             this.$refs.refbs.refresh();
+          })
+        })
       }
     },
     components:{
       myLine,
       betterScroll,
       isReg
+    },
+    watch:{
+      '$route' (){
+        this.getList()
+      }
     }
   }
 </script>
@@ -78,7 +89,7 @@
      .head-wrapper{
        float: left;
        width: 86px;
-       background: yellow;
+       /*background: yellow;*/
        text-align: center;
        height: 95px;
        .head{
@@ -86,7 +97,7 @@
          width: 56px;
          height: 56px;
          border-radius: 50%;
-         background: red;
+         /*background: red;*/
        }
      }
      .info{

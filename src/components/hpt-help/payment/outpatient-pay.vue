@@ -6,132 +6,20 @@
       <swiper v-model="index" :height="verticalHeight+'px'" :show-dots="false" >
         <swiper-item v-for="(item, index) in list2" :key="index">
           <div class="wrapper-one"    v-show="index===0">
-            <better-scroll class="wrapper-a">
+            <better-scroll class="wrapper-a" ref="aa" :data="outList">
               <ul class="ul">
-                <li class="li">
+                <li class="li" v-for="(item,index) in outList">
                   <div class="clearfix" style="padding-bottom: 15px">
                     <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
+                      <div class="name" >{{item.patName}}</div>
+                      <div class="number">挂号序号:{{item.patRegisterNo}}</div>
                     </div>
-                    <div class="a-right">男&nbsp;26岁</div>
+                    <div class="a-right">{{item.patSex}}&nbsp;{{item.patAge}}岁</div>
                   </div>
                   <my-line></my-line>
                   <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right" @click="buttonPay">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="clearfix" style="padding-bottom: 15px">
-                    <div class="a-left">
-                      <div class="name" >王小波</div>
-                      <div class="number">挂号序号:125665555244569</div>
-                    </div>
-                    <div class="a-right">男&nbsp;26岁</div>
-                  </div>
-                  <my-line></my-line>
-                  <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥36.00</div>
-                    <div class="b-right">去支付</div>
+                    <div class="b-left">¥{{allPrive(item)}}</div>
+                    <div class="b-right" @click="buttonPay(item)">去支付</div>
                   </div>
                 </li>
               </ul>
@@ -171,6 +59,8 @@
         index: 0,
         demo2: '未支付',
         verticalHeight:0,
+        outList:[],
+        innerList:[]
       }
     },
     components: {
@@ -185,13 +75,31 @@
       let screenheight = getscreenheight();
       this.verticalHeight=screenheight-44;
       console.log(this.verticalHeight)
+      this.$nextTick(()=>{
+          this.getOutList()
+      })
     },
     methods:{
       buttonDeatail(){
         this.$router.push({name:'订单详情'})
       },
-      buttonPay(){
+      buttonPay(item){
+        this.$loacalstore.set('hisOutDepartReceInfos',item.hisOutDepartReceInfos);
         this.$router.push({name:'个人支付'})
+      },
+      getOutList(){
+        this.$api.getSelectNoPay().then((data)=>{
+//          console.log(data);
+           this.outList=data;
+
+        })
+      },
+      allPrive(item){
+        let allprive=0
+        item.hisOutDepartReceInfos.forEach((item)=>{
+           allprive+=item.rcptMoney
+        })
+        return allprive
       }
     }
   }

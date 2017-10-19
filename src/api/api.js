@@ -187,6 +187,22 @@ export function getSelectPayHisDef(params) {
   });
 }
 
+
+
+//查询门诊未付费
+export function getSelectNoPay(params) {
+  return new Promise((resovle,reject)=>{
+    ajax.post('/OutDepartPay/selectNoPay',params)
+      .then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
 //挂号记录
 export function getRegistList(params) {
   return new Promise((resovle,reject)=>{

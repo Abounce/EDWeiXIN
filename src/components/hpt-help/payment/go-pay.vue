@@ -1,23 +1,23 @@
 <template>
  <div>
       <div class="wrapper">
-        <better-scroll class="wrapper-b">
+        <better-scroll class="wrapper-b" :data="innerList">
           <ul>
-            <li >
+            <li  v-for="(item,index) in innerList">
                <div class="content">
                   <check-icon :value.sync="demo5"  class="content-one"></check-icon>
                   <div class="content-two">
-                    <div class="one">西药费</div>
+                    <div class="one">{{item.costType}}</div>
                     <div class="two">
                       <span>医生</span>
-                      <span>李静</span>
-                      <span>数量 1</span>
+                      <span>{{item.doctorName}}</span>
+                      <span>数量 {{item.itemBeans?item.itemBeans.length+1:0}}</span>
                     </div>
-                    <div class="three">2017-08-29 12:00:00</div>
+                    <div class="three">{{item.rcptDate}}</div>
                   </div>
                   <div class="content-three">
-                      <div class="one">¥360.00</div>
-                      <div class="two" @click="seeContent">查看明细</div>
+                      <div class="one">¥{{item.rcptMoney}}</div>
+                      <div class="two" @click="seeContent(item)">查看明细</div>
                   </div>
                </div>
                <my-line></my-line>
@@ -35,15 +35,18 @@
       <div v-transfer-dom class="alert">
      <popup v-model="show7" position="bottom" max-height="65%">
        <div>
-           <div class="title">西药费</div>
+           <div class="title">{{innerList.costType}}</div>
            <ul>
-             <li v-for="(item,index) in list" >
+             <li v-for="(item,index) in currentList" >
                <div class="mlili" style="padding-top: 10px">
-                 <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
-                   （基本） 0.25g*30粒/盒</div>
+                 <div class="one-left">
+                   <div>
+                     {{item.itemName}} {{item.itemSpecs}}
+                   </div>
+                 </div>
                  <div class="one-right">
-                   <div>1盒</div>
-                   <div class="price">¥60.00</div>
+                   <div>{{item.itemNum}}盒</div>
+                   <div class="price">¥{{allPrice(item)}}</div>
                  </div>
                </div >
                <my-line></my-line>
@@ -69,7 +72,9 @@
         demo5:false,
         demo6:false,
         show7:false,
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11]
+        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
+        innerList:[],
+        currentList:[]
       }
     },
     components:{
@@ -85,13 +90,27 @@
       XButton
     },
     methods:{
+      allPrice(item){
+        let number = item.itemNum*item.itemPrice;
+        let a=(number+"").substring(0,5)
+        return a
+
+      },
       surePay(){
 
       },
-      seeContent(){
+      seeContent(item){
+        this.currentList=item.itemBeans
         this.show7=true
       }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+    this.innerList = this.$loacalstore.get('hisOutDepartReceInfos');
+//      console.log(innerList)
+      })
     }
+
   }
 </script>
 
@@ -205,11 +224,10 @@
       font-size: 15px;
       color: #353535;
       .one-left{
-        flex: 75;
-
+        flex: 3;
       }
       .one-right{
-        flex: 25;
+        flex: 1;
         margin-right: 15.5px;
         .price{
           margin-top: 10px;

@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 FastClick.attach(document.body)
 Vue.component('barcode', VueBarcode);
 Vue.use(VueLazyload, {
-  loading: require('./common/image/default.png')
+  loading: require('./common/image/image@3x/Sign-in@3x.png')
 })
 Vue.prototype.$api = api;
 Vue.prototype.$loacalstore=stores;

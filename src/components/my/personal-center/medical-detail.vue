@@ -2,7 +2,7 @@
  <div>
    <div class="history">
      <div class="title"><span class="icon iconfont icon-lishijilu" style="font-size: 15px; color: #888888;"></span>就诊记录</div>
-     <better-scroll class="wrapper" ref="refbs">
+     <better-scroll class="wrapper" ref="refbs" :data="itemList">
        <ul>
          <li @click="finishOrder" v-for="(item,index) in itemList">
            <div>
@@ -69,9 +69,9 @@
               this.itemList.push(item)
             }
           }))
-          this.$nextTick(()=>{
-            this.$refs.refbs.refresh()
-          })
+//          this.$nextTick(()=>{
+//            this.$refs.refbs.refresh()
+//          })
         }))
       }
     },
