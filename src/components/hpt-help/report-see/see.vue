@@ -1,28 +1,31 @@
 
 <template>
   <div>
-     <div class="one" @click="aaa">点击我跳回去</div>
+    <commm :num="outnum" @a="aa" @b="bb"></commm>
+    <div>parent：{{outnum}}</div>
   </div>
 </template>
 
 
 
 <script>
-
+import commm from './comm'
   export default {
     components: {
-
-
+      commm
     },
     methods: {
-      aaa(){
-        this.$router.push({name:'choosedptpatient'})
+      aa(){
+         this.outnum++
+      },
+      bb(){
+          this.outnum--
       }
 
     },
     data () {
       return {
-
+       outnum:50
 
       }
     },

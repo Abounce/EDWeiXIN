@@ -5,7 +5,7 @@
           <ul>
             <li  v-for="(item,index) in innerList">
                <div class="content">
-                  <check-icon :value.sync="demo5"  class="content-one"></check-icon>
+                  <check-icon :value.sync="item.isUse"  class="content-one"></check-icon>
                   <div class="content-two">
                     <div class="one">{{item.costType}}</div>
                     <div class="two">
@@ -28,14 +28,14 @@
       </div>
       <div class="bottom">
 
-        <check-icon :value.sync="demo6"  class="bottom-one" >全选</check-icon>
-        <div class="bottom-two">合计:¥480.00</div>
+        <check-icon :value.sync="demo6"  class="bottom-one"  @click.native="allChoose">全选</check-icon>
+        <div class="bottom-two">合计:{{changeMoney}}</div>
         <div class="bottom-three" @click="surePay">确认支付</div>
       </div>
       <div v-transfer-dom class="alert">
      <popup v-model="show7" position="bottom" max-height="65%">
        <div>
-           <div class="title">{{innerList.costType}}</div>
+           <div class="title">{{mcostType}}</div>
            <ul>
              <li v-for="(item,index) in currentList" >
                <div class="mlili" style="padding-top: 10px">
@@ -69,12 +69,14 @@
     },
     data(){
       return{
-        demo5:false,
-        demo6:false,
+//        demo5:false,
+        demo6:true,
         show7:false,
         list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
         innerList:[],
-        currentList:[]
+        currentList:[],
+        mcostType:'',
+//        allmoney:''
       }
     },
     components:{
@@ -101,14 +103,61 @@
       },
       seeContent(item){
         this.currentList=item.itemBeans
+        this.mcostType=item.costType
         this.show7=true
+      },
+      //全选
+      allChoose(){
+        if (this.demo6){
+          this.innerList.forEach((item)=>{
+            item.isUse=true
+          })
+        }else {
+          this.innerList.forEach((item)=>{
+            item.isUse=false
+          })
+        }
+
       }
     },
+    computed:{
+      changeMoney(){
+        let allMoney=0
+        if (this.demo6){
+            this.innerList.forEach((item)=>{
+              allMoney+=item.rcptMoney
+            })
+          return allMoney
+        }else {
+          this.innerList.forEach((item)=>{
+            if (item.isUse){
+               allMoney+=item.rcptMoney
+//               this.demo6=true
+            }else {
+              this.demo6=false
+            }
+          })
+          return allMoney
+        }
+      }
+    },
+
     mounted(){
       this.$nextTick(()=>{
-    this.innerList = this.$loacalstore.get('hisOutDepartReceInfos');
+      let minnerList = this.$loacalstore.get('hisOutDepartReceInfos');
+        minnerList.forEach((item)=>{
+          item.isUse=true
+        })
+        this.innerList=minnerList
 //      console.log(innerList)
       })
+    },
+    watch:{
+      innerList(){
+        this.innerList.forEach((item=>{
+
+        }))
+      }
     }
 
   }

@@ -76,8 +76,9 @@
       resultClick (item) {
         var data = JSON.stringify(item);
 
-        window.alert('you click the result item: ' + JSON.parse(data).title)
-
+//        window.alert('you click the result item: ' + JSON.parse(data).title)
+        this.$loacalstore.set('doctorId',JSON.parse(data).mid)
+        this.$router.push({name:'选择挂号医生'})
 
       },
       getResult (val) {
@@ -87,9 +88,11 @@
           let word={keyWord:val}
           this.$api.getDoctorList(word).then(data=>{
              var length = data.length;
+            this.results=[]
              for(let i=0;i<length;i++){
                this.results.push({
                  title:data[i].docName,
+                 mid:data[i].id
 //                 other: i
                })
 
@@ -133,6 +136,7 @@
       this.$nextTick(function () {
 
 //            this.$loacalstore.set('user', { name:'何园鹏' })
+
         this.$api.getDepartList().then(data=>{
 //          console.log(data)
           this.departlist=data;
