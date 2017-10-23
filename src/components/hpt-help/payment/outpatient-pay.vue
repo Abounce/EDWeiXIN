@@ -113,7 +113,7 @@
       left: 0;
       right: 0;
       overflow: hidden;
-      background: #cdcdcd;
+      background: #eeeeee;
       /*background: red;*/
     .ul{
       padding-bottom: 10px;
@@ -173,7 +173,7 @@
   }
   .wrapper-two{
     .wrapper-b{
-      background: #cdcdcd;
+      background: #eeeeee;
       position: absolute;
       top:0;
       left: 0;

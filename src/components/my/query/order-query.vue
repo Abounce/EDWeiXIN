@@ -249,7 +249,7 @@
   }
    .wrapper-outer{
 
-    background:  #cdcdcd;
+    background:  #eeeeee;
   }
    .head-wrapper{
  /*position: relative;*/

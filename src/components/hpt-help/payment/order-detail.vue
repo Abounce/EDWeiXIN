@@ -50,7 +50,7 @@
 
 <style scoped lang="less" type="text/less">
   .head{
-   border-top: 10px solid #cdcdcd;
+   border-top: 10px solid #eeeeee;
    .com{
      margin-left: 15px;
      margin-top: 14px;
@@ -66,7 +66,7 @@
    }
  }
   .wrapper{
-    border-top: 10px solid #cdcdcd;
+    border-top: 10px solid #eeeeee;
     margin-top: 10px;
     .one-title{
       height: 54px;

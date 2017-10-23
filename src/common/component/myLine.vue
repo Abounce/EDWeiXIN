@@ -12,6 +12,6 @@
 
 <style scoped lang="less" type="text/less">
   .line{
-    border-bottom: 0.5px solid  #cdcdcd;
+    border-bottom: 0.5px solid  #eeeeee;
   }
 </style>

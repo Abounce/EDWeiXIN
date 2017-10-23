@@ -91,7 +91,7 @@
    left: 0;
    right: 0;
    overflow: hidden;
-   background-color: #cdcdcd;
+   background-color: #eeeeee;
    .better-inner{
      margin-left: 9.5px;
      margin-right:10.5px;

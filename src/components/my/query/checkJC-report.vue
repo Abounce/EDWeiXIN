@@ -94,7 +94,7 @@
     }
   }
   .wrapper{
-    border-top: 10px solid #cdcdcd;
+    border-top: 10px solid #eeeeee;
     /*position: relative;*/
     .wrapper-b{
       overflow: hidden;
@@ -151,7 +151,7 @@
     }
 
     .bottom{
-      background: #cdcdcd;
+      background: #eeeeee;
       position: absolute;
       left: 0;
       right: 0;

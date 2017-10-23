@@ -5,26 +5,35 @@
        <div class="name">
          <label for="nameinput" class="one" >真实姓名:</label>
          <input  id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
-         <div class="weui-icon-clear three" ></div>
+         <div class="three">
+         <div class="weui-icon-clear three" v-show="namemsg" @click="cleanNamemsg"></div>
+         </div>
        </div>
        <my-line></my-line>
        <div class="card">
          <label for="cardinput" class="one"  >身份证号:</label>
          <input  id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
-         <div class="weui-icon-clear three" ></div>
+         <div class="three">
+         <div class="weui-icon-clear three"  v-show="cardmsg" @click="cleanCardmsg"></div>
+         </div>
        </div>
        <my-line></my-line>
        <div class="phone">
          <label for="phoneinput" class="one">手机号码:</label>
          <input  id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
-         <div class="weui-icon-clear three" ></div>
-         <div  class="four">获取验证</div>
+         <div class="three">
+         <div class="weui-icon-clear three" v-show="phonemsg" @click="cleanPhonemsg" ></div>
+         </div>
+         <div  class="four" style="color: #1793e6;">获取验证</div>
        </div>
        <my-line></my-line>
        <div class="auto-code">
          <label for="autoinput" class="one">验证码:</label>
          <input  id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
-         <div class="weui-icon-clear three" ></div>
+         <div class="three">
+
+         <div class="weui-icon-clear three" v-show="automsg" @click="cleanAutomsg" ></div>
+         </div>
        </div>
        <my-line></my-line>
        <div class="man-child">
@@ -105,6 +114,18 @@
        }
      },
     methods:{
+      cleanNamemsg(){
+        this.namemsg=''
+      },
+      cleanCardmsg(){
+        this.cardmsg=''
+      },
+      cleanPhonemsg(){
+        this.phonemsg=''
+      },
+      cleanAutomsg(){
+        this.automsg=''
+      },
       buildCard(){
 //         let picked=-1;
         if(!check.checkName(this.namemsg)){

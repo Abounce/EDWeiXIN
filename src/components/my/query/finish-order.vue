@@ -31,7 +31,7 @@
       <tab :line-width=2 active-color='#13bf72' v-model="index">
         <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
       </tab>
-      <swiper v-model="index" :height="verticalHeight+'px'"  style="background: #cdcdcd" :show-dots="false" class="swiper">
+      <swiper v-model="index" :height="verticalHeight+'px'"  style="background: #eeeeee" :show-dots="false" class="swiper">
         <swiper-item v-for="(item, index) in list2" :key="index"  >
           <div class="wrapper-one"    v-show="index===0">
           <div class="one-title">处方明细</div>
@@ -128,7 +128,7 @@
 
 <style scoped lang="less" type="text/less">
 .wrapper-all{
-  background: #cdcdcd;
+  background: #eeeeee;
 }
   .head-wrapper{
     background:white;

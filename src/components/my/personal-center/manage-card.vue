@@ -135,7 +135,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background:  #cdcdcd;
+    background:  #eeeeee;
   }
   .header{
     background: white;
@@ -156,7 +156,7 @@
     .heaer-text{
       text-align: center;
       font-size: 14px;
-      color: #cdcdcd;
+      color: #eeeeee;
     }
     .heaer-bind-card{
       width: 69px;

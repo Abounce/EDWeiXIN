@@ -194,7 +194,7 @@
     li{
       height: 105px;
       background: #ffffff;
-      border: solid 0.5px #cdcdcd;
+      border: solid 0.5px #eeeeee;
       .doctor-img{
         float: left;
         background: #ffffff;

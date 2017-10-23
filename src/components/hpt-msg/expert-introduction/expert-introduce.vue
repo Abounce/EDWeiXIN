@@ -73,7 +73,7 @@
        background: white;
        margin: 10px;
        .introduce{
-         border-bottom: solid 0.5px #cdcdcd;
+         border-bottom: solid 0.5px #eeeeee;
        .doctor-img{
          float: left;
          display: inline-block;

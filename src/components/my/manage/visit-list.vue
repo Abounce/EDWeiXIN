@@ -28,7 +28,7 @@
     <div >
       <x-dialog class="alert-diolog" v-model="showDialogStyle" hide-on-blur :dialog-style="{'max-width': '90%', width: '90%', height: '80%', 'background-color': 'white'}">
         <!--<p style="color:#fff;text-align:center;" @click="showDialogStyle = false">-->
-          <!--<span style="font-size:30px;">HELLO WORLD</span>-->
+          <!--<span style="fonts-size:30px;">HELLO WORLD</span>-->
           <!--<span></span>-->
         <div>
         <br>

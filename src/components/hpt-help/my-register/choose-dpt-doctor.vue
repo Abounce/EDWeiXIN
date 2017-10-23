@@ -239,7 +239,7 @@
  .user{
    /*background: red;*/
    height: 94px;
-   border-bottom: 10px solid #cdcdcd;
+   border-bottom: 10px solid #eeeeee;
    .doctor-img{
      float: left;
      display: inline-block;

@@ -9,7 +9,6 @@
          <label for="nameinput" class="one" >真实姓名:</label>
          <input type="text" id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
          <div class="three">
-
          <div class="weui-icon-clear three" @click="clearNamemsg" v-show="namemsg" ></div>
          </div>
        </div>
@@ -134,7 +133,7 @@
 
          <div class="weui-icon-clear three" @click="clearAutomsga" v-show="automsga"></div>
          </div>
-         <span >获取验证</span>
+         <span style="color: #1793e6;" >获取验证</span>
        </div>
        <my-line></my-line>
        <div class="bg">
@@ -394,7 +393,7 @@
 
 <style scoped lang="less" type="text/less">
     .tab{
-      border-bottom:10px solid  #cdcdcd;
+      border-bottom:10px solid  #eeeeee;
       display: flex;
       height: 49px;
       .tab-man{

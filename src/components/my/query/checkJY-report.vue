@@ -197,7 +197,7 @@
  }
  .wrapper{
    .tab{
-     border-top: 10px solid #cdcdcd;
+     border-top: 10px solid #eeeeee;
      height: 45px;
      display: flex;
      .tab-com{
@@ -231,7 +231,7 @@
    }
 
    .bottom{
-     background: #cdcdcd;
+     background: #eeeeee;
      position: absolute;
      left: 0;
      right: 0;

@@ -1,36 +1,21 @@
-
 <template>
   <div>
-    <commm :num="outnum" @a="aa" @b="bb"></commm>
-    <div>parent：{{outnum}}</div>
+       我是测试文字
   </div>
 </template>
 
 
-
 <script>
-import commm from './comm'
-  export default {
-    components: {
-      commm
-    },
-    methods: {
-      aa(){
-         this.outnum++
-      },
-      bb(){
-          this.outnum--
-      }
-
-    },
-    data () {
-      return {
-       outnum:50
-
-      }
-    },
-
-  }
 </script>
 <style scoped lang="less" type="text/less">
+  @font-face {
+    font-family: PingFang-Light;
+    src: url("../../../common/fonts/PingFang-Light.ttf");
+    /*font-size: 56px;*/
+  }
+  div{
+    /*font-family:PingFang-Light;*/
+    font-family: PingFang-Light;
+    font-size: 25px;
+  }
 </style>

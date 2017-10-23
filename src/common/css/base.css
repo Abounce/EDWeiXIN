@@ -2,8 +2,29 @@
 
 /*body, html*/
   /*line-height: 1*/
-  /*font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback'*/
+  /*fonts-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback'*/
   /*user-select: none*/
   /*-webkit-tap-highlight-color: transparent*/
   /*background: $color-background*/
   /*color: $color-text*/
+
+/*@font-face {*/
+  /*font-family: PingFang-Light;*/
+  /*src: url("./../fonts/PingFang-Light.ttf");*/
+  /*font-size: 56px;*/
+/*}*/
+
+/*@font-face {*/
+  /*font-family: PingFang-SC-Semibold;*/
+  /*src: url("./../fonts/PingFang-SC-Semibold.ttf");*/
+/*}*/
+
+/*@font-face {*/
+  /*font-family: PingFangSC-Regular ;*/
+  /*src: url("./../fonts/PingFang_Regular.otf");*/
+/*}*/
+
+/**{*/
+  /*font-family: PingFang-Light, sans-serif;*/
+/*}*/
+

@@ -96,7 +96,7 @@
     }
   }
   .card{
-   border-bottom: 0.5px solid #cdcdcd;
+   border-bottom: 0.5px solid #eeeeee;
     height: 49px;
     display: flex;
     .one{

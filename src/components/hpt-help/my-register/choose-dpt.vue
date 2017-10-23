@@ -184,7 +184,7 @@
   }
   .docutor{
     height: 90px;
-    background:@color-withe;
+    background:#ffffff;
     .title{
       font-size:@font-size-five;
       padding : 14px;
@@ -202,7 +202,7 @@
             font-weight: 500;
             font-size:15px;
             margin-left: 15px;
-            background-color:@color-background;
+            background-color:#eeeeee;
             text-align: center;
             line-height: 35px;
             display: inline-block;
@@ -219,7 +219,7 @@
 
   }
   .department{
-    border-top: 10px solid @color-background;
+    border-top: 10px solid #ffffff;
     top:100px;
     left: 0;
     right: 0;
@@ -234,21 +234,21 @@
     }
     .department_left{
       flex: 1 ;
-      background-color:@color-background;
+      background-color:#eeeeee;
       li{
-        border-bottom: 1px solid @color-withe;
+        border-bottom: 1px solid #ffffff;
       }
     }
     .department_right{
       flex: 1 ;
       li{
-        border-bottom: 1px solid @color-fgx;
+        border-bottom: 1px solid #eeeeee;
       }
     }
 
   }
   .selectleft{
-    background:@color-withe ;
+    background:#ffffff ;
     color: #13bf72;
   }
 
