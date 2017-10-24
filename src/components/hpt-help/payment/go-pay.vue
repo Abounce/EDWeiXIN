@@ -27,7 +27,6 @@
         </better-scroll>
       </div>
       <div class="bottom">
-
         <check-icon :value.sync="demo6"  class="bottom-one"  @click.native="allChoose">全选</check-icon>
         <div class="bottom-two">合计:{{changeMoney()}}</div>
         <div class="bottom-three" @click="surePay">确认支付</div>
