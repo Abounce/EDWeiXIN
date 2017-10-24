@@ -12,7 +12,7 @@
 
    <div class="wrapper">
      <div class="one-title">订单明细</div>
-     <better-scroll :data="list" class="wrapper-one-b" >
+     <better-scroll :data="list" class="wrapper-one-b">
        <ul>
          <li v-for="(item,index) in list" >
            <div class="one" style="padding-top: 10px">

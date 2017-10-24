@@ -208,7 +208,7 @@
           font-size: 13px;
           font-weight: 500;
           margin-top: 16px;
-          margin-bottom: 16px;
+          margin-bottom: 8px;
           color: #888888;
         }
       }

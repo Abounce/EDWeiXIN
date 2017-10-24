@@ -5,7 +5,7 @@
           <ul>
             <li  v-for="(item,index) in innerList">
                <div class="content">
-                  <check-icon :value.sync="item.isUse"  class="content-one"></check-icon>
+                  <check-icon :value.sync="item.isUse"  class="content-one" @click.native="danChoose(item,innerList)"></check-icon>
                   <div class="content-two">
                     <div class="one">{{item.costType}}</div>
                     <div class="two">
@@ -29,7 +29,7 @@
       <div class="bottom">
 
         <check-icon :value.sync="demo6"  class="bottom-one"  @click.native="allChoose">全选</check-icon>
-        <div class="bottom-two">合计:{{changeMoney}}</div>
+        <div class="bottom-two">合计:{{changeMoney()}}</div>
         <div class="bottom-three" @click="surePay">确认支付</div>
       </div>
       <div v-transfer-dom class="alert">
@@ -118,27 +118,31 @@
           })
         }
 
-      }
-    },
-    computed:{
+      },
+      //单选false
+      danChoose(item,innerList){
+       if (!item.isUse){
+         this.demo6=false
+       }
+        let tmep=0;
+        innerList.forEach((item)=>{
+         if (item.isUse){
+           tmep++
+         }
+        })
+        if(tmep===innerList.length){
+          this.demo6=true
+        }
+      },
+      //总金额
       changeMoney(){
         let allMoney=0
-        if (this.demo6){
-            this.innerList.forEach((item)=>{
-              allMoney+=item.rcptMoney
-            })
-          return allMoney
-        }else {
-          this.innerList.forEach((item)=>{
-            if (item.isUse){
-               allMoney+=item.rcptMoney
-//               this.demo6=true
-            }else {
-              this.demo6=false
-            }
-          })
-          return allMoney
-        }
+        this.innerList.forEach((item)=>{
+          if (item.isUse){
+            allMoney+=item.rcptMoney
+          }
+        })
+        return allMoney
       }
     },
 
@@ -153,11 +157,7 @@
       })
     },
     watch:{
-      innerList(){
-        this.innerList.forEach((item=>{
 
-        }))
-      }
     }
 
   }
@@ -165,7 +165,7 @@
 
 <style scoped lang="less" type="text/less">
   .wrapper{
-    border-top: 10px solid #cdcdcd;
+    border-top: 10px solid #eeeeee;
     .wrapper-b{
       position: absolute;
       top: 10px;
