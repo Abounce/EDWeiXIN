@@ -274,6 +274,36 @@ export function login (params) {
   })
 }
 
+//检验报告
+export function getSelectHisLis (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/HisAynData/selectHisLis',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
+
+//检查报告
+export function getSelectHisPacs (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/HisAynData/selectHisPacs',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
+
 export function hasErr(error){
   //console.error(error);
   if (error.status === 200 && error.statusText === 'OK'&& error.data.status === "OK") {

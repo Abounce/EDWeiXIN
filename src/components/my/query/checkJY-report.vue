@@ -1,33 +1,33 @@
 <template>
    <div>
      <div class="head">
-      <div class="title">血常规检验报告</div>
+      <div class="title">{{itemJY.rptName}}</div>
       <my-line></my-line>
       <div>
        <div class="com">
          <span>报告单号:</span>
-         <span>25587895544585</span>
+         <span>{{itemJY.rptNo}}</span>
        </div>
        <div class="com">
          <span>检验人员:</span>
-         <span>李伟</span>
+         <span>{{itemJY.iptDoctor}}</span>
        </div>
        <div class="com" style="margin-bottom: 14px">
          <span>检验时间:</span>
-         <span>2017-08-05 15:00:00</span>
+         <span>{{itemJY.rptTime}}</span>
        </div>
      </div>
       <my-line></my-line>
       <div>
        <div class="title-one">病人信息</div>
        <div class="com-one">
-         <span>刘伟</span>
-         <span style="margin-left: 40px;">男</span>
-         <span style="margin-left: 40px;">36岁</span>
+         <span>{{itemJY.patientName}}</span>
+         <span style="margin-left: 40px;">{{itemJY.sex==='1'?'男':'女'}}</span>
+         <span style="margin-left: 40px;">{{itemJY.age}}岁</span>
        </div>
        <div class="com-one" style="margin-bottom: 15px">
          <span>临床诊断:</span>
-         <span>骨折型损伤，骨质疏松</span>
+         <span>{{itemJY.testResults}}</span>
        </div>
      </div>
      </div>
@@ -39,112 +39,22 @@
            <div class="tab-com">参考值</div>
          </div>
         <my-line></my-line>
-        <better-scroll class="li-wrapper">
+        <better-scroll class="li-wrapper" :data="itemList">
           <ul>
-            <li>
+            <li v-for="(item,index) in itemList">
                <div class="li">
-                 <div class="li-com">血小板计数(PL)</div>
+                 <div class="li-com">{{item.iptKpi}}</div>
                  <div class="li-com">
-                   <span>287.0</span>
+                   <span>{{item.measureValue}}</span>
                    <span></span>
                  </div>
                  <div class="li-com">10^9/L</div>
                  <div class="li-com">
-                   <div>68.0~383.0</div>
-                   <div>(10^9/L)</div>
+                   <div>{{(check(item.referenceValue))}}</div>
+                   <div>{{checkOne(item.referenceValue)}}</div>
                  </div>
                </div>
                 <my-line></my-line>
-            </li>
-            <li>
-            <div class="li">
-              <div class="li-com">血小板计数(PL)</div>
-              <div class="li-com">
-                <span>287.0</span>
-                <span></span>
-              </div>
-              <div class="li-com">10^9/L</div>
-              <div class="li-com">
-                <div>68.0~383.0</div>
-                <div>(10^9/L)</div>
-              </div>
-            </div>
-            <my-line></my-line>
-          </li>
-            <li>
-              <div class="li">
-                <div class="li-com">血小板计数(PL)</div>
-                <div class="li-com">
-                  <span>287.0</span>
-                  <span></span>
-                </div>
-                <div class="li-com">10^9/L</div>
-                <div class="li-com">
-                  <div>68.0~383.0</div>
-                  <div>(10^9/L)</div>
-                </div>
-              </div>
-              <my-line></my-line>
-            </li>
-            <li>
-              <div class="li">
-                <div class="li-com">血小板计数(PL)</div>
-                <div class="li-com">
-                  <span>287.0</span>
-                  <span></span>
-                </div>
-                <div class="li-com">10^9/L</div>
-                <div class="li-com">
-                  <div>68.0~383.0</div>
-                  <div>(10^9/L)</div>
-                </div>
-              </div>
-              <my-line></my-line>
-            </li>
-            <li>
-              <div class="li">
-                <div class="li-com">血小板计数(PL)</div>
-                <div class="li-com">
-                  <span>287.0</span>
-                  <span></span>
-                </div>
-                <div class="li-com">10^9/L</div>
-                <div class="li-com">
-                  <div>68.0~383.0</div>
-                  <div>(10^9/L)</div>
-                </div>
-              </div>
-              <my-line></my-line>
-            </li>
-            <li>
-              <div class="li">
-                <div class="li-com">血小板计数(PL)</div>
-                <div class="li-com">
-                  <span>287.0</span>
-                  <span></span>
-                </div>
-                <div class="li-com">10^9/L</div>
-                <div class="li-com">
-                  <div>68.0~383.0</div>
-                  <div>(10^9/L)</div>
-                </div>
-              </div>
-              <my-line></my-line>
-            </li>
-            <li>
-              <div class="li">
-                <div class="li-com">血小板计数(PL)</div>
-                <div class="li-com">
-                  <span>287.0</span>
-                  <span></span>
-                </div>
-                <div class="li-com">10^9/L</div>
-                <div class="li-com">
-                  <div>68.0~383.0</div>
-                  <div>(10^9/L)</div>
-                </div>
-              </div>
-              <my-line></my-line>
             </li>
           </ul>
         </better-scroll>
@@ -157,10 +67,34 @@
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
   export  default {
+    methods:{
+      check(data){
+      let result=  data.substring(data.indexOf("(")+1,data.indexOf(")"))
+        return result
+      },
+      checkOne(data){
+
+       let split = data.split('（');
+       console.log(split)
+        return split[0]
+      }
+    },
+    data(){
+      return{
+        itemJY:{},
+        itemList:[]
+      }
+    },
     components:{
       myLine,
       betterScroll
     },
+    mounted(){
+      this.$nextTick(()=>{
+      this.itemJY=  this.$loacalstore.get('itemJY');
+      this.itemList=this.itemJY.items;
+      })
+    }
   }
 </script>
 

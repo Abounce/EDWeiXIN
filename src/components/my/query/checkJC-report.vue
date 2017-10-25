@@ -1,33 +1,33 @@
 <template>
   <div>
     <div class="head">
-      <div class="title">X线检查报告</div>
+      <div class="title">{{itemJC.rptName}}</div>
       <my-line></my-line>
       <div>
         <div class="com">
           <span>报告单号:</span>
-          <span>25587895544585</span>
+          <span>{{itemJC.rptNo}}</span>
         </div>
         <div class="com">
           <span>检验人员:</span>
-          <span>李伟</span>
+          <span>{{itemJC.checkDoctor}}</span>
         </div>
         <div class="com" style="margin-bottom: 14.5px">
           <span>检验时间:</span>
-          <span>2017-08-05 15:00:00</span>
+          <span>{{itemJC.rptTime}}</span>
         </div>
       </div>
       <my-line></my-line>
       <div>
         <div class="title-one">病人信息</div>
         <div class="com-one">
-          <span>刘伟</span>
-          <span style="margin-left: 40px;">男</span>
-          <span style="margin-left: 40px;">36岁</span>
+          <span>{{itemJC.patientName}}</span>
+          <span style="margin-left: 40px;">{{itemJC.sex==='1'?'男':'女'}}</span>
+          <span style="margin-left: 40px;">{{itemJC.age}}岁</span>
         </div>
         <div class="com-one" style="margin-bottom: 15px">
           <span>临床诊断:</span>
-          <span>骨折型损伤，骨质疏松</span>
+          <span>{{itemJC.diagnosis}}</span>
         </div>
       </div>
     </div>
@@ -36,13 +36,13 @@
         <ul>
           <li class="li">
             <div class="one">检查部位</div>
-            <div class="two">左手正斜位</div>
+            <div class="two">{{itemJC.checkPart}}</div>
             <my-line></my-line>
             <div class="three">所见</div>
-            <div class="four">左手各腕骨，各掌指骨骨质完整，未见明显骨质疏松、增生及破坏，各关节对合良好，关节面光洁，关节间隙未见狭窄，周围软组织未见明显肿胀。</div>
+            <div class="four">{{itemJC.checkResults}}</div>
             <my-line></my-line>
             <div class="five">诊断意见</div>
-            <div class="six">左手正斜位X明显异常</div>
+            <div class="six">{{itemJC.diagnosisOpinion}}</div>
           </li>
         </ul>
       </better-scroll>
@@ -55,10 +55,21 @@
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
   export  default {
+    data(){
+      return{
+        itemJC:{}
+      }
+    },
     components:{
       myLine,
-      betterScroll
+      betterScroll,
     },
+    mounted(){
+      this.$nextTick(()=>{
+        this.itemJC=this.$loacalstore.get('itemJC')
+        console.log(this.itemJC)
+      })
+    }
   }
 </script>
 

@@ -89,8 +89,8 @@
       },
       getOutList(){
         this.$api.getSelectNoPay().then((data)=>{
-//          console.log(data);
            this.outList=data;
+
 
         })
       },

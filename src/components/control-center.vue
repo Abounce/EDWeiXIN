@@ -41,16 +41,16 @@
         this.$router.push({name:'专家介绍'})
       },
       six(){
-
-      },
+        this.$router.push({name:'我的预约'})
+     },
       seven(){
-
+        this.$router.push({name:'预约挂号'})
       },
       eight(){
-
+        this.$router.push({name:'报告查看'})
       },
       nine(){
-
+        this.$router.push({name:'门诊支付'})
       },
       ten(){
 

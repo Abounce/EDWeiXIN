@@ -11,12 +11,7 @@ const controlCenter = (resolve) => {
   })
 }
 
-//测试
-const See = (resolve) => {
-  import('../components/hpt-help/report-see/see.vue').then((module) => {
-    resolve(module)
-  })
-}
+
 
 //医院信息
 const hptMsg = (resolve) => {
@@ -58,6 +53,14 @@ const expertDetails = (resolve) => {
   })
 }
 
+//我的预约
+const myAppointment = (resolve) => {
+  import('../components/hpt-help/my-appointment/my-appointment.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+
 
 //预约挂号
 const chooseDpt = (resolve) => {
@@ -89,14 +92,19 @@ const addPatient = (resolve) => {
   })
 }
 
+//在线建卡
 const buildCard = (resolve) => {
   import('../components/hpt-help/my-register/build-card.vue').then((module) => {
     resolve(module)
   })
 }
 
-
-
+//报告查看
+const See = (resolve) => {
+  import('../components/hpt-help/report-see/see.vue').then((module) => {
+    resolve(module)
+  })
+}
 
 
 
@@ -239,10 +247,7 @@ export default new Router({
       name:'控制中心',
       component: controlCenter
     },
-    {
-      path: '/seedemo',
-      component: See
-    },
+
 
     //-----------医院信息---------
     {
@@ -275,38 +280,12 @@ export default new Router({
       name:'专家详情',
       component:expertDetails
     },
-
-
-    //-------预约查询------
+    //--------就医助手
     {
-      path:'/orderQuery',
-      name:'预约查询',
-      component:orderQuery
+      path:'/myAppointment',
+      name:'我的预约',
+      component:myAppointment
     },
-    {
-      path:'/orderQueryNumber',
-      name:'预约查询就诊号',
-      component:orderQueryNumber
-    },
-    {
-      path:'/finishOrder',
-      name:'已完成预约查看',
-      component:finishOrder
-    },
-    {
-      path:'/checkJCReport',
-      name:'检查报告',
-      component:checkJCReport
-    },
-    {
-      path:'/checkJYReport',
-      name:'检验报告',
-      component:checkJYReport
-    },
-    //---------------------
-
-
-    //---------预约挂号------------
     {
       path: '/chooseDpt',
       name:'预约挂号',
@@ -337,7 +316,41 @@ export default new Router({
       name:'在线建卡',
       component:buildCard
     },
-   //--------------------------
+    {
+      path: '/see',
+      name:'报告查看',
+      component: See
+    },
+
+
+    //-------预约查询------
+    {
+      path:'/orderQuery',
+      name:'预约查询',
+      component:orderQuery
+    },
+    {
+      path:'/orderQueryNumber',
+      name:'预约查询就诊号',
+      component:orderQueryNumber
+    },
+    {
+      path:'/finishOrder',
+      name:'已完成预约查看',
+      component:finishOrder
+    },
+    {
+      path:'/checkJCReport',
+      name:'检查报告',
+      component:checkJCReport
+    },
+    {
+      path:'/checkJYReport',
+      name:'检验报告',
+      component:checkJYReport
+    },
+    //---------------------
+
 
 
 

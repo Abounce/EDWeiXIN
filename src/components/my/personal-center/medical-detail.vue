@@ -65,7 +65,7 @@
       getList(){
         this.$api.getRegistList().then((data=>{
           data.forEach((item=>{
-            if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
+            if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<(item.regDate===null?'':item.regDate).substring(0,10)){
               this.itemList.push(item)
             }
           }))
