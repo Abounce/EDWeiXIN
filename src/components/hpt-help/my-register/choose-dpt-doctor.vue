@@ -34,7 +34,7 @@
             </div>
         </betterscroll>
         <div class="showtime">
-          <div class="morning"v-for="(doctor,index) in currentdoctors">
+          <div class="morning"v-for="(doctor,index) in isCurrentDoctors(currentdoctors)">
             <div class="time">{{istime(doctor)}}{{doctor.jobtimePeriod}}</div>
             <div class="price">￥{{doctor.sumFee}}</div>
             <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
@@ -77,7 +77,7 @@
  export  default {
    data(){
     return{
-      value1:true,
+      value1:false,
       isorder:true,
       isintroduce:false,
       tabs:[],
@@ -88,6 +88,21 @@
     }
    },
    methods:{
+     //是否有号
+     isCurrentDoctors(currentdoctors){
+
+       if(this.value1){
+         //只看有号
+         let isCurentDoctors=[]
+         currentdoctors.forEach((item=>{
+           if(item.surplusRegTot>0){
+             isCurentDoctors.push(item)
+           }
+         }))
+         return isCurentDoctors
+       }
+       return currentdoctors
+     },
      //预约医生
      order(doctor){
        this.$loacalstore.set('sumFee',doctor.sumFee)

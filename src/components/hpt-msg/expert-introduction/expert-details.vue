@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="order-or-introduce">
-      <div class="tab-introduce" @click="chooseIntroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
       <div class="tab-order" @click="chooseOrder(isorder,isintroduce)" :class="{selectleft:isorder}">预约</div>
+      <div class="tab-introduce" @click="chooseIntroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
     </div>
     <div class="introduce" v-show="isintroduce">
       <div class="introduce-a">学术任职</div>
@@ -29,7 +29,7 @@
         <span class="only-see">只看有号</span>
       </div>
 
-      <betterscroll class="wrapper" :scrollX="true" :data="tabs">
+      <betterscroll class="wrapper" :scrollX="true" :data="tabs" ref="aa">
         <div :style="{ width:tatalwith+'px' }" class="inner">
           <ul>
             <li v-for="(tab,index) in tabs" class="liwidth" @click="setindex(index,tab.doctors)" :class="{selectleft:currentitem===index}" >
@@ -40,7 +40,7 @@
         </div>
       </betterscroll>
       <div class="showtime">
-        <div class="morning"v-for="(doctor,index) in isCurrentDoctors(currentdoctors)">
+        <div class="morning" v-for="(doctor,index) in isCurrentDoctors(currentdoctors)">
           <div class="time">{{istime(doctor)}}{{doctor.jobtimePeriod}}</div>
           <div class="price">￥{{doctor.sumFee}}</div>
           <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
@@ -50,18 +50,7 @@
               </span>
           </div>
         </div>
-        <!--<div class="afternoon">-->
-        <!--<div class="time">下午(8:00-12:00)</div>-->
-        <!--<div class="price">￥6.00</div>-->
-        <!--<div class="isnumber">余号13</div>-->
-        <!--<div class="yuyue">预约</div>-->
-        <!--</div>-->
-        <!--<div class="night">-->
-        <!--<div class="time">晚上(8:00-12:00)</div>-->
-        <!--<div class="price">￥6.00</div>-->
-        <!--<div class="isnumber">余号13</div>-->
-        <!--<div class="yuyue">预约</div>-->
-        <!--</div>-->
+
       </div>
     </div>
 
@@ -116,11 +105,15 @@
       chooseOrder(isorder,isintroduce){
         this.isorder=true
         this.isintroduce=false
+//        this.$nextTick(()=>{
+//          this.$refs.aa.refresh()
+//        })
       },
       //介绍
       chooseIntroduce(isorder,isintroduce){
         this.isorder=false
         this.isintroduce=true
+
 
       },
       istime(doctor){

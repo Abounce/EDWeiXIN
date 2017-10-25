@@ -1,7 +1,7 @@
 
 <template>
    <div>
-     <betterscroll class="wrapper">
+     <betterscroll class="wrapper" :data="tabs">
        <ul>
          <li v-for="(doctor,index) in tabs" @click="chooseExpert(doctor.id)">
            <div>
