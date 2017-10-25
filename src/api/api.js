@@ -203,6 +203,47 @@ export function getSelectNoPay(params) {
   });
 }
 
+
+///OutDepartPay/selectPayInfo
+//门诊发起订单
+// export function getSelectPayInfo(params) {
+//   return new Promise((resovle,reject)=>{
+//     ajax.post('/OutDepartPay/selectPayInfo','',{
+//       headers:{
+//         'Content-Type':'application/json'
+//       },
+//       data:params,
+//     }).then(body=>{
+//         resovle(body)
+//       })
+//       .catch((err)=>{
+//         hasErr(err)
+//         reject(err)
+//       })
+//   });
+// }
+
+
+//门诊发起订单
+export function getSelectPayInfo(params) {
+  return new Promise((resovle,reject)=>{
+    ajax({
+      method: 'post',
+      url: '/OutDepartPay/selectPayInfo',
+      data: params,
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(body=>{
+        resovle(body)
+      })
+      .catch((err)=>{
+        hasErr(err)
+        reject(err)
+      })
+  });
+}
+
 //挂号记录
 export function getRegistList(params) {
   return new Promise((resovle,reject)=>{

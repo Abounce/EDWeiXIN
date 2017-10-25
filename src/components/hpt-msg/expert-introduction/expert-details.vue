@@ -12,10 +12,22 @@
       </div>
     </div>
     <div class="order-or-introduce">
-      <div class="tab-introduce" @click="chooseintroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
-      <div class="tab-order" @click="chooseorder(isorder,isintroduce)" :class="{selectleft:isorder}">预约</div>
+      <div class="tab-introduce" @click="chooseIntroduce(isorder,isintroduce)" :class="{selectleft:isintroduce}">介绍</div>
+      <div class="tab-order" @click="chooseOrder(isorder,isintroduce)" :class="{selectleft:isorder}">预约</div>
+    </div>
+    <div class="introduce" v-show="isintroduce">
+      <div class="introduce-a">学术任职</div>
+      <p class="introduce-b">{{topdata.academicActivitiesString}}</p>
+      <div class="introduce-c">擅长疾病</div>
+      <p class="introduce-d">{{topdata.specializeDiseaseString}}</p>
     </div>
     <div class="order" v-show="isorder">
+      <div class="see">
+        <group :title="(' ')"  class="only-button">
+          <x-switch :title="(' ')" v-model="value1"></x-switch>
+        </group>
+        <span class="only-see">只看有号</span>
+      </div>
 
       <betterscroll class="wrapper" :scrollX="true" :data="tabs">
         <div :style="{ width:tatalwith+'px' }" class="inner">
@@ -28,12 +40,12 @@
         </div>
       </betterscroll>
       <div class="showtime">
-        <div class="morning"v-for="(doctor,index) in currentdoctors">
-          <div class="time">上午(8:00-12:00)</div>
+        <div class="morning"v-for="(doctor,index) in isCurrentDoctors(currentdoctors)">
+          <div class="time">{{istime(doctor)}}{{doctor.jobtimePeriod}}</div>
           <div class="price">￥{{doctor.sumFee}}</div>
           <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
           <div class="yuyue" >
-            <span class="yuyue-inner" @click="order(doctor)">
+              <span class="yuyue-inner" @click="order(doctor)">
                   预约
               </span>
           </div>
@@ -52,12 +64,7 @@
         <!--</div>-->
       </div>
     </div>
-    <div class="introduce" v-show="isintroduce">
-      <div class="introduce-a">学术任职</div>
-      <p class="introduce-b">{{topdata.academicActivitiesString}}</p>
-      <div class="introduce-c">擅长疾病</div>
-      <p class="introduce-d">{{topdata.specializeDiseaseString}}</p>
-    </div>
+
 
   </div>
 </template>
@@ -71,7 +78,7 @@
   export  default {
     data(){
       return{
-        value1:true,
+        value1:false,
         isorder:true,
         isintroduce:false,
         tabs:[],
@@ -82,7 +89,22 @@
       }
     },
     methods:{
-      //预约专家
+      //是否有号
+      isCurrentDoctors(currentdoctors){
+
+        if(this.value1){
+          //只看有号
+          let isCurentDoctors=[]
+          currentdoctors.forEach((item=>{
+            if(item.surplusRegTot>0){
+              isCurentDoctors.push(item)
+            }
+          }))
+          return isCurentDoctors
+        }
+        return currentdoctors
+      },
+      //预约医生
       order(doctor){
         this.$loacalstore.set('sumFee',doctor.sumFee)
         this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
@@ -90,22 +112,36 @@
         this.$loacalstore.set('regJobType',doctor.regJobType)
         this.$router.push({name:'选择就诊人'})
       },
-      setindex(index,docoto){
-        this.currentdoctors=docoto;
-        this.currentitem=index;
-      },
-      chooseorder(isorder,isintroduce){
+      //预约
+      chooseOrder(isorder,isintroduce){
         this.isorder=true
         this.isintroduce=false
       },
-      chooseintroduce(isorder,isintroduce){
+      //介绍
+      chooseIntroduce(isorder,isintroduce){
         this.isorder=false
         this.isintroduce=true
 
       },
+      istime(doctor){
+        let type = doctor.regJobType;
+        if (type==="1"){
+          return "上午"
+        }else if(type==="2"){
+          return "中午"
+        }else {
+          return "晚上"
+        }
+      },
+      setindex(index,docoto){
+        this.currentdoctors=docoto;
+        this.currentitem=index;
+      },
+
       getlist(){
-//        let doctorId = this.$route.params.doctorId;
-        let doctorId =   this.$loacalstore.get('doctorId')
+//       let doctorId = this.$route.params.doctorId;
+//       let doctorId = this.$store.state.doctorId;
+        let doctorId = this.$loacalstore.get('doctorId')
         if (!doctorId){
           return
         }
@@ -127,7 +163,7 @@
         for(let i=0;i<length;i++){
           if(data[i].regDate.substr(0,10)===firstday){
             firstdoctors.push({
-              surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee})
+              surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId,jobtimePeriod:data[i].jobtimePeriod,regJobType:data[i].regJobType,regDate:data[i].regDate.substr(0,10)})
           }
         }
 //       console.log("第一天"+firstday)
@@ -147,7 +183,7 @@
             for(let i=0;i<length;i++){
               if(data[i].regDate.substr(0,10)===currentday){
                 nextdoctors.push({
-                  surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee})
+                  surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId,jobtimePeriod:data[i].jobtimePeriod,regJobType:data[i].regJobType,regDate:data[i].regDate.substr(0,10)})
               }
             }
 
@@ -162,7 +198,7 @@
         for(let i=0;i<length;i++){
           if(data[i].regDate.substr(0,10)===lastday){
             lastdoctors.push({
-              surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee})
+              surplusRegTot:data[i].surplusRegTot,sumFee:data[i].sumFee,doctorId:data[i].doctorId,jobtimePeriod:data[i].jobtimePeriod,regJobType:data[i].regJobType,regDate:data[i].regDate.substr(0,10)})
           }
         }
         let lastweek = getweek(lastday);
@@ -176,15 +212,15 @@
         })
       },
       gettoplist(){
-//        let doctorId = this.$route.params.doctorId;
-        let doctorId =   this.$loacalstore.get('doctorId')
+//       let doctorId = this.$store.state.doctorId;
+        let doctorId = this.$loacalstore.get('doctorId')
         if (!doctorId){
           return
         }
-//        console.log("传递过来的数据doctorId="+doctorId)
+//       console.log("----------医生的id="+doctorId)
         let start={docCode:doctorId}
         this.$api.getDoctorList(start).then((data=>{
-          console.log(data)
+//             console.log(data)
           this.topdata=data[0]
         }))
       }
@@ -200,6 +236,9 @@
         this.getlist();
 
       })
+
+    },
+    computed:{
 
     },
     watch:{
@@ -328,6 +367,8 @@
       }
       .yuyue{
         text-align: center;
+        /*line-height:70px ;*/
+
         flex: 1;
       }
       .morning{
@@ -336,10 +377,7 @@
         display: flex;
         .yuyue-inner{
 
-          /*display: inline-block;*/
-          /*width: 60px;*/
-          /*height: 30px;*/
-          /*background: red;*/
+
           padding: 6px 12px;
           border-radius: 3px;
           border: solid 1px #13bf72;

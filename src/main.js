@@ -20,7 +20,9 @@ Vue.config.productionTip = false
 FastClick.attach(document.body)
 Vue.component('barcode', VueBarcode);
 Vue.use(VueLazyload, {
-  loading: require('./common/image/image@3x/Sign-in@3x.png')
+  loading: require('./common/image/image@3x/Sign-in@3x.png'),
+  error: require('./common/image/image@3x/Sign-in@3x.png'),//这个是请求失败后显示的图片
+  attempt:3
 })
 Vue.prototype.$api = api;
 Vue.prototype.$loacalstore=stores;

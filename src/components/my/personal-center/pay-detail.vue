@@ -48,7 +48,6 @@
               </div >
               <my-line></my-line>
             </li>
-            <div class="two-title" @click="endDetail">收起明细</div>
           </ul>
         </div>
       </popup>
@@ -135,7 +134,7 @@
   .wrapper{
     border-top: 10px solid #eeeeee;
     /*margin-top: 10px;*/
-    
+
       .one{
         display: flex;
         height: 67.5px;

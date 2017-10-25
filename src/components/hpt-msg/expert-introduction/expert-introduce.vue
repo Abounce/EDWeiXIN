@@ -16,7 +16,7 @@
              <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">{{doctor.deptName}}</span></div>
            </div>
            </div>
-           <div class="detail">1989年毕业于8年制的中国协和医科大学，获医学博士学位。随后在中国协和医科大学附属协和医院担任妇产科住院医师，主治医师，副主任医生，主任医师。</div>
+           <div class="detail">{{doctor.practiceExperienceString}}</div>
            </div>
          </li>
        </ul>
@@ -43,12 +43,12 @@
     getlist(){
       let start={isExpert:1}
       this.$api.getDoctorList(start).then((data)=>{
-            console.log(data)
+//            console.log(data)
         this.tabs=data;
       })
      },
      chooseExpert(doctorId){
-      console.log("doctorId"+doctorId)
+//      console.log("doctorId"+doctorId)
        this.$loacalstore.set('doctorId',doctorId)
        this.$router.push({ name:'专家详情'})
      }

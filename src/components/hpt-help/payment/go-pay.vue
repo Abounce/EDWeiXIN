@@ -98,6 +98,75 @@
 
       },
       surePay(){
+         if(this.demo6){
+//           var stringify = JSON.stringify();
+//           console.log(this.innerList)
+           let aa='[\n' +
+             '        {\n' +
+             '          "cardNo": "230881",\n' +
+             '          "deptName": "急诊内科门诊",\n' +
+             '          "doctorName": "admin3",\n' +
+             '          "diagnosis": "诊断",\n' +
+             '          "rcptId": "1011",\n' +
+             '          "rcptType": 1,\n' +
+             '          "costType": "西药费",\n' +
+             '          "rcptMoney": 88.2,\n' +
+             '          "rcptDate": "2017-10-11 17:39:31",\n' +
+             '          "registerNo": "000001",\n' +
+             '          "itemBeans": [\n' +
+             '            {\n' +
+             '              "itemTypeId": "1",\n' +
+             '              "itemTypeName": "西药费",\n' +
+             '              "itemCode": "01",\n' +
+             '              "itemName": "阿莫西林",\n' +
+             '              "itemSpecs": "规格",\n' +
+             '              "itemNum": 3,\n' +
+             '              "itemPrice": 9.8,\n' +
+             '              "itemMoney": 29.400000000000002\n' +
+             '            },\n' +
+             '            {\n' +
+             '              "itemTypeId": "1",\n' +
+             '              "itemTypeName": "西药费",\n' +
+             '              "itemCode": "01",\n' +
+             '              "itemName": "阿莫西林",\n' +
+             '              "itemSpecs": "规格",\n' +
+             '              "itemNum": 3,\n' +
+             '              "itemPrice": 9.8,\n' +
+             '              "itemMoney": 29.400000000000002\n' +
+             '            },\n' +
+             '            {\n' +
+             '              "itemTypeId": "1",\n' +
+             '              "itemTypeName": "西药费",\n' +
+             '              "itemCode": "01",\n' +
+             '              "itemName": "阿莫西林",\n' +
+             '              "itemSpecs": "规格",\n' +
+             '              "itemNum": 3,\n' +
+             '              "itemPrice": 9.8,\n' +
+             '              "itemMoney": 29.400000000000002\n' +
+             '            }\n' +
+             '          ]\n' +
+             '        },\n' +
+             '        {\n' +
+             '          "cardNo": "230881",\n' +
+             '          "deptName": "急诊内科门诊",\n' +
+             '          "doctorName": "admin3",\n' +
+             '          "diagnosis": "诊断",\n' +
+             '          "rcptId": "1012",\n' +
+             '          "rcptType": 5,\n' +
+             '          "costType": "检查费用",\n' +
+             '          "rcptMoney": 88.2,\n' +
+             '          "rcptDate": "2017-10-11 17:39:31",\n' +
+             '          "registerNo": "000002",\n' +
+             '          "itemBeans": null\n' +
+             '        }\n' +
+             '      ]';
+
+
+
+           this.$api.getSelectPayInfo(aa).then((data=>{
+             this.$vux.toast.text('支付成功','middle')
+           }))
+         }
 
       },
       seeContent(item){
@@ -148,6 +217,7 @@
     mounted(){
       this.$nextTick(()=>{
       let minnerList = this.$loacalstore.get('hisOutDepartReceInfos');
+//      console.log(minnerList)
         minnerList.forEach((item)=>{
           item.isUse=true
         })

@@ -15,7 +15,9 @@ let token='fc0198290edd43da8f1290cd32c9abc3';
 axios.interceptors.request.use((config)=>{
   // console.log('config--------:'+config)
   //在请求发出之前进行一些操作
-  config.data = Qs.stringify(config.data);
+  if (!config.url.includes('/OutDepartPay/selectPayInfo')){
+    config.data = Qs.stringify(config.data);
+  }
   config.url+=`?openId=${openId}&token=${token}&hospitalCode=${hospitalCode}`;
   return config;
 },function(err){

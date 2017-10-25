@@ -4,11 +4,60 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+//路由控制中心
+const controlCenter = (resolve) => {
+  import('../components/control-center').then((module) => {
+    resolve(module)
+  })
+}
+
+//测试
+const See = (resolve) => {
+  import('../components/hpt-help/report-see/see.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//医院信息
 const hptMsg = (resolve) => {
   import('../components/hpt-msg/hpt-msg/hpt-msg.vue').then((module) => {
     resolve(module)
   })
 }
+
+//就医指南
+const hptGuide = (resolve) => {
+  import('../components/hpt-msg/hpt-guide/hpt-guide.vue').then((module) => {
+    resolve(module)
+  })
+}
+//特色医疗
+const hptCharacter = (resolve) => {
+  import('../components/hpt-msg/htp-characteristic/hpt-character.vue').then((module) => {
+    resolve(module)
+  })
+}
+//院内导诊
+const hptInner = (resolve) => {
+  import('../components/hpt-msg/inner-diagnosis/hpt-inner.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//专家介绍
+const expertIntroduce = (resolve) => {
+  import('../components/hpt-msg/expert-introduction/expert-introduce.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//专家详情
+const expertDetails = (resolve) => {
+  import('../components/hpt-msg/expert-introduction/expert-details.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 //预约挂号
 const chooseDpt = (resolve) => {
@@ -46,25 +95,11 @@ const buildCard = (resolve) => {
   })
 }
 
-const expertIntroduce = (resolve) => {
-  import('../components/hpt-msg/expert-introduction/expert-introduce.vue').then((module) => {
-    resolve(module)
-  })
-}
-
-const experetDetails = (resolve) => {
-  import('../components/hpt-msg/expert-introduction/expert-details.vue').then((module) => {
-    resolve(module)
-  })
-}
 
 
 
-const See = (resolve) => {
-  import('../components/hpt-help/report-see/see.vue').then((module) => {
-    resolve(module)
-  })
-}
+
+
 //门诊支付
 const outpatientPay = (resolve) => {
   import('../components/hpt-help/payment/outpatient-pay.vue').then((module) => {
@@ -198,14 +233,49 @@ export default new Router({
   mode: 'history',
   routes: [
     // { path: '*', component: index },
+    //-----------test------------
+    {
+      path: '/controlCenter',
+      name:'控制中心',
+      component: controlCenter
+    },
     {
       path: '/seedemo',
       component: See
     },
+
+    //-----------医院信息---------
     {
       path: '/hptMsg',
+      name:'医院信息',
       component: hptMsg
     },
+    {
+      path: '/hptGuide',
+      name:'就医指南',
+      component: hptGuide
+    },
+    {
+      path: '/hptCharacter',
+      name:'特色医疗',
+      component: hptCharacter
+    },
+    {
+      path: '/hptInner',
+      name:'院内导诊',
+      component: hptInner
+    },
+    {
+      path:'/expertIntroduce',
+      name:'专家介绍',
+      component:expertIntroduce
+    },
+    {
+      path:'/expertDetails',
+      name:'专家详情',
+      component:expertDetails
+    },
+
 
     //-------预约查询------
     {
@@ -268,19 +338,6 @@ export default new Router({
       component:buildCard
     },
    //--------------------------
-
-   //---------专家介绍------
-    {
-      path:'/expertIntroduce',
-      name:'专家介绍',
-      component:expertIntroduce
-    },
-    {
-      path:'/experetDetails',
-      name:'专家详情',
-      component:experetDetails
-    },
-    //--------------------------
 
 
 

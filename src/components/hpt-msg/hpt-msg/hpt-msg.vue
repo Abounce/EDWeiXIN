@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>医院信息</div>
     <header>
       <img src="hsp_imgeurl" alt="">
     </header>
@@ -34,19 +35,10 @@
     },
 
     created: function () {
-      // `this` 指向 vm 实例
-//      this.getdata()
+
     },
    methods:{
-//     getdata:function () {
-//       http.get('http://localhost:63342/EDWeiXin/ac.html?_ijt=ufvlqrs344ihjjb7dq4bk6dq04')
-//         .then(function (response) {
-//           console.log(response);
-//         })
-//         .catch(function (error) {
-//           console.log(error);
-//         });
-//     }
+
    }
   }
 </script>
