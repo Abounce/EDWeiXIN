@@ -26,15 +26,15 @@
             </better-scroll>
           </div >
           <div class="wrapper-two"    v-show="index===1">
-            <better-scroll class="wrapper-b">
+            <better-scroll class="wrapper-b" :data="payList">
               <ul class="ul-b">
-                <li class="li-b">
-                  <div class="li-div"><span class="li-com-one" style="margin-left: 31px;">就诊人</span><span class="li-com-two">王小波</span></div>
-                  <div class="li-div"><span class="li-com-one">就诊科室</span><span class="li-com-two">五官科</span></div>
-                  <div class="li-div"><span class="li-com-one">订单金额</span><span class="li-com-two">¥360.00</span></div>
-                  <div class="li-div"><span class="li-com-one">支付时间</span><span class="li-com-two">2017-08-29 12:00:00</span></div>
+                <li class="li-b" v-for="(item,index) in payList">
+                  <div class="li-div"><span class="li-com-one" style="margin-left: 31px;">就诊人</span><span class="li-com-two">{{item.patName}}</span></div>
+                  <div class="li-div"><span class="li-com-one">就诊科室</span><span class="li-com-two">{{item.deptName}}</span></div>
+                  <div class="li-div"><span class="li-com-one">订单金额</span><span class="li-com-two">¥{{item.paySum}}</span></div>
+                  <div class="li-div"><span class="li-com-one">支付时间</span><span class="li-com-two">{{item.payTime}}</span></div>
                   <my-line></my-line>
-                   <div class="bottom" @click="buttonDeatail">
+                   <div class="bottom" @click="buttonDeatail(item.rcptId)">
                      <span>订单详情</span>
                      <span class="icon iconfont icon-fanhui"></span>
                    </div>
@@ -60,7 +60,8 @@
         demo2: '未支付',
         verticalHeight:0,
         outList:[],
-        innerList:[]
+        innerList:[],
+        payList:[]
       }
     },
     components: {
@@ -74,13 +75,18 @@
     mounted(){
       let screenheight = getscreenheight();
       this.verticalHeight=screenheight-44;
-      console.log(this.verticalHeight)
+//      console.log(this.verticalHeight)
       this.$nextTick(()=>{
           this.getOutList()
+          this.$api.getSelectPayHis().then((data)=>{
+//            console.log(data)
+            this.payList=data
+          })
       })
     },
     methods:{
-      buttonDeatail(){
+      buttonDeatail(id){
+        this.$loacalstore.set('rcptId',id)
         this.$router.push({name:'订单详情'})
       },
       buttonPay(item){
@@ -90,7 +96,6 @@
       getOutList(){
         this.$api.getSelectNoPay().then((data)=>{
            this.outList=data;
-
 
         })
       },

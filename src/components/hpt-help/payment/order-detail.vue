@@ -1,26 +1,25 @@
 <template>
  <div >
    <div class="head">
-     <div class="com"><span class="com-one" style="margin-left: 16px">就诊人</span><span class="com-two">&nbsp;何园鹏</span></div>
-     <div  class="com" style="padding-bottom: 14px"><span class="com-one">就诊科室</span><span class="com-two">&nbsp;外科</span></div>
+     <div class="com"><span class="com-one" style="margin-left: 16px">就诊人</span><span class="com-two">&nbsp;{{outList.patName}}</span></div>
+     <div  class="com" style="padding-bottom: 14px"><span class="com-one">就诊科室</span><span class="com-two">&nbsp;{{outList.deptName}}</span></div>
      <my-line></my-line>
-     <div  class="com" style="padding-bottom: 14px"><span  class="com-one">订单金额</span><span class="com-two">&nbsp;¥360.00</span></div>
+     <div  class="com" style="padding-bottom: 14px"><span  class="com-one">订单金额</span><span class="com-two">&nbsp;¥{{outList.rcptMoney}}</span></div>
      <my-line></my-line>
-     <div  class="com"><span class="com-one">支付时间</span><span class="com-two"> &nbsp;2017-08-29 12:00:00</span></div>
-     <div  class="com"><span class="com-one">支付方式</span><span class="com-two">&nbsp;微信支付</span></div>
+     <div  class="com"><span class="com-one">支付时间</span><span class="com-two"> &nbsp;{{outList.rcptDate}}</span></div>
+     <div  class="com"><span class="com-one">支付方式</span><span class="com-two">&nbsp;{{outList.platfrom}}</span></div>
    </div>
 
    <div class="wrapper">
      <div class="one-title">订单明细</div>
-     <better-scroll :data="list" class="wrapper-one-b">
+     <better-scroll :data="innerList" class="wrapper-one-b">
        <ul>
-         <li v-for="(item,index) in list" >
+         <li v-for="(item,index) in innerList" >
            <div class="one" style="padding-top: 10px">
-             <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
-               （基本） 0.25g*30粒/盒</div>
+             <div class="ono-left">{{item.itemTypeName}} {{item.itemSpecs}}</div>
              <div class="one-right">
-               <div>1盒</div>
-               <div class="price">¥60.00</div>
+               <div>{{item.itemNum}}盒</div>
+               <div class="price">¥{{item.itemMoney}}</div>
              </div>
            </div >
            <my-line></my-line>
@@ -38,8 +37,21 @@
     data(){
       return{
 
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11]
+        outList:{},
+        innerList:[]
+
       }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+      let rcptId = this.$loacalstore.get('rcptId');
+      let params={rcptId:rcptId}
+       this.$api.getSelectPayHisDef(params).then((data)=>{
+//         console.log(data[0])
+         this.outList=data[0]
+         this.innerList=this.outList.items
+       })
+      })
     },
     components:{
       myLine,

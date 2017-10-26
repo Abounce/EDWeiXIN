@@ -16,7 +16,7 @@
                       <div class="two-two">{{item.rptTime}}</div>
                     </div>
                     <div class="two-right">
-                      <span class="isfinish">已完成</span>
+                      <span class="isfinish">{{item.comp.status}}</span>
                       <span class="icon iconfont icon-fanhui "></span>
                     </div>
                   </div>
@@ -34,7 +34,7 @@
                       <div class="two-two">{{item.rptTime}}</div>
                     </div>
                      <div class="two-right">
-                       <span class="isfinish">已完成</span>
+                       <span class="isfinish">{{item.comp.status}}</span>
                       <span class="icon iconfont icon-fanhui "></span>
                      </div>
                   </div>
@@ -59,7 +59,6 @@
         index: 0,
         demo2: '门诊处方',
         verticalHeight:0,
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
         dataListJy:[],
         dataListJC:[]
       }
@@ -68,15 +67,18 @@
       let screenheight = getscreenheight();
       this.verticalHeight=screenheight
       this.$nextTick(()=>{
-        //获取检验报告
-        this.$api.getSelectHisLis().then((data=>{
-            this.dataListJy=data
-        }))
-        //获取检验报告
-        this.$api.getSelectHisPacs().then((data=>{
-          this.dataListJC=data
-        }))
-
+//        //获取检验报告
+//        this.$api.getSelectHisLis().then((data=>{
+//            this.dataListJy=data
+//        }))
+//        //获取检验报告
+//        this.$api.getSelectHisPacs().then((data=>{
+//          this.dataListJC=data
+//        }))
+        this.$api.getSelectNewestLisPacs().then((data)=>{
+          this.dataListJy=data.weSynLisDataReponseVos;
+          this.dataListJC=data.weSynPacsDataReponseVos;
+        })
       })
     },
     methods:{

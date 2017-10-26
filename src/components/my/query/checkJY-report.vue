@@ -75,7 +75,7 @@
       checkOne(data){
 
        let split = data.split('（');
-       console.log(split)
+//       console.log(split)
         return split[0]
       }
     },

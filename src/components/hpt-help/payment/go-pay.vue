@@ -1,3 +1,4 @@
+
 <template>
  <div>
       <div class="wrapper">
@@ -62,20 +63,18 @@
   import betterScroll from '../../../common/component/betterscroll.vue'
   import {CheckIcon} from 'vux'
   import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from 'vux'
+  import {out,inner} from '../../../api/comClass.js'
   export default {
     directives: {
       TransferDom
     },
     data(){
       return{
-//        demo5:false,
         demo6:true,
         show7:false,
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
         innerList:[],
         currentList:[],
         mcostType:'',
-//        allmoney:''
       }
     },
     components:{
@@ -97,77 +96,22 @@
         return a
 
       },
+      //支付
       surePay(){
-         if(this.demo6){
-//           var stringify = JSON.stringify();
-//           console.log(this.innerList)
-           let aa='[\n' +
-             '        {\n' +
-             '          "cardNo": "230881",\n' +
-             '          "deptName": "急诊内科门诊",\n' +
-             '          "doctorName": "admin3",\n' +
-             '          "diagnosis": "诊断",\n' +
-             '          "rcptId": "1011",\n' +
-             '          "rcptType": 1,\n' +
-             '          "costType": "西药费",\n' +
-             '          "rcptMoney": 88.2,\n' +
-             '          "rcptDate": "2017-10-11 17:39:31",\n' +
-             '          "registerNo": "000001",\n' +
-             '          "itemBeans": [\n' +
-             '            {\n' +
-             '              "itemTypeId": "1",\n' +
-             '              "itemTypeName": "西药费",\n' +
-             '              "itemCode": "01",\n' +
-             '              "itemName": "阿莫西林",\n' +
-             '              "itemSpecs": "规格",\n' +
-             '              "itemNum": 3,\n' +
-             '              "itemPrice": 9.8,\n' +
-             '              "itemMoney": 29.400000000000002\n' +
-             '            },\n' +
-             '            {\n' +
-             '              "itemTypeId": "1",\n' +
-             '              "itemTypeName": "西药费",\n' +
-             '              "itemCode": "01",\n' +
-             '              "itemName": "阿莫西林",\n' +
-             '              "itemSpecs": "规格",\n' +
-             '              "itemNum": 3,\n' +
-             '              "itemPrice": 9.8,\n' +
-             '              "itemMoney": 29.400000000000002\n' +
-             '            },\n' +
-             '            {\n' +
-             '              "itemTypeId": "1",\n' +
-             '              "itemTypeName": "西药费",\n' +
-             '              "itemCode": "01",\n' +
-             '              "itemName": "阿莫西林",\n' +
-             '              "itemSpecs": "规格",\n' +
-             '              "itemNum": 3,\n' +
-             '              "itemPrice": 9.8,\n' +
-             '              "itemMoney": 29.400000000000002\n' +
-             '            }\n' +
-             '          ]\n' +
-             '        },\n' +
-             '        {\n' +
-             '          "cardNo": "230881",\n' +
-             '          "deptName": "急诊内科门诊",\n' +
-             '          "doctorName": "admin3",\n' +
-             '          "diagnosis": "诊断",\n' +
-             '          "rcptId": "1012",\n' +
-             '          "rcptType": 5,\n' +
-             '          "costType": "检查费用",\n' +
-             '          "rcptMoney": 88.2,\n' +
-             '          "rcptDate": "2017-10-11 17:39:31",\n' +
-             '          "registerNo": "000002",\n' +
-             '          "itemBeans": null\n' +
-             '        }\n' +
-             '      ]';
-
-
-
+         let outArray=[];
+         this.innerList.forEach((item=>{
+            if(item.isUse){
+            let outt= new out(item.cardNo,item.deptName,item.doctorName,item.diagnosis,item.rcptId,
+                item.rcptType,item.costType,item.rcptMoney,item.rcptDate,item.registerNo,item.itemBeans);
+            outArray.push(outt)
+            }
+         }));
+//         console.log("转换前"+outArray)
+           let aa = JSON.stringify(outArray);
+//         console.log("转换后"+aa)
            this.$api.getSelectPayInfo(aa).then((data=>{
              this.$vux.toast.text('支付成功','middle')
            }))
-         }
-
       },
       seeContent(item){
         this.currentList=item.itemBeans

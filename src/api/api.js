@@ -304,6 +304,21 @@ export function getSelectHisPacs (params) {
   })
 }
 
+//查询最新一条挂号数据的his和pacs记录
+export function getSelectNewestLisPacs (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/HisAynData/selectNewestLisPacs',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
+
 export function hasErr(error){
   //console.error(error);
   if (error.status === 200 && error.statusText === 'OK'&& error.data.status === "OK") {
