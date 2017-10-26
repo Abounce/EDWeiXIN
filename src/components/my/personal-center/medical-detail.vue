@@ -55,7 +55,7 @@
         }else if(item.orderstatus==='4'){
           return '已退号'
         }else {
-          if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)>item.regDate.substring(0,10)){
+          if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
             return '未就诊'
           }else {
             return '已过期'
@@ -65,13 +65,11 @@
       getList(){
         this.$api.getRegistList().then((data=>{
           data.forEach((item=>{
-            if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<(item.regDate===null?'':item.regDate).substring(0,10)){
+            if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)>(item.regDate===null?'':item.regDate).substring(0,10)){
               this.itemList.push(item)
             }
           }))
-//          this.$nextTick(()=>{
-//            this.$refs.refbs.refresh()
-//          })
+//
         }))
       }
     },

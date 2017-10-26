@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="one">您的就诊号为</div>
-    <div class="two">0013号</div>
-    <div class="three">请到<span>外科第一诊室</span>>排队候诊</div>
-    <div class="four">当前正在就诊号为0010</div>
+    <div class="two">{{seeItem.registerNo}}号</div>
+    <div class="three">请到<span>{{seeItem.deptName}}</span>>排队候诊</div>
+    <div class="four">当前正在就诊号为{{doctorCurNo}}</div>
     <div class="five">扫一扫</div>
     <div  class="six">
     <qrcode :value='value' type="img"></qrcode>
     </div>
-    <div class="seven">就诊卡号:0212252122578</div>
+    <div class="seven">就诊卡号:{{seeItem.cardNo}}</div>
   </div>
 </template>
 
@@ -21,7 +21,19 @@
     data () {
       return {
         value: 'https://www.baidu.com',
+        seeItem:{},
+        doctorCurNo:""
       }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+      this.seeItem=this.$loacalstore.get('seeItem')
+        //查询挂号的主诊断
+        let params={doctorId:this.seeItem.orderId}
+        this.$api.getSelectDoctorCurNo(params).then((data=>{
+          this.doctorCurNo=data.doctorCurNo
+        }))
+      })
     }
   }
 </script>

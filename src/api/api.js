@@ -274,7 +274,7 @@ export function login (params) {
   })
 }
 
-//检验报告
+//his检验报告
 export function getSelectHisLis (params) {
   return new Promise((resolve, reject) => {
     ajax.post('/HisAynData/selectHisLis',params)
@@ -289,10 +289,26 @@ export function getSelectHisLis (params) {
   })
 }
 
-//检查报告
+//his检查报告
 export function getSelectHisPacs (params) {
   return new Promise((resolve, reject) => {
     ajax.post('/HisAynData/selectHisPacs',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
+
+
+//处方报告
+export function getSelectHisDug (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/HisAynData/selectHisDug',params)
       .then(body => {
         resolve(body)
       })
@@ -308,6 +324,35 @@ export function getSelectHisPacs (params) {
 export function getSelectNewestLisPacs (params) {
   return new Promise((resolve, reject) => {
     ajax.post('/HisAynData/selectNewestLisPacs',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
+//查询医生当前号
+export function getSelectDoctorCurNo (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/regist/selectDoctorCurNo',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
+
+//查询挂号的主诊断
+export function getSelectHisDiagnosis (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/regist/selectHisDiagnosis',params)
       .then(body => {
         resolve(body)
       })

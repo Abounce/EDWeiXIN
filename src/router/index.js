@@ -280,7 +280,7 @@ export default new Router({
       name:'专家详情',
       component:expertDetails
     },
-    //--------就医助手
+    //--------就医助手--------
     {
       path:'/myAppointment',
       name:'我的预约',
@@ -321,9 +321,23 @@ export default new Router({
       name:'报告查看',
       component: See
     },
+    {
+      path:'/outpatientPay',
+      name:'门诊支付',
+      component:outpatientPay
+    }
+    ,{
+      path:'/orderDetail',
+      name:'订单详情',
+      component:orderDetail
+    }
+    ,{
+      path:'/goPay',
+      name:'个人支付',
+      component:goPay
+    },
 
-
-    //-------预约查询------
+    //-------我的------
     {
       path:'/orderQuery',
       name:'预约查询',
@@ -349,12 +363,7 @@ export default new Router({
       name:'检验报告',
       component:checkJYReport
     },
-    //---------------------
 
-
-
-
-    //-------就诊人列表----------
     {
      path:'/visitList',
       name:'就诊人列表',
@@ -412,21 +421,7 @@ export default new Router({
 
 
     //------就医助手------
-    ,{
-      path:'/outpatientPay',
-      name:'门诊支付',
-      component:outpatientPay
-    }
-    ,{
-      path:'/orderDetail',
-      name:'订单详情',
-      component:orderDetail
-    }
-    ,{
-      path:'/goPay',
-      name:'个人支付',
-      component:goPay
-    }
+
 
   ]
 })

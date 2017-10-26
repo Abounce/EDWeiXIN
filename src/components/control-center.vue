@@ -53,7 +53,7 @@
         this.$router.push({name:'门诊支付'})
       },
       ten(){
-
+        this.$router.push({name:'预约查询'})
       },
       eleven(){
 

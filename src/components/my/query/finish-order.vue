@@ -2,29 +2,29 @@
   <div class="wrapper-all">
    <div class="head-wrapper">
        <div class="head-one">
-         <div class="one">何园鹏</div>
-         <div class="two">2017-08-31 12:00</div>
+         <div class="one">{{finishItem.patName}}</div>
+         <div class="two">{{finishItem.regDate}}</div>
        </div>
        <my-line></my-line>
        <div class="com">
          <span class="one">就诊科室:</span>
-         <span class="two">普通内科</span>
+         <span class="two">{{finishItem.deptName}}</span>
        </div>
        <div class="com">
          <span class="one">就诊医生:</span>
-         <span class="two">文强</span>
+         <span class="two">{{finishItem.doctorName}}</span>
        </div>
        <div class="com">
          <span class="one">挂号序号:</span>
-         <span class="two">25587895544585</span>
+         <span class="two">{{finishItem.registerNo}}</span>
        </div>
        <div class="com">
          <span class="one" style="margin-left: 34px">诊断:</span>
-         <span class="two">高血压</span>
+         <span class="two">{{zhuzhenduan.diagnosis}}</span>
        </div>
        <div class="com">
          <span class="one" style="margin-left: 34px">费别:</span>
-         <span class="two">自费</span>
+         <span class="two">{{zhuzhenduan.costType}}</span>
        </div>
      </div>
    <div class="category">
@@ -38,27 +38,31 @@
             <better-scroll :data="list" class="wrapper-one-b" >
               <ul>
                 <li v-for="(item,index) in list" >
-                  <div class="one" style="padding-top: 10px">
-                      <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
-                        （基本） 0.25g*30粒/盒</div>
-                      <div class="one-right">
-                             <div>1盒</div>
-                             <div class="price">¥60.00</div>
+                  <div class="mlili" style="padding-top: 10px">
+                    <div class="one-left">
+                      <div>
+                        {{item.itemName}} {{item.itemSpecs}}
                       </div>
-                  </div>
+                    </div>
+                    <div class="one-right">
+                      <div>{{item.itemNum}}盒</div>
+                      <div class="price">¥{{item.itemMoney}}</div>
+                    </div>
+                  </div >
                   <my-line></my-line>
+
                 </li>
               </ul>
             </better-scroll>
           </div >
           <div class="wrapper-two"    v-show="index===1">
-            <better-scroll :data="list" class="wrapper-one-c" >
+            <better-scroll :data="dataListJy" class="wrapper-one-c" >
               <ul>
-                <li v-for="(item,index) in list" @click="buttonJY">
+                <li v-for="(item,index) in dataListJy" @click="buttonJY(item)">
                  <div class="two">
                    <div class="two-left">
-                     <div class="two-one">X线检查</div>
-                     <div class="two-two">2017-08-29 15:00:00</div>
+                     <div class="two-one">{{item.rptName}}</div>
+                     <div class="two-two">{{item.rptTime}}</div>
                    </div>
                    <div  class="icon iconfont icon-fanhui two-right"></div>
                  </div>
@@ -67,13 +71,13 @@
             </better-scroll>
           </div>
           <div class="wrapper-three"  v-show="index===2">
-            <better-scroll :data="list" class="wrapper-one-d" >
+            <better-scroll :data="dataListJC" class="wrapper-one-d" >
               <ul>
-                <li v-for="(item,index) in list" @click="buttonJC">
+                <li v-for="(item,index) in dataListJC" @click="buttonJC(item)">
                   <div class="two">
                     <div class="two-left">
-                      <div class="two-one">X线检查</div>
-                      <div class="two-two">2017-08-29 15:00:00</div>
+                      <div class="two-one">{{item.rptName}}</div>
+                      <div class="two-two">{{item.rptTime}}</div>
                     </div>
                     <div  class="icon iconfont icon-fanhui two-right"></div>
                   </div>
@@ -99,7 +103,12 @@
         index: 0,
         demo2: '门诊处方',
         verticalHeight:0,
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11]
+        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
+        finishItem:{},
+        dataListJy:[],
+        dataListJC:[],
+        zhuzhenduan:''
+
       }
     },
     components:{
@@ -108,18 +117,41 @@
       TabItem,
       Swiper,
       SwiperItem,
-      betterScroll
+      betterScroll,
+
     },
     mounted(){
       let screenheight = getscreenheight();
       this.verticalHeight=screenheight-269
-      console.log(this.verticalHeight)
+//      console.log(this.verticalHeight)
+      this.$nextTick(()=>{
+      this.finishItem=  this.$loacalstore.get('finishItem')
+        let paramone={registerNo:this.finishItem.registerNo}
+        this.$api.getSelectHisDiagnosis(paramone).then((data=>{
+          this.zhuzhenduan=data
+        }))
+        //处方
+        this.$api.getSelectHisDug().then((data=>{
+
+       }));
+       //检验
+
+        this.$api.getSelectHisLis(paramone).then((data=>{
+          this.dataListJy=data
+        }));
+       //检查
+        this.$api.getSelectHisPacs(paramone).then((data=>{
+          this.dataListJC=data
+        }));
+      })
     },
     methods:{
-      buttonJY(){
+      buttonJY(item){
+        this.$loacalstore.set('itemJY',item)
         this.$router.push({name:'检验报告'})
       },
-      buttonJC(){
+      buttonJC(item){
+        this.$loacalstore.set('itemJC',item)
         this.$router.push({name:'检查报告'})
       }
     }
@@ -187,19 +219,18 @@
           right: 0;
           bottom: 0;
           overflow: hidden;
-          .one{
+          .mlili{
+            background: white;
             display: flex;
             height: 67.5px;
             font-size: 15px;
             color: #353535;
             .one-left{
-              flex: 75;
-              /*padding-left: 14.5px;*/
-              /*text-align: right;*/
+              margin-left: 14.5px;
+              flex: 3;
             }
             .one-right{
-              flex: 25;
-              /*text-align: left;*/
+              flex: 1;
               margin-right: 15.5px;
               .price{
                 margin-top: 10px;

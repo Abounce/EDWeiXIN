@@ -23,7 +23,6 @@
                </div>
                <my-line></my-line>
             </li>
-
           </ul>
         </better-scroll>
       </div>
@@ -106,9 +105,9 @@
             outArray.push(outt)
             }
          }));
-//         console.log("转换前"+outArray)
+         console.log("转换前"+outArray)
            let aa = JSON.stringify(outArray);
-//         console.log("转换后"+aa)
+         console.log("第二个"+aa)
            this.$api.getSelectPayInfo(aa).then((data=>{
              this.$vux.toast.text('支付成功','middle')
            }))
@@ -287,6 +286,7 @@
       color: #353535;
       .one-left{
         flex: 3;
+        margin-left: 14.5px;
       }
       .one-right{
         flex: 1;

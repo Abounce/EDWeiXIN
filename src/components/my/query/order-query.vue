@@ -3,17 +3,17 @@
   <div class="wrapper-outer">
        <div>
        <ul>
-         <li style="margin-top: 1px">
-           <div class="head-wrapper " @click="seeNumber">
+         <li style="margin-top: 1px" v-for="(item,index) in upList">
+           <div class="head-wrapper " @click="seeNumber(item)">
         <div class="head-one  clearfix" >
           <div class="one">
-            <div class="twoo">0013</div>
+            <div class="twoo">{{item.registerNo}}</div>
           </div>
           <div class="two">
             <span>患者姓名:</span>
-            <span>李伟</span>
+            <span>{{item.patName}}</span>
           </div>
-          <div class="three">
+          <div class="three" @click.stop="backNumber(item)">
             退号
           </div>
         </div>
@@ -23,192 +23,43 @@
           <div class="two">
             <div class="two-a">
               <span>预约科室:</span>
-              <span>普通内科</span>
+              <span>{{item.deptName}}</span>
             </div>
             <div class="two-a">
               <span>医生姓名:</span>
-              <span>刘伟</span>
+              <span>{{item.doctorName}}</span>
             </div>
           </div>
         </div>
       </div>
           </li>
-         <li style="margin-top: 1px">
-           <div class="head-wrapper " @click="seeNumber">
-             <div class="head-one  clearfix" >
-               <div class="one">
-                 <div class="twoo">0013</div>
-               </div>
-               <div class="two">
-                 <span>患者姓名:</span>
-                 <span>李伟</span>
-               </div>
-               <div class="three">
-                 退号
-               </div>
-             </div>
-             <!--<my-line></my-line>-->
-             <div class="head-two clearfix">
-               <div class="one"></div>
-               <div class="two">
-                 <div class="two-a">
-                   <span>预约科室:</span>
-                   <span>普通内科</span>
-                 </div>
-                 <div class="two-a">
-                   <span>医生姓名:</span>
-                   <span>刘伟</span>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </li>
-         <li style="margin-top: 1px">
-           <div class="head-wrapper " @click="seeNumber">
-             <div class="head-one  clearfix" >
-               <div class="one">
-                 <div class="twoo">0013</div>
-               </div>
-               <div class="two">
-                 <span>患者姓名:</span>
-                 <span>李伟</span>
-               </div>
-               <div class="three">
-                 退号
-               </div>
-             </div>
-             <!--<my-line></my-line>-->
-             <div class="head-two clearfix">
-               <div class="one"></div>
-               <div class="two">
-                 <div class="two-a">
-                   <span>预约科室:</span>
-                   <span>普通内科</span>
-                 </div>
-                 <div class="two-a">
-                   <span>医生姓名:</span>
-                   <span>刘伟</span>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </li>
-         <li style="margin-top: 1px">
-           <div class="head-wrapper " @click="seeNumber">
-             <div class="head-one  clearfix" >
-               <div class="one">
-                 <div class="twoo">0013</div>
-               </div>
-               <div class="two">
-                 <span>患者姓名:</span>
-                 <span>李伟</span>
-               </div>
-               <div class="three">
-                 退号
-               </div>
-             </div>
-             <!--<my-line></my-line>-->
-             <div class="head-two clearfix">
-               <div class="one"></div>
-               <div class="two">
-                 <div class="two-a">
-                   <span>预约科室:</span>
-                   <span>普通内科</span>
-                 </div>
-                 <div class="two-a">
-                   <span>医生姓名:</span>
-                   <span>刘伟</span>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </li>
+
       </ul>
        </div>
        <div class="history">
       <div class="title"><span class="icon iconfont icon-lishijilu" style="font-size: 15px; color: #888888;"></span>历史就诊</div>
       <div class="wrapper">
         <ul>
-          <li @click="finishOrder">
+          <li @click="finishOrder(item)" v-for="(item,index) in downList">
             <div>
               <div class="info">
-                <div class="name">和园鹏</div>
-                <div class="isUse">已退号</div>
-                <div class="time">2017.10.5 12.51</div>
+                <div class="name">{{item.patName}}</div>
+                <div class="isUse">{{isUse(item)}}</div>
+                <div class="time">{{item.regDate.substring(0,10)}}</div>
               </div>
               <my-line></my-line>
               <div class="com">
-                <span class="com-one">就诊科室:</span><span>普通内科</span>
+                <span class="com-one">就诊科室:</span><span>{{item.deptName}}</span>
               </div>
               <div class="com">
-                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
+                <span  class="com-one">就诊医生:</span><span>{{item.doctorName}}</span>
               </div>
               <div class="com">
-                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
-                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
+                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">{{item.diagnosis}}</span>
               </div>
             </div>
           </li>
-          <li @click="finishOrder">
-            <div>
-              <div class="info">
-                <div class="name">和园鹏</div>
-                <div class="isUse">已退号</div>
-                <div class="time">2017.10.5 12.51</div>
-              </div>
-              <my-line></my-line>
-              <div class="com">
-                <span class="com-one">就诊科室:</span><span>普通内科</span>
-              </div>
-              <div class="com">
-                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
-              </div>
-              <div class="com">
-                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
-                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
-              </div>
-            </div>
-          </li>
-          <li @click="finishOrder">
-            <div>
-              <div class="info">
-                <div class="name">和园鹏</div>
-                <div class="isUse">已退号</div>
-                <div class="time">2017.10.5 12.51</div>
-              </div>
-              <my-line></my-line>
-              <div class="com">
-                <span class="com-one">就诊科室:</span><span>普通内科</span>
-              </div>
-              <div class="com">
-                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
-              </div>
-              <div class="com">
-                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
-                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
-              </div>
-            </div>
-          </li>
-          <li @click="finishOrder">
-            <div>
-              <div class="info">
-                <div class="name">和园鹏</div>
-                <div class="isUse">已退号</div>
-                <div class="time">2017.10.5 12.51</div>
-              </div>
-              <my-line></my-line>
-              <div class="com">
-                <span class="com-one">就诊科室:</span><span>普通内科</span>
-              </div>
-              <div class="com">
-                <span  class="com-one">就诊医生:</span><span>尹浩宇</span>
-              </div>
-              <div class="com">
-                <span  class="com-one zhenduan" >诊断:</span><span class="zhenduandiv">我是诊断信是诊息我是诊断信息我息我是诊断信息我息
-                诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断诊断信是诊息我是诊断信息我息我是诊断信息我息我是诊断我是诊断信息我息我是诊断信</span>
-              </div>
-            </div>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -219,20 +70,75 @@
 <script>
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
+  import { dateFormat } from 'vux'
   export default {
+    data(){
+      return{
+        upList:[],
+        downList:[]
+      }
+    },
     components:{
       myLine,
-      betterScroll
+      betterScroll,
+
     },
     methods:{
       //预约查询就诊号
-      seeNumber(){
+      seeNumber(item){
+        this.$loacalstore.set('seeItem',item)
         this.$router.push({name:"预约查询就诊号"})
       },
       //已完成预约查看
-      finishOrder(){
+      finishOrder(item){
+        this.$loacalstore.set('finishItem',item)
         this.$router.push({name:'已完成预约查看'})
+      },
+      isUse(item){
+        if(item.actTreatTime){
+          return '已就诊'
+        }else if(item.orderstatus==='4'){
+          return '已退号'
+        }else {
+          if (dateFormat(new Date(),'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
+            return '未就诊'
+          }else {
+            return '已过期'
+          }
+        }
+      },
+      //退号
+      backNumber(item){
+//        console.log("忒退号点击")
+          let params={orderId:item.orderId,visitCardNo:item.registerNo,regDate:item.regDate.substring(0,10)}
+          this.$api.getRegistCancleReg(params).then((data=>{
+            this.$vux.toast.text('退号成功','middle')
+          }))
       }
+    },
+    mounted(){
+      this.$nextTick(()=>{
+        this.$api.getRegistList().then((data=>{
+          console.log(data)
+            data.forEach((item=>{
+              if(item.actTreatTime){
+//                 '已就诊'
+                this.downList.push(item)
+              }else if(item.orderstatus==='4'){
+//             '已退号'
+                this.downList.push(item)
+              }else {
+                if (dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
+//                  return '未就诊'
+                  this.upList.push(item)
+                }else {
+//                  return '已过期'
+                  this.downList.push(item)
+                }
+              }
+            }))
+        }))
+      })
     }
   }
 </script>

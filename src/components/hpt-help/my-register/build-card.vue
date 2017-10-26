@@ -1,12 +1,12 @@
 
 <template>
-   <div>
+   <div style="background: white">
      <div class="user">
        <div class="name">
          <label for="nameinput" class="one" >真实姓名:</label>
          <input  id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
          <div class="three">
-         <div class="weui-icon-clear three" v-show="namemsg" @click="cleanNamemsg"></div>
+         <div class="weui-icon-clear " v-show="namemsg" @click="cleanNamemsg"></div>
          </div>
        </div>
        <my-line></my-line>
@@ -14,7 +14,7 @@
          <label for="cardinput" class="one"  >身份证号:</label>
          <input  id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
          <div class="three">
-         <div class="weui-icon-clear three"  v-show="cardmsg" @click="cleanCardmsg"></div>
+         <div class="weui-icon-clear "  v-show="cardmsg" @click="cleanCardmsg"></div>
          </div>
        </div>
        <my-line></my-line>
@@ -22,7 +22,7 @@
          <label for="phoneinput" class="one">手机号码:</label>
          <input  id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="three">
-         <div class="weui-icon-clear three" v-show="phonemsg" @click="cleanPhonemsg" ></div>
+         <div class="weui-icon-clear " v-show="phonemsg" @click="cleanPhonemsg" ></div>
          </div>
          <div  class="four" style="color: #1793e6;">获取验证</div>
        </div>
@@ -32,7 +32,7 @@
          <input  id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
          <div class="three">
 
-         <div class="weui-icon-clear three" v-show="automsg" @click="cleanAutomsg" ></div>
+         <div class="weui-icon-clear " v-show="automsg" @click="cleanAutomsg" ></div>
          </div>
        </div>
        <my-line></my-line>
@@ -76,8 +76,8 @@
        </div>
 
      </div>
-     <div class="button" @click="buildCard">
-          <span>确定</span>
+     <div class="button" @click="buildCard">确定
+
      </div>
      <div v-transfer-dom>
        <popup v-model="show10" position="top" :show-mask="false">
@@ -182,7 +182,7 @@
 <style scoped lang="less" type="text/less">
 @import "../../../common/iconfont/iconfont.css";
    .user{
-     margin-top: 10px;
+     /*margin-top: 10px;*/
      .name{
        display: flex;
        height: 49px;
@@ -318,12 +318,12 @@
          width: 145.5px;
          height: 115px;
          border-radius: 5px;
-         border: solid 0.5px #cdcdcd;
+         border: solid 0.5px #eeeeee;
        }
      }
 
    }
-  .msg{
+   .msg{
     .warpper{
       margin-left: 15px;
       margin-top: 20px;
@@ -342,8 +342,15 @@
   }
 
   .button{
-    margin-top:30px;
+    margin: 10px auto 0 auto;
+    width: 345px;
+    height: 44px;
+    border-radius: 5px;
+    background-color: #13bf72;
+    color: white;
     text-align: center;
+    line-height: 44px;
+    border: solid 1px #11ad67;
     span{
       color: white;
       padding:5% 42%;

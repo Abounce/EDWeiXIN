@@ -15,8 +15,12 @@
      <better-scroll :data="innerList" class="wrapper-one-b">
        <ul>
          <li v-for="(item,index) in innerList" >
-           <div class="one" style="padding-top: 10px">
-             <div class="ono-left">{{item.itemTypeName}} {{item.itemSpecs}}</div>
+           <div class="mlili" style="padding-top: 10px">
+             <div class="one-left">
+               <div>
+                 {{item.itemName}} {{item.itemSpecs}}
+               </div>
+             </div>
              <div class="one-right">
                <div>{{item.itemNum}}盒</div>
                <div class="price">¥{{item.itemMoney}}</div>
@@ -95,19 +99,18 @@
       right: 0;
       bottom: 0;
       overflow: hidden;
-      .one{
+      .mlili{
+        background: white;
         display: flex;
         height: 67.5px;
         font-size: 15px;
         color: #353535;
         .one-left{
-          flex: 75;
-          /*padding-left: 14.5px;*/
-          /*text-align: right;*/
+          margin-left: 14.5px;
+          flex: 3;
         }
         .one-right{
-          flex: 25;
-          /*text-align: left;*/
+          flex: 1;
           margin-right: 15.5px;
           .price{
             margin-top: 10px;
