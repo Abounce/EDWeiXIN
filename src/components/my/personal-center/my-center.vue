@@ -92,7 +92,7 @@
       },
       //报告查看
       buttonReportSee(){
-
+        this.$router.push({name:'报告查看'})
       }
       ,
       //预约挂号
@@ -112,7 +112,7 @@
       ,
       //就医攻略
       buttonGL(){
-
+        this.$router.push({name:'就医指南'})
       }
     },
     components:{
