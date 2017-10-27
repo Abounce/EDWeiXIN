@@ -102,7 +102,7 @@
       ,
       //门诊缴费
       buttonJF(){
-
+        this.$router.push({name:'门诊支付'})
       }
       ,
       //在线建卡

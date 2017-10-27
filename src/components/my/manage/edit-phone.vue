@@ -49,7 +49,7 @@
         }
         let params={mobile:this.phonemsg,id:this.visitId}
       this.$api.getVisitUpdata(params).then((data)=>{
-          console.log(data);
+        this.$vux.toast.text('修改手机号成功','middle')
 
       })
       },

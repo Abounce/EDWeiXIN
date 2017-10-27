@@ -74,7 +74,7 @@
         this.$router.push({name:'在线建卡'})
       },
       buttonJF(){
-        this.$router.push({name:'缴费记录'})
+        this.$router.push({name:'门诊支付'})
       },
       isUse(item){
         if(item.actTreatTime){

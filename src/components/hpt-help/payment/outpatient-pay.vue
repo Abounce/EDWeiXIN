@@ -86,6 +86,7 @@
     },
     methods:{
       buttonDeatail(id){
+//        console.log(id)
         this.$loacalstore.set('rcptId',id)
         this.$router.push({name:'订单详情'})
       },

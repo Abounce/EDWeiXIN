@@ -6,7 +6,7 @@
           <li v-for="(item,index) in regList">
             <div class="wrapper">
               <div class="wrapper-info">
-                <span class="name">和园鹏</span>
+                <span class="name">{{item.patName}}</span>
                 <span class="isUse">{{isUse(item)}}</span>
               </div>
               <my-line></my-line>
@@ -56,7 +56,7 @@
 
       },
       getList(){
-        let params={}
+//        let params={}
         this.$api.getRegistList().then((data=>{
 //           console.log(data)
             this.regList=data

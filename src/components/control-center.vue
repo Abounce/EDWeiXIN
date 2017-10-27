@@ -59,7 +59,7 @@
         this.$router.push({name:'就诊人列表'})
       },
       twelve(){
-
+        this.$router.push({name:'我的中心'})
       },
       thirteen(){
 

@@ -71,8 +71,7 @@
       },
       //获取就诊人列表
       getVisitList(){
-        let starData={openId:'ogFdDwHpeOX5dGGvjptmed1pbkMo'}
-       this.$api.getVisitList(starData).then((data)=>{
+       this.$api.getVisitList().then((data)=>{
            console.log(data)
          this.visitList=data;
         })
@@ -88,11 +87,11 @@
 //        console.log('条目启动')
         if(item.isChildren==='1'){
           //跳转编辑儿童
-          this.$loacalstore.set('visitId',item.id)
+          this.$loacalstore.set('visitId',item.visitCardId)
           this.$router.push({name:'编辑儿童就诊'})
         }else {
           //跳转编辑成人
-          this.$loacalstore.set('visitId',item.id)
+          this.$loacalstore.set('visitId',item.visitCardId)
           this.$router.push({name:'编辑成人就诊'})
         }
       }

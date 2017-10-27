@@ -1,16 +1,16 @@
 <template>
   <div>
-    <better-scroll class="wrapper-b" :data="list">
+    <better-scroll class="wrapper-b" :data="payList">
       <ul>
-        <li v-for="(item,index) in list">
+        <li v-for="(item,index) in payList">
           <div class="head">
-            <div class="com"><span class="com-one" style="margin-left: 16px">就诊人</span><span class="com-two">&nbsp;何园鹏</span></div>
-            <div  class="com" ><span class="com-one">就诊科室</span><span class="com-two">&nbsp;外科</span></div>
-            <div  class="com" ><span  class="com-one">订单金额</span><span class="com-two">&nbsp;¥360.00</span></div>
-            <div  class="com"><span class="com-one">支付时间</span><span class="com-two"> &nbsp;2017-08-29 12:00:00</span></div>
-            <div  class="com" style="padding-bottom: 14px"><span class="com-one">支付方式</span><span class="com-two">&nbsp;微信支付</span></div>
+            <div class="com"><span class="com-one" style="margin-left: 16px">就诊人</span><span class="com-two">&nbsp;{{item.patName}}</span></div>
+            <div  class="com" ><span class="com-one">就诊科室</span><span class="com-two">&nbsp;{{item.deptName}}</span></div>
+            <div  class="com" ><span  class="com-one">订单金额</span><span class="com-two">&nbsp;¥{{item.paySum}}</span></div>
+            <div  class="com"><span class="com-one">支付时间</span><span class="com-two"> &nbsp;{{item.payTime}}</span></div>
+            <div  class="com" style="padding-bottom: 14px"><span class="com-one">支付方式</span><span class="com-two">&nbsp;{{changePay(item.payPlatform)}}</span></div>
             <my-line></my-line>
-            <div class="one-title" @click="startDetail">订单明细</div>
+            <div class="one-title" @click="startDetail(item.rcptId)">订单明细</div>
           </div>
         </li>
       </ul>
@@ -37,13 +37,30 @@
       <popup v-model="show7" position="bottom" max-height="50%">
         <div>
           <ul>
-            <li v-for="(item,index) in list" >
-              <div class="one" style="padding-top: 10px">
-                <div class="ono-left">精蛋白生物合成人胰岛素注射液(诺和灵N)
-                  （基本） 0.25g*30粒/盒</div>
+            <li v-for="(item,index) in innerList" >
+              <div class="mlili" style="padding-top: 10px">
+                <div class="one-left">
+                  <div>
+                    {{item.itemName}} {{item.itemSpecs}}
+                  </div>
+                </div>
                 <div class="one-right">
-                  <div>1盒</div>
-                  <div class="price">¥60.00</div>
+                  <div>{{item.itemNum}}盒</div>
+                  <div class="price">¥{{item.itemMoney}}</div>
+                </div>
+              </div >
+              <my-line></my-line>
+            </li>
+            <li v-for="(item,index) in otherList" >
+              <div class="mlili" style="padding-top: 10px">
+                <div class="one-left">
+                  <div>
+                    {{item.costType}}
+                  </div>
+                </div>
+                <div class="one-right">
+                  <div>1次</div>
+                  <div class="price">¥{{item.rcptMoney}}</div>
                 </div>
               </div >
               <my-line></my-line>
@@ -66,23 +83,66 @@
     },
     data(){
       return{
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
 //        isShow:false,
         show7:false,
+        payList:[],
+        otherList:[],
+        innerList:[]
+
+
       }
     },
     methods:{
-      startDetail(){
+      changePay(change){
+       if(change==='1'){
+         return '微信'
+       }else if (change==='2'){
+         return '支付宝'
+       }else if (change==='3'){
+         return '银行'
+       }else {
+         return '其他'
+       }
+
+      },
+      startDetail(id){
 //        this.isShow=true
         this.show7=true
+        let params={rcptId:id}
+        this.$api.getSelectPayHisDef(params).then((data)=>{
+//         console.log(data)
+          this.outList=data[0]
+          data.forEach((item=>{
+            console.log(item.rcptType)
+            if(item.rcptType==='5'||item.rcptType==='6'){
+              this.otherList.push(item);
+
+//             debugger
+            }else {
+              item.items.forEach((inneritem)=>{
+                this.innerList.push(inneritem)
+//               debugger
+              })
+            }
+          }))
+
+        })
       },
 //      endDetail(){
 //        this.isShow=false
 //
 //      }
 
-    }
-    ,
+    },
+    mounted(){
+      this.$nextTick(()=>{
+        this.$api.getSelectPayHis().then((data)=>{
+
+          this.payList=data
+        })
+      })
+    },
+
     components:{
       myLine,
       betterScroll,
@@ -165,6 +225,24 @@
       font-weight: 500;
       text-align: center;
       color: #888888;
+    }
+  }
+  .mlili{
+    background: white;
+    display: flex;
+    height: 67.5px;
+    font-size: 15px;
+    color: #353535;
+    .one-left{
+      margin-left: 14.5px;
+      flex: 3;
+    }
+    .one-right{
+      flex: 1;
+      margin-right: 15.5px;
+      .price{
+        margin-top: 10px;
+      }
     }
   }
 </style>

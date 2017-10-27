@@ -63,6 +63,7 @@
     mounted(){
       this.$nextTick(()=>{
       let rcptId = this.$loacalstore.get('rcptId');
+//      console.log(rcptId)
       let params={rcptId:rcptId}
        this.$api.getSelectPayHisDef(params).then((data)=>{
 //         console.log(data)

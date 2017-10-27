@@ -71,7 +71,7 @@
         let params={visitId:visitId}
         this.$api.getVisitList(params).then((data)=>{
           this.visit=data[0]
-          console.log(data[0])
+//          console.log(data[0])
         })
       },
       //更换绑定手机号
@@ -81,9 +81,9 @@
       },
       //解除绑定
       unBound(){
-        let params={visitCardId:this.visit.visitId}
+        let params={visitCardId:this.visit.id}
         this.$api.getVistRemoveBind(params).then((data=>{
-          console.log(data)
+          this.$vux.toast.text('解除绑定成功','middle')
         }))
       }
     },

@@ -105,9 +105,9 @@
             outArray.push(outt)
             }
          }));
-         console.log("转换前"+outArray)
+//         console.log("转换前"+outArray)
            let aa = JSON.stringify(outArray);
-         console.log("第二个"+aa)
+//         console.log("第二个"+aa)
            this.$api.getSelectPayInfo(aa).then((data=>{
              this.$vux.toast.text('支付成功','middle')
            }))
