@@ -6,7 +6,7 @@
          </div>
        </div>
        <div class="heaer-text">您暂未绑定就诊卡</div>
-        <div class="heaer-bind-card">去绑卡</div>
+        <div class="heaer-bind-card" @click="bindCard">去绑卡</div>
         <my-line></my-line>
         <div class="header-wrapper">
        <div class="com" @click="buttonGH">
@@ -67,6 +67,9 @@
       betterScroll
     },
     methods:{
+      bindCard(){
+
+      },
       buttonGH(){
         this.$router.push({name:'预约挂号'})
       },

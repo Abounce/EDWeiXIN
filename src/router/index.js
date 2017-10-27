@@ -220,6 +220,13 @@ const payDetail = (resolve) => {
   })
 }
 
+//我的识别码
+const myCode = (resolve) => {
+  import('../components/my/my-code/my-code.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 
 
 
@@ -416,6 +423,11 @@ export default new Router({
       path:'/medicalDetail',
       name:'就诊记录',
       component:medicalDetail
+    },
+    {
+      path:'/myCode',
+      name:'我的识别码',
+      component:myCode
     }
     //-----------------
 

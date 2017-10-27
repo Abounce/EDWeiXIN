@@ -62,7 +62,7 @@
         this.$router.push({name:'我的中心'})
       },
       thirteen(){
-
+        this.$router.push({name:'我的识别码'})
       },
 
     }
