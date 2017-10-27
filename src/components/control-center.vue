@@ -56,7 +56,7 @@
         this.$router.push({name:'预约查询'})
       },
       eleven(){
-
+        this.$router.push({name:'就诊人列表'})
       },
       twelve(){
 

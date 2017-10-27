@@ -28,6 +28,20 @@
            </div >
            <my-line></my-line>
          </li>
+         <li v-for="(item,index) in otherList" >
+           <div class="mlili" style="padding-top: 10px">
+             <div class="one-left">
+               <div>
+                 {{item.costType}}
+               </div>
+             </div>
+             <div class="one-right">
+               <div>1次</div>
+               <div class="price">¥{{item.rcptMoney}}</div>
+             </div>
+           </div >
+           <my-line></my-line>
+         </li>
        </ul>
      </better-scroll>
    </div>
@@ -40,9 +54,9 @@
   export default {
     data(){
       return{
-
         outList:{},
-        innerList:[]
+        innerList:[],
+        otherList:[]
 
       }
     },
@@ -51,9 +65,22 @@
       let rcptId = this.$loacalstore.get('rcptId');
       let params={rcptId:rcptId}
        this.$api.getSelectPayHisDef(params).then((data)=>{
-//         console.log(data[0])
+//         console.log(data)
          this.outList=data[0]
-         this.innerList=this.outList.items
+         data.forEach((item=>{
+           console.log(item.rcptType)
+           if(item.rcptType==='5'||item.rcptType==='6'){
+             this.otherList.push(item);
+
+//             debugger
+           }else {
+             item.items.forEach((inneritem)=>{
+               this.innerList.push(inneritem)
+//               debugger
+             })
+           }
+         }))
+
        })
       })
     },

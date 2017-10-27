@@ -35,9 +35,9 @@
         <swiper-item v-for="(item, index) in list2" :key="index"  >
           <div class="wrapper-one"    v-show="index===0">
           <div class="one-title">处方明细</div>
-            <better-scroll :data="list" class="wrapper-one-b" >
+            <better-scroll :data="dataListCF" class="wrapper-one-b" >
               <ul>
-                <li v-for="(item,index) in list" >
+                <li v-for="(item,index) in dataListCF" >
                   <div class="mlili" style="padding-top: 10px">
                     <div class="one-left">
                       <div>
@@ -103,10 +103,10 @@
         index: 0,
         demo2: '门诊处方',
         verticalHeight:0,
-        list:[1,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11,2,3,4,5,6,7,8,9,1,11],
         finishItem:{},
         dataListJy:[],
         dataListJC:[],
+        dataListCF:[],
         zhuzhenduan:''
 
       }
@@ -131,11 +131,15 @@
           this.zhuzhenduan=data
         }))
         //处方
-        this.$api.getSelectHisDug().then((data=>{
-
+        this.$api.getSelectHisDug(paramone).then((data=>{
+          data.forEach((item)=>{
+            item.items.forEach((inneritem)=>{
+              this.dataListCF.push(inneritem)
+            })
+          })
+          console.log(this.dataListCF);
        }));
        //检验
-
         this.$api.getSelectHisLis(paramone).then((data=>{
           this.dataListJy=data
         }));

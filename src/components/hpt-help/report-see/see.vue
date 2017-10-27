@@ -16,7 +16,7 @@
                       <div class="two-two">{{item.rptTime}}</div>
                     </div>
                     <div class="two-right">
-                      <span class="isfinish">{{item.comp.status}}</span>
+                      <span class="isfinish">{{item.comp===0?'已完成':'未完成'}}</span>
                       <span class="icon iconfont icon-fanhui "></span>
                     </div>
                   </div>
@@ -34,7 +34,7 @@
                       <div class="two-two">{{item.rptTime}}</div>
                     </div>
                      <div class="two-right">
-                       <span class="isfinish">{{item.comp.status}}</span>
+                       <span class="isfinish">{{item.comp==='0'?'已完成':'未完成'}}</span>
                       <span class="icon iconfont icon-fanhui "></span>
                      </div>
                   </div>
