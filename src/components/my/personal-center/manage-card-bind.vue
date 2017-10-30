@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper-outer">
-      <div class="wrapper">
+      <div class="wrapper-bind">
         <div class="head clearfix">
            <div class="head-left">
              <div class="one">
@@ -146,7 +146,7 @@
     right: 0;
     background:  #eeeeee;
   }
-  .wrapper{
+  .wrapper-bind{
     background: white;
      margin: 10px;
      border-radius: 5px;

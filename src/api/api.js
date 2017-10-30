@@ -288,6 +288,20 @@ export function getSelectHisLis (params) {
 
   })
 }
+//设置默认就诊人
+export function getVisitSetDefault (params) {
+  return new Promise((resolve, reject) => {
+    ajax.post('/visit/setDefault',params)
+      .then(body => {
+        resolve(body)
+      })
+      .catch((err) => {
+        hasErr(err)
+        reject(err)
+      })
+
+  })
+}
 
 //his检查报告
 export function getSelectHisPacs (params) {

@@ -306,7 +306,7 @@
         this.$api.getVisitSave(params).then((data)=>{
 //          console.log(data)
           this.$vux.toast.text('添加成功', 'middle')
-          this.$router.push({ name:'选择就诊人' })
+          this.$router.go(-1)
         }).catch((err)=>{
           console.log(err)
 //          debugger

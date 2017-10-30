@@ -74,6 +74,7 @@
         this.$api.getVisitList().then((data)=>{
 //           console.log(data)
           this.visitList=data;
+
         })
       },
       //弹出二维码
@@ -84,7 +85,12 @@
       },
       //编辑就诊人
       chooseItem(item){
-        this.$router.push({name:'管理就诊卡绑定'})
+        let params={visitCardId:item.visitCardId}
+//        console.log(item.visitCardId)
+        this.$api.getVisitSetDefault(params).then((data)=>{
+          this.$vux.toast.text('换卡成功', 'middle')
+        })
+        this.$router.push({name:'管理就诊卡'})
       }
     },
     mounted(){
