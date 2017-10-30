@@ -213,6 +213,26 @@ const manageCard = (resolve) => {
   })
 }
 
+//管理就诊卡
+const manageCardBind = (resolve) => {
+  import('../components/my/personal-center/manage-card-bind.vue').then((module) => {
+    resolve(module)
+  })
+}
+//建卡档案
+const healthRecord = (resolve) => {
+  import('../components/my/personal-center/health-record.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//选择就诊人列表
+const changeVisitList = (resolve) => {
+  import('../components/my/personal-center/change-visit-list.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 //缴费记录
 const payDetail = (resolve) => {
   import('../components/my/personal-center/pay-detail.vue').then((module) => {
@@ -410,6 +430,21 @@ export default new Router({
       component:manageCard
     },
     {
+      path:'/manageCardBind',
+      name:'管理就诊卡绑定',
+      component:manageCardBind
+    },
+    {
+      path:'/healthRecord',
+      name:'健康档案',
+      component:healthRecord
+    },
+    {
+      path:'/changeVisitList',
+      name:'选择就诊人列表',
+      component:changeVisitList
+    },
+    {
       path:'/myDoctor',
       name:'我的医生',
       component:myDoctor
@@ -432,7 +467,6 @@ export default new Router({
     //-----------------
 
 
-    //------就医助手------
 
 
   ]

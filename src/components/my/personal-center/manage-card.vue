@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper-outer">
      <div class="header">
-       <div class="header-head-wrapper">
+        <div class="header-head-wrapper">
          <div class="header-head-inner">
          </div>
        </div>
-       <div class="heaer-text">您暂未绑定就诊卡</div>
+        <div class="heaer-text">您暂未绑定就诊卡</div>
         <div class="heaer-bind-card" @click="bindCard">去绑卡</div>
         <my-line></my-line>
         <div class="header-wrapper">
@@ -68,7 +68,7 @@
     },
     methods:{
       bindCard(){
-
+        this.$router.push({name:'添加就诊人'})
       },
       buttonGH(){
         this.$router.push({name:'预约挂号'})
@@ -96,7 +96,9 @@
         this.$api.getRegistList().then((data=>{
           data.forEach((item=>{
             if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
+              if (item.isCurrentBind===1){
               this.itemList.push(item)
+              }
             }
           }))
 //          this.$nextTick(()=>{
