@@ -143,26 +143,31 @@
       getList(){
         if(this.currentItem.visitCardId){
         let params={visitCardNo:this.currentItem.visitCardId}
+          this.itemList=[]
         this.$api.getRegistList(params).then((data=>{
-
+//         console.log(data)
           data.forEach((item=>{
             if (item.actTreatTime||item.orderstatus==='4'|| dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss').substring(0,10)<item.regDate.substring(0,10)){
               this.itemList.push(item)
-
             }
           }))
+
         }))
         }
+
       },
       getTopList(){
         this.$api.getVisitList().then((data)=>{
+//          console.log(data)
           data.forEach((item)=>{
             if (item.isCurrentBind==='1'){
               this.isshow=true
               this.currentItem=item
-              console.log('页面一'+this.currentItem.name+'ID'+item.isCurrentBind)
+//              console.log('页面一'+this.currentItem.name+'ID'+item.isCurrentBind)
+              this.getList()
+//              return
             }else {
-              this.isshow=false
+//              this.isshow=false
             }
           })
         })
@@ -171,13 +176,13 @@
     mounted(){
       this.$nextTick(()=>{
          this.getTopList()
-         this.getList()
+
       })
     },
     watch:{
       '$route' (){
         this.getTopList()
-        this.getList()
+
       }
     }
   }

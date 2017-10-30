@@ -86,11 +86,11 @@
       //编辑就诊人
       chooseItem(item){
         let params={visitCardId:item.visitCardId}
-//        console.log(item.visitCardId)
+        console.log(item.visitCardId)
         this.$api.getVisitSetDefault(params).then((data)=>{
           this.$vux.toast.text('换卡成功', 'middle')
+         this.$router.go(-1)
         })
-        this.$router.push({name:'管理就诊卡'})
       }
     },
     mounted(){
