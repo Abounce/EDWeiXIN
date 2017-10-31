@@ -8,23 +8,19 @@
   /*background: $color-background*/
   /*color: $color-text*/
 
-/*@font-face {*/
-  /*font-family: PingFang-Light;*/
-  /*src: url("./../fonts/PingFang-Light.ttf");*/
-  /*font-size: 56px;*/
-/*}*/
-
-/*@font-face {*/
-  /*font-family: PingFang-SC-Semibold;*/
-  /*src: url("./../fonts/PingFang-SC-Semibold.ttf");*/
-/*}*/
-
-/*@font-face {*/
-  /*font-family: PingFangSC-Regular ;*/
-  /*src: url("./../fonts/PingFang_Regular.otf");*/
-/*}*/
-
-/**{*/
-  /*font-family: PingFang-Light, sans-serif;*/
-/*}*/
+@font-face {
+  font-family: PingFangSC-Light;
+  src: url("./../fonts/PingFang-Light.ttf");
+}
+@font-face {
+  font-family: PingFangSC-Semibold;
+  src: url("./../fonts/PingFang-Medium.ttf");
+}
+@font-face {
+  font-family: PingFangSC-Regular ;
+  src: url("./../fonts/PingFang-Regular.otf");
+}
+*{
+  font-family: PingFangSC-Regular,sans-serif;
+}
 

@@ -1,34 +1,63 @@
 <template>
   <div class="wrapper-two">
-    <div class="wrapper-one">
-        <div class="name">李伟</div>
-        <div class="wrapper">
-          <div class="icon iconfont icon-fanhui-copy2 com one"></div>
-          <qrcode :value='value1' type="img"  class="two"></qrcode>
-          <div class="icon iconfont icon-fanhui com three"></div>
-        </div>
-        <div class="bottom">
-        <barcode  :value="value2" :options="{ displayValue: false }" class="barcode"></barcode>
-        </div>
+    <swiper  v-model="swiperItemIndex"  :show-dots="false" :height="verticalHeight+'px'">
+      <swiper-item  v-for="(item, index) in datalist" :key="index">
+        <div class="wrapper-one">
+          <div class="name">{{item}}李伟</div>
+          <div class="wrapper">
+            <div class="icon iconfont icon-fanhui-copy2 com one"  @click="buttonLeft"></div>
+            <qrcode :value='value1' type="img"  class="two"></qrcode>
+            <div class="icon iconfont icon-fanhui com three"  @click="buttonRight"></div>
+          </div>
+          <div class="bottom">
+            <barcode  :value="value2" :options="{ displayValue: false }" class="barcode"></barcode>
+          </div>
           <div class="bottom-name">左右滑动切换就诊人识别码</div>
-    </div>
+        </div>
+      </swiper-item>
+    </swiper>
   </div>
 </template>
-
 <script>
-  import { Qrcode,XDialog} from 'vux'
+  import {getscreenheight} from '../../../api/utils.js'
+  import { Swiper, SwiperItem ,Qrcode,XDialog} from 'vux'
    export default {
      data(){
        return{
          value1: 'https://www.baidu.com',
          value2:'514564733',
+         datalist:[0,1,2],
+         swiperItemIndex:0,
+         verticalHeight:0,
        }
 
      },
     components:{
         XDialog,
         Qrcode,
-    }
+        Swiper,
+        SwiperItem
+    },
+     mounted(){
+       this.verticalHeight = getscreenheight();
+       this.$nextTick(()=>{
+         this.swiperItemIndex=Math.ceil(this.datalist.length/2)
+       })
+
+     },
+     methods:{
+       buttonLeft(){
+
+         this.swiperItemIndex--
+
+       },
+       buttonRight(){
+
+           this.swiperItemIndex++
+
+       }
+     }
+
    }
 </script>
 
@@ -44,8 +73,11 @@
   .wrapper-one{
     padding-bottom: 20px;
     border-radius: 5px;
-    margin: 40px 20px;
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
     background: white;
+    /*height: 530px;*/
   }
   .name{
     line-height: 63px;

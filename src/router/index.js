@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './../store/index'
 // import index from 'index.html'
 
 Vue.use(Router)
@@ -264,7 +265,7 @@ const myDoctor = (resolve) => {
   })
 }
 
-export default new Router({
+let router =new Router({
   mode: 'history',
   routes: [
     // { path: '*', component: index },
@@ -466,8 +467,16 @@ export default new Router({
     }
     //-----------------
 
-
-
-
   ]
+});
+
+router.beforeEach((to,from,next)=>{
+  store.commit('setLoading',true);
+  next();
+});
+
+router.afterEach((to, from) => {
+  store.commit('setLoading',false);
 })
+
+export default router

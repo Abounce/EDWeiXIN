@@ -1,5 +1,7 @@
+
 <template>
   <div id="app">
+    <loading v-show="$store.state.isLoading"></loading>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -7,11 +9,16 @@
 </template>
 
 <script>
+  import loading from './common/component/loading.vue'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    loading
+  },
 }
 </script>
 
-<style>
+<style scoped lang="less" type="text/less">
+
 
 </style>

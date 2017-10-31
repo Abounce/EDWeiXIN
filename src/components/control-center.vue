@@ -80,4 +80,8 @@
   span{
     color: red;
   }
+  div{
+    font-family: PingFangSC-Light,sans-serif;
+
+  }
 </style>

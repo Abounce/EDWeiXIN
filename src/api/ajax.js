@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Qs from 'qs'
+import store from './../store/index'
 // Add a request interceptor
 // axios 配置
 
@@ -14,6 +15,7 @@ let token='e756392a5fe24d198e954f985ee219e2';
 //添加一个请求拦截器
 axios.interceptors.request.use((config)=>{
   // console.log('config--------:'+config)
+  store.commit('setLoading',true);
   //在请求发出之前进行一些操作
   if (!config.url.includes('/OutDepartPay/selectPayInfo')){
     config.data = Qs.stringify(config.data);
@@ -31,6 +33,7 @@ axios.interceptors.response.use((res)=>{
   //在这里对返回的数据进行处理
   // console.log("已经处理错误的数据")
   if (res.status === 200 && res.statusText === 'OK' && res.data.status === "OK") {
+    store.commit('setLoading',false);
     return res.data.content
   } else {
     return Promise.reject(res)

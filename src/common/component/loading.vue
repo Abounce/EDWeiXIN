@@ -3,19 +3,22 @@
     <img src="./loading.gif">
   </div>
 </template>
-<script type="text/ecmascript-6">
-  const COMPONENT_NAME = 'loading'
+<script >
 
   export default {
-    name: COMPONENT_NAME
+
   }
+
 </script>
 <style scoped lang="less" type="text/less">
   .mf-loading-container{
     img{
-
-      width: 20px;
-      height: 20px;
+      position: absolute;
+      /*margin: 0 auto;*/
+      top: 0;
+      left: 45%;
+      width: 40px;
+      height: 40px;
       display: block;
     }
 

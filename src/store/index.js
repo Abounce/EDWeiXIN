@@ -8,34 +8,15 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   state: {
-    // doctorId:0,
-    // sumFee:0,
-    // jobtimePeriod:'',
-    // regDate:'',
-    // regJobType:'',
-    // deptCode:''
+    isLoading:false,
+
   },
   mutations: {
-    // setDeptCode(state,newDeptCode){
-    //   state.deptCode=newDeptCode
-    // },
-    // setdoctorId(state, newDoctorId) {
-    //   state.doctorId = newDoctorId
-    // },
-    // setSumFee(state, newSumFee) {
-    //   state.sumFee = newSumFee
-    // },
-    // setJobtimePeriod(state, newJobtimePeriod) {
-    //   state.jobtimePeriod = newJobtimePeriod
-    // },
-    // setRegDate(state, newRegDate) {
-    //   state.regDate = newRegDate
-    // },
-    // setRegJobType(state, newRegJobType) {
-    //   state.regJobType = newRegJobType
-    // },
+       setLoading(state,newLoading){
+         state.isLoading=newLoading
+       }
   },
-  strict: debug,
-  plugins: debug ? [createLogger()] : []
+  // strict: debug,
+  // plugins: debug ? [createLogger()] : []
 })
 
