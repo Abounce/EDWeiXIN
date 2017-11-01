@@ -43,7 +43,7 @@
       <div class="personal-phone">
          <span class="one">联系电话</span>
          <span class="two">{{doctors.mobilephone}}</span>
-         <div class="three"></div>
+         <div class="three icon iconfont icon-tongxunlu"></div>
       </div>
       <div class="personal-button" @click="register">
         <span>确认挂号</span>
@@ -356,10 +356,10 @@
      .three{
 
        float: right;
-       display: inline-block;
-       .bgimage('Contacts');
-       background-size: 26px 21.5px;
-       background-position:center center
+       margin-right: 15px;
+       font-size: 25px;
+       /*display: inline-block;*/
+       color: @color-fgx;
      }
    }
    .personal-button{
