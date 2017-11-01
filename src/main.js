@@ -14,7 +14,6 @@ import  { ToastPlugin } from 'vux'
 import './common/css/index.css'
 import './common/iconfont/iconfont.css'
 import VueBarcode from '@xkeshi/vue-barcode'
-
 Vue.use(ToastPlugin)
 Vue.config.productionTip = false
 FastClick.attach(document.body)

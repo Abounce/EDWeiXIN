@@ -22,7 +22,7 @@
             <div class="doctor-grade"><span class="grade-one">职称:</span><span class="grade-two">{{doctor.positionalTitle}}</span></div>
             <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">{{doctor.deptName}}</span></div>
           </div>
-          <div class="right">{{doctor.surplusRegTot}}</div>
+          <div class="right" :class="{righthuse:isActive(doctor)}">{{doctor.surplusRegTot}}</div>
         </li>
       </ul>
 
@@ -37,6 +37,7 @@
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {getElementWidth} from "../../../api/utils.js"
   export default {
+
     beforeRouteUpdate (to, from, next) {
       this.getlist();
     },
@@ -60,6 +61,13 @@
       })
     },
     methods:{
+      isActive(doctor){
+        if(doctor.surplusRegTot===0) {
+          return true
+        }else {
+          return false
+        }
+      },
       //选择医生
       chooseDoctor(doctorId){
         this.$loacalstore.set('doctorId',doctorId)
@@ -155,7 +163,7 @@
     width: 100%;
     height: 52px;
     overflow: hidden;
-    border-bottom: 10px solid #eeeeee ;
+    border-bottom: 10px solid @color-background;
 
     .inner{
 
@@ -189,15 +197,15 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: #ffffff;
+    background: @color-withe;
     overflow: hidden;
     li{
       height: 105px;
-      background: #ffffff;
-      border: solid 0.5px #eeeeee;
+      background: @color-withe;
+      border: solid 0.5px @color-background;
       .doctor-img{
         float: left;
-        background: #ffffff;
+        background:@color-withe;
         height: 105px;
         width: 86px;
         text-align: center;
@@ -206,7 +214,7 @@
           margin-top: 23.5px;
           width: 56px;
           height: 56px;
-          background: #ffffff;
+          background: @color-withe;
         }
 
 
@@ -216,24 +224,25 @@
         .doctor-name{
 
           font-size: 17px;
-          font-weight: 500;
+          font-weight: bold;
           line-height: 52px;
         }
         .doctor-grade{
           font-size: 15px;
           .grade-one{
 
-            color: #888888;
+            color: @color-center;
           }
           .grade-two{
-          color: #353535;
+          color: @color-right;
           }
         }
         .doctor-skill{
           margin-top: 9.5px;
+          font-size: 15px;
           .skill-one{
 
-            color: #888888;
+            color: @color-center;
           }
           .skill-two{
             color: #353535;
@@ -248,13 +257,16 @@
         width: 54px;
         height: 24px;
         border-radius: 12px;
-        background-color: #ff8c19;
+        background-color:@color-jgts;
         float: right;
         font-size: 14px;
         font-weight: 500;
-        color: #ffffff;
-
+        color: @color-withe;
       }
+      .righthuse{
+        background-color: @color-fgx;
+      }
+
     }
 
   }

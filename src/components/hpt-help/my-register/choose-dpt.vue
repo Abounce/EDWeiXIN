@@ -24,6 +24,7 @@
         <div  v-else class="titlebottom">无</div>
 
       </div>
+
       <div class="department ">
         <betterscroll class="department_left" :data="departlist">
 
@@ -43,6 +44,7 @@
   </div>
 </template>
 <script>
+
   import betterscroll from "../../../common/component/betterscroll.vue"
   import {Search} from 'vux'
   import {getElementWidth} from "../../../api/utils.js"
@@ -130,7 +132,8 @@
     },
     components: {
       Search,
-      betterscroll
+      betterscroll,
+
     },
     mounted(){
       this.$nextTick(function () {
@@ -184,11 +187,12 @@
   }
   .docutor{
     height: 90px;
-    background:#ffffff;
+    background:@color-withe;
     .title{
-      font-size:@font-size-five;
+      font-size:17px;
+
       padding : 14px;
-      font-weight: 500;
+      font-weight: bold;
     }
     .titlecenter{
       overflow: hidden;
@@ -202,10 +206,12 @@
             font-weight: 500;
             font-size:15px;
             margin-left: 15px;
-            background-color:#eeeeee;
+            background-color:@color-background;
             text-align: center;
             line-height: 35px;
             display: inline-block;
+            color: #9c9c9c;
+
           }
         }
       }
@@ -219,7 +225,7 @@
 
   }
   .department{
-    border-top: 10px solid #ffffff;
+    border-top: 10px solid @color-background;
     top:100px;
     left: 0;
     right: 0;
@@ -234,22 +240,28 @@
     }
     .department_left{
       flex: 1 ;
-      background-color:#eeeeee;
+      background-color:@color-background;
       li{
-        border-bottom: 1px solid #ffffff;
+        color: @color-right;
+        font-size: 17px;
+        font-weight: bold;
+        border-bottom: 1px solid @color-withe;
       }
     }
     .department_right{
       flex: 1 ;
       li{
-        border-bottom: 1px solid #eeeeee;
+        color: @color-right;
+        font-size: 17px;
+        font-weight: bold;
+        border-bottom: 1px solid @color-background;
       }
     }
 
   }
   .selectleft{
-    background:#ffffff ;
-    color: #13bf72;
+    background:@color-withe ;
+    color:@color-zsd;
   }
 
 

@@ -8,7 +8,7 @@
       <div class="doctor-introduce">
         <div class="doctor-name">{{topdata.docName}}</div>
         <div class="doctor-grade"><span class="grade-one">职称:</span><span class="grade-two">{{topdata.positionalName}}</span></div>
-        <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">{{topdata.departName}}</span></div>
+        <div class="doctor-skill"><span class="skill-one">擅长:</span><span class="skill-two">{{topdata.specializeDiseaseString}}</span></div>
       </div>
     </div>
     <div class="order-or-introduce">
@@ -41,11 +41,11 @@
       </betterscroll>
       <div class="showtime">
         <div class="morning" v-for="(doctor,index) in isCurrentDoctors(currentdoctors)">
-          <div class="time">{{istime(doctor)}}{{doctor.jobtimePeriod}}</div>
-          <div class="price">￥{{doctor.sumFee}}</div>
+          <div class="time">{{istime(doctor)}}({{doctor.jobtimePeriod}})</div>
+          <div class="price" >￥{{doctor.sumFee|changePrice}}</div>
           <div class="isnumber">余号{{doctor.surplusRegTot}}</div>
           <div class="yuyue" >
-              <span class="yuyue-inner" @click="order(doctor)">
+              <span class="yuyue-inner " @click="order(doctor)" :class="{yuyuehuse:isActive(doctor)}" >
                   预约
               </span>
           </div>
@@ -65,6 +65,11 @@
   import {getnextday,getweek} from "../../../api/utils.js"
   import {getElementWidth} from "../../../api/utils.js"
   export  default {
+    filters: {
+      changePrice: function (value) {
+      return  value.toFixed(2)
+      }
+    },
     data(){
       return{
         value1:false,
@@ -74,10 +79,18 @@
         tatalwith:0,
         currentitem:0,
         currentdoctors:[],
-        topdata:{}
+        topdata:{},
       }
     },
     methods:{
+      isActive(doctor){
+      if(doctor.surplusRegTot===0) {
+        return true
+      }else {
+        return false
+      }
+      },
+
       //是否有号
       isCurrentDoctors(currentdoctors){
 
@@ -95,6 +108,9 @@
       },
       //预约医生
       order(doctor){
+        if(doctor.surplusRegTot===0){
+          return
+        }
         this.$loacalstore.set('sumFee',doctor.sumFee)
         this.$loacalstore.set('jobTimePeriod',doctor.jobtimePeriod)
         this.$loacalstore.set('regDate',doctor.regDate)
@@ -245,14 +261,15 @@
 </script>
 
 <style scoped lang="less" type="text/less">
+  @import "./../../../common/css/variable.less";
   .user{
     /*background: red;*/
     height: 94px;
-    border-bottom: 10px solid #eeeeee;
+    border-bottom: 10px solid @color-background;
     .doctor-img{
       float: left;
       display: inline-block;
-      background: #ffffff;
+      background: @color-withe;
       height: 94px;
       width: 86px;
       text-align: center;
@@ -261,7 +278,7 @@
         margin-top: 15px;
         width: 56px;
         height: 56px;
-        background: #ffffff;
+        background:@color-withe;
       }
 
     }
@@ -269,8 +286,8 @@
       float: left;
       height: 94px;
       .doctor-name{
+        font-weight: bold;
         font-size: 17px;
-        font-weight: 500;
         margin-top: 18px;
       }
       .doctor-grade{
@@ -278,21 +295,21 @@
         font-size: 13px;
         .grade-one{
 
-          color: #888888;
+          color: @color-left;
         }
         .grade-two{
-          color: #353535;
+          color: @color-right;
         }
       }
       .doctor-skill{
-
+        font-size: 13px;
         margin-top: 6px;
         .skill-one{
 
-          color: #888888;
+          color: @color-left;
         }
         .skill-two{
-          color: #353535;
+          color: @color-right;
         }
       }
     }
@@ -301,11 +318,15 @@
     display: flex;
     height: 49px;
     .tab-order{
+      font-size: 17px;
+      font-weight: bold;
       flex: 1;
       line-height: 49px;
       text-align: center;
     }
     .tab-introduce{
+      font-size: 17px;
+      font-weight: bold;
       flex: 1;
       line-height: 49px;
       text-align: center;
@@ -318,9 +339,13 @@
       position: relative;
       height: 49px;
       .only-see{
+        color: @color-center;
         position: absolute;
         left: 14.5px;
         top: 14.5px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.31;
       }
       .only-button{
 
@@ -351,6 +376,7 @@
         flex: 2;
       }
       .price{
+        color: @color-jgts;
         text-align: center;
         flex: 1;
       }
@@ -370,10 +396,14 @@
         display: flex;
         .yuyue-inner{
 
-
           padding: 6px 12px;
           border-radius: 3px;
-          border: solid 1px #13bf72;
+          border: solid 1px @color-zsd;
+          color:@color-zsd ;
+        }
+        .yuyuehuse{
+          color:@color-background ;
+          border: solid 1px @color-fgx ;
         }
       }
       .afternoon{
@@ -405,11 +435,16 @@
     .introduce-a,.introduce-c {
 
       font-size: 17px;
-      font-weight: 500;
+      font-weight: bold;
     }
     .introduce-b,.introduce-d{
-      color: #353535;
+      margin-top: 5px;
       font-size: 14px;
+      line-height: 1.5;
+      text-align: left;
+      color: @color-right;
+
+
 
     }
     .introduce-a{
@@ -421,9 +456,10 @@
 
   }
   .selectleft{
-    color: #13bf72;
-    border-bottom: 1px solid #13bf72;
+    color: @color-zsd;
+    border-bottom: 1px solid @color-zsd;
 
   }
+
 
 </style>

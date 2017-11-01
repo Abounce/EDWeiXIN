@@ -15,7 +15,7 @@
 
       <div class="personal-body">
         <div class="body-one"><span class="one">挂号科室</span><span class="two">{{doctors.departName}}</span></div>
-        <div class="body-two"><span class="three">挂号费用</span><span class="four">￥{{sumfree}}</span></div>
+        <div class="body-two"><span class="three">挂号费用</span><span class="four">￥{{sumfree|changePrice}}</span></div>
       </div>
       <div class="personal-time">
         <span class="one">就诊时间</span>
@@ -56,11 +56,16 @@
   import { CheckIcon} from 'vux'
   import myLine from '../../../common/component/myLine.vue'
    export default {
+     filters: {
+       changePrice: function (value) {
+         return  value.toFixed(2)
+       }
+     },
      data(){
        return{
          doctors:{},
          vistitlist:[],
-         sumfree:'',
+         sumfree:0,
          rgjt:'',
          jp:'',
          rgd:'',
@@ -214,34 +219,36 @@
        line-height: 80px;
      .name{
        font-size: 17px;
-       font-weight: 500;
-       color: #353535;
+       font-weight: bold;
+       color:@color-zynr;
      }
      .job{
        margin-left: 15px;
        font-size: 14px;
        font-weight: 500;
-       color: #888888;
+       color: @color-fznr;
      }
 
      }
    }
    .personal-body{
      height: 64.5px;
-     border-bottom: 10px solid #eeeeee;
+     border-bottom: 10px solid @color-background;
      .body-one{
+       font-size: 16px;
+       color: @color-fznr;
       margin-top:15.5px;
      .one{
       margin-left: 15px;
        font-size: 16px;
-       color: #888888;
+       color: @color-fznr;
      }
      .two{
 
        margin-left: 10px;
        font-size: 16px;
-       font-weight: 500;
-       color: #353535;
+       font-weight: bold;
+       color: @color-zynr;
      }
      }
      .body-two{
@@ -249,33 +256,33 @@
      .three{
        margin-left: 15px;
        font-size: 16px;
-       color: #888888;
+       color: @color-fznr;
      }
      .four{
 
        margin-left: 10px;
        font-size: 16px;
-       font-weight: 500;
-       color: #353535;
+       font-weight: bold;
+       color: @color-zynr;
      }
      }
    }
    .personal-time{
      height: 45px;
      line-height: 45px;
-     border-bottom: 10px solid #eeeeee;
+     border-bottom: 10px solid @color-background;
      .one{
        margin-left: 15px;
        margin-top: 14.5px;
        font-size: 16px;
-       color: #888888;
+       color:@color-fznr;
      }
      .two{
        margin-top: 14.5px;
        margin-left: 10.5px;
        font-size: 16px;
        font-weight: 500;
-       color: #13bf72;
+       color: @color-zsd;
      }
    }
    .personal-choose{
@@ -284,8 +291,9 @@
        margin-left: 15px;
        margin-top: 15px;
        font-size: 17px;
-       font-weight: 500;
-       color: #353535;
+       font-weight: bold;
+       color: @color-zynr;
+
      }
      .two{
        float: right;
@@ -293,7 +301,7 @@
        margin-top: 7.5px;
        padding: 7.5px;
        border-radius: 3px;
-       border: solid 1px #13bf72;
+       border: solid 1px @color-zsd;
      }
 
    }
@@ -307,8 +315,14 @@
           line-height: 50px;
           text-align: center;
           flex: 36;
+          font-size: 15px;
+          font-weight: bold;
+          color:@color-zynr;
         }
         .vistnumber{
+          font-size: 15px;
+          font-weight: bold;
+          color: #1793e6;
           line-height: 50px;
           text-align: center;
           flex: 50;
@@ -322,6 +336,10 @@
 
     }
    .personal-phone{
+     font-size: 16px;
+     font-weight: bold;
+
+     color:@color-zynr;
     /*margin-top: 50px;*/
      height: 49px;
      line-height: 49px;
@@ -348,11 +366,11 @@
      margin-top: 30px;
      text-align: center;
      span{
-       color: white;
+       color: @color-withe;
        padding:2% 37%;
-       background-color: #13bf72;;
+       background-color: @color-zsd;
        border-radius: 5px;
-       border: solid 1px #11ad67;
+       border: solid 1px @color-zsd;
      }
    }
    .clearfix:after{
