@@ -340,7 +340,7 @@
         .one{
           margin-top: 16.5px;
           font-size: 17px;
-          font-weight: 500;
+          font-weight: bold;
           color: #353535;
         }
         .two{

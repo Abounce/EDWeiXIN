@@ -46,7 +46,7 @@
                     </div>
                     <div class="one-right">
                       <div>{{item.itemNum}}盒</div>
-                      <div class="price">¥{{item.itemMoney}}</div>
+                      <div class="price">¥{{item.itemMoney|changePrice}}</div>
                     </div>
                   </div >
                   <my-line></my-line>
@@ -97,6 +97,11 @@
   import {getscreenheight} from '../../../api/utils.js'
   import betterScroll from '../../../common/component/betterscroll.vue'
     export default {
+      filters: {
+        changePrice: function (value) {
+          return  Number(value).toFixed(2)
+        }
+      },
     data(){
       return{
         list2:['门诊处方','检验报告','检查报告'],
@@ -163,6 +168,10 @@
 </script>
 
 <style scoped lang="less" type="text/less">
+  .vux-center{
+    font-size: 17px;
+    font-weight: bold;
+  }
 .wrapper-all{
   background: #eeeeee;
 }
@@ -172,6 +181,7 @@
   .head-one{
     height: 46px;
     .one{
+      font-weight: bold;
       margin-left: 15px;
       line-height: 46px;
       float: left;
@@ -210,6 +220,7 @@
       .wrapper-one{
         background: white;
         .one-title{
+          font-weight: bold;
           height: 54px;
           line-height: 54px;
           font-size: 17px;
@@ -265,7 +276,7 @@
               .two-one{
                 margin-top: 15px;
                 font-size: 17px;
-                font-weight: 500;
+                font-weight: bold;
                 color: #353535;
               }
               .two-two{
@@ -301,7 +312,7 @@
               .two-one{
                 margin-top: 15px;
                 font-size: 17px;
-                font-weight: 500;
+                font-weight: bold;
                 color: #353535;
               }
               .two-two{

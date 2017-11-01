@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="doctor">
-        <div class="doctor-title">就医信息</div>
+        <div class="doctor-title">诊疗服务</div>
         <my-line></my-line>
         <div class="doctor-info">
           <div class="info-one" @click="buttonGH">
@@ -132,6 +132,8 @@
       margin: 15px auto 10px auto;
    }
    .header-name{
+     font-size: 15px;
+     font-weight: bold;
     text-align: center;
    }
 
@@ -153,7 +155,7 @@
    .text{
      text-align: center;
      font-size: 14px;
-     font-weight: 500;
+     font-weight: bold;
      color: #888888;
      margin-top: 10px;
    }
@@ -175,6 +177,7 @@
      margin-left: 14.5px;
      height: 44px;
      font-size: 16px;
+     font-weight: bold;
      line-height: 44px;
      color: #353535;
    }

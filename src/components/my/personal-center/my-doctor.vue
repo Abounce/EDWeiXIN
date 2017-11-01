@@ -10,10 +10,10 @@
                 </div>
                 <div class="info">
                   <div class="one">
-                    <span>{{item.docName}}</span>
-                    <span>{{item.positionalName}}</span>
+                    <span class="one-one">{{item.docName}}</span>
+                    <span class="one-two">{{item.positionalName}}</span>
                   </div>
-                  <div class="two">
+                  <div class="two" style="color: #888888">
                     <span>科室:</span>
                     <span>{{item.departName}}</span>
                   </div>
@@ -121,5 +121,12 @@
      }
    }
  }
+ .one-one{
+font-size: 17px;
+   font-weight: bold;
+ }
+  .one-two{
+    font-size: 17px;
+  }
 
 </style>

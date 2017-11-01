@@ -121,6 +121,7 @@
 
       }
       .name{
+        font-weight: bold;
         font-size: 17px;
 
         color: #353535;

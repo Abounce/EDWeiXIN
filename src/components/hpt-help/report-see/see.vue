@@ -102,6 +102,10 @@
   }
 </script>
 <style scoped lang="less" type="text/less">
+  .vux-center{
+    font-size: 17px;
+    font-weight: bold;
+  }
   .category{
     margin-top: 10px;
     .swiper{
@@ -123,9 +127,10 @@
               flex: 7;
               margin-left: 15px;
               .two-one{
+
                 margin-top: 15px;
                 font-size: 17px;
-                font-weight: 500;
+                font-weight: bold;
                 color: #353535;
               }
               .two-two{
@@ -172,7 +177,7 @@
               .two-one{
                 margin-top: 15px;
                 font-size: 17px;
-                font-weight: 500;
+                font-weight: bold;
                 color: #353535;
               }
               .two-two{

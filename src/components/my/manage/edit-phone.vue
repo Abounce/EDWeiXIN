@@ -80,6 +80,9 @@
       flex: 30;
       text-align: right;
       line-height: 49px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #353535;
     }
     .two{
       border: none;
@@ -100,6 +103,9 @@
     height: 49px;
     display: flex;
     .one{
+      font-size: 16px;
+      font-weight: bold;
+      color: #353535;
       flex: 30;
       text-align: right;
       line-height: 49px;
@@ -121,6 +127,9 @@
     height: 49px;
     display: flex;
     .one{
+      font-size: 16px;
+      font-weight: bold;
+      color: #353535;
       flex: 30;
       text-align: right;
       line-height: 49px;
@@ -149,6 +158,7 @@
     margin-top: 60px;
     text-align: center;
     span{
+      font-weight: bold;
       padding: 6% 37%;
       border-radius: 5px;
       background-color: #13bf72;

@@ -18,7 +18,7 @@
                   </div>
                   <my-line></my-line>
                   <div class="clearfix" style="padding-bottom:23px">
-                    <div class="b-left">¥{{allPrive(item)}}</div>
+                    <div class="b-left">¥{{allPrive(item)|changePrice}}</div>
                     <div class="b-right" @click="buttonPay(item)">去支付</div>
                   </div>
                 </li>
@@ -31,7 +31,7 @@
                 <li class="li-b" v-for="(item,index) in payList">
                   <div class="li-div"><span class="li-com-one" style="margin-left: 31px;">就诊人</span><span class="li-com-two">{{item.patName}}</span></div>
                   <div class="li-div"><span class="li-com-one">就诊科室</span><span class="li-com-two">{{item.deptName}}</span></div>
-                  <div class="li-div"><span class="li-com-one">订单金额</span><span class="li-com-two">¥{{item.paySum}}</span></div>
+                  <div class="li-div"><span class="li-com-one">订单金额</span><span class="li-com-two">¥{{item.paySum|changePrice}}</span></div>
                   <div class="li-div"><span class="li-com-one">支付时间</span><span class="li-com-two">{{item.payTime}}</span></div>
                   <my-line></my-line>
                    <div class="bottom" @click="buttonDeatail(item.rcptId)">
@@ -53,6 +53,11 @@
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
   export default {
+    filters: {
+      changePrice: function (value) {
+        return  value.toFixed(2)
+      }
+    },
     data(){
       return{
         list2:['未支付','支付历史'],
@@ -112,6 +117,10 @@
 </script>
 
 <style scoped lang="less" type="text/less">
+  .vux-center{
+    font-size: 17px;
+    font-weight: bold;
+  }
   .wrapper-a{
       position: absolute;
       top: 0;
@@ -136,7 +145,7 @@
            margin-left: 10px;
            margin-top: 15.5px;
            font-size: 17px;
-           font-weight: 500;
+           font-weight: bold;
            color: #353535;
          }
          .number{
@@ -153,7 +162,7 @@
        }
        .b-left{
          font-size: 18px;
-         font-weight: 500;
+         font-weight: bold;
 
          color: #ff8c19;
            float: left;
@@ -169,6 +178,7 @@
          border: solid 1px #13bf72;
          text-align: center;
          line-height: 30px;
+         font-weight: bold;
          margin-top: 15px;
          margin-right: 10px;
        }
@@ -205,14 +215,14 @@
           margin-left: 6px;
 
           font-size: 17px;
-          font-weight: 500;
+          font-weight: bold;
           text-align: left;
           color: #353535;
         }
         .bottom{
           text-align: center;
           font-size: 13px;
-          font-weight: 500;
+          font-weight: bold;
           margin-top: 16px;
           margin-bottom: 8px;
           color: #888888;

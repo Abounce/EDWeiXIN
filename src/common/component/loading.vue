@@ -20,6 +20,7 @@
       width: 40px;
       height: 40px;
       display: block;
+      z-index: 1000;
     }
 
   }

@@ -122,7 +122,7 @@
       .name{
         font-size: 17px;
         color: #353535;
-        font-weight: 500;
+        font-weight: bold;
       }
       .sex{
         margin-left: 20px;
@@ -154,6 +154,7 @@
     margin-top: 30.5px;
     text-align: center;
     span{
+      font-weight: bold;
       color: white;
       padding:5% 35%;
       background-color: #13bf72;;

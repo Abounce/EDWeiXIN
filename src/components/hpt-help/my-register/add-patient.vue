@@ -6,7 +6,7 @@
      </div>
      <div v-if="isman" class="man">
        <div class="name">
-         <label for="nameinput" class="one" >真实姓名:</label>
+         <label for="nameinput" class="one coom" >真实姓名:</label>
          <input type="text" id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
          <div class="three">
          <div class="weui-icon-clear three" @click="clearNamemsg" v-show="namemsg" ></div>
@@ -14,18 +14,18 @@
        </div>
        <my-line></my-line>
        <div class="sex">
-         <span class="one">性别:</span>
+         <span class="one coom">性别:</span>
          <check-icon :value.sync="demo1" class="two"   @click.native="nan">男</check-icon>
          <check-icon :value.sync="demo2" class="three" @click.native="nv">女</check-icon>
          <check-icon :value.sync="demo3" class="four"  @click.native="baomi">保密</check-icon>
        </div>
        <my-line></my-line>
        <div class="birthday">
-       <datetime v-model="value1"  :title="('出生日期:')" placeholder="请选择"></datetime>
+       <datetime v-model="value1" class="coom" :title="('出生日期:')" placeholder="请选择"></datetime>
        </div>
        <my-line></my-line>
        <div class="card">
-         <label for="cardinput" class="one"  >身份证号:</label>
+         <label for="cardinput" class="one coom"  >身份证号:</label>
          <input type="text" id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
          <div class="three">
 
@@ -34,7 +34,7 @@
        </div>
        <my-line></my-line>
        <div class="iscard">
-         <label for="iscardinput" class="one">就诊卡号:</label>
+         <label for="iscardinput" class="one coom">就诊卡号:</label>
          <input type="text" id="iscardinput" v-model="iscardmsg" class="two"  placeholder="请填写就诊卡号" >
          <div class="three">
 
@@ -43,7 +43,7 @@
        </div>
        <my-line></my-line>
        <div class="phone">
-         <label for="phoneinput" class="one">手机号码:</label>
+         <label for="phoneinput" class="one coom">手机号码:</label>
          <input type="text" id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="three">
 
@@ -52,7 +52,7 @@
        </div>
        <my-line></my-line>
        <div class="autocode">
-         <label for="autoinput" class="one">验证码:</label>
+         <label for="autoinput" class="one coom">验证码:</label>
          <input type="text" id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
          <div class="three">
 
@@ -72,7 +72,7 @@
      </div>
      <div v-if="ischild" class="child">
        <div class="name">
-         <label for="nameinputa" class="one" >真实姓名:</label>
+         <label for="nameinputa" class="one coom" >真实姓名:</label>
          <input type="text" id="nameinputa" v-model="namemsga" class="two" placeholder="请填写就诊人姓名" >
          <div class="three">
          <div class="weui-icon-clear three" @click="clearNamemsga" v-show="namemsga"></div>
@@ -80,18 +80,18 @@
        </div>
        <my-line></my-line>
        <div class="sex">
-         <span class="one">性别:</span>
+         <span class="one coom">性别:</span>
          <check-icon :value.sync="demo4" class="two"   @click.native="nan">男</check-icon>
          <check-icon :value.sync="demo5" class="three" @click.native="nv">女</check-icon>
          <check-icon :value.sync="demo6" class="four"  @click.native="baomi">保密</check-icon>
        </div>
        <my-line></my-line>
        <div class="birthday">
-         <datetime v-model="value2"  :title="('出生日期:')" placeholder="请选择"></datetime>
+         <datetime v-model="value2"  class="coom" :title="('出生日期:')" placeholder="请选择"></datetime>
        </div>
        <my-line></my-line>
        <div class="card">
-         <label for="cardinputa" class="one"  >患者身份证:</label>
+         <label for="cardinputa" class="one coom"  >患者身份证:</label>
          <input type="text" id="cardinputa" v-model="cardmsga" class="two"  placeholder="请填写就诊人身份证号">
          <div class="three">
 
@@ -100,7 +100,7 @@
        </div>
        <my-line></my-line>
        <div class="jhcard">
-         <label for="jhcardinput" class="one">监护人身份证:</label>
+         <label for="jhcardinput" class="one coom">监护人身份证:</label>
          <input type="text" id="jhcardinput" v-model="jianhumsga" class="two"  placeholder="请填写监护人身份证">
          <div class="three">
 
@@ -109,7 +109,7 @@
        </div>
        <my-line></my-line>
        <div class="iscard">
-         <label for="iscardinputa" class="one">就诊卡号:</label>
+         <label for="iscardinputa" class="one coom">就诊卡号:</label>
          <input type="text" id="iscardinputa" v-model="iscardmsga" class="two"  placeholder="请填写就诊卡号" >
          <div class="three">
 
@@ -118,7 +118,7 @@
        </div>
        <my-line></my-line>
        <div class="phone">
-         <label for="phoneinputa" class="one">监护人手机:</label>
+         <label for="phoneinputa" class="one coom" >监护人手机:</label>
          <input type="text" id="phoneinputa" v-model="phonemsga" class="two"  placeholder="请填写建卡预留手机号">
          <div class="three">
 
@@ -127,7 +127,7 @@
        </div>
        <my-line></my-line>
        <div class="autocode">
-         <label for="autoinputa" class="one">验证码:</label>
+         <label for="autoinputa" class="one coom">验证码:</label>
          <input type="text" id="autoinputa" v-model="automsga" class="two"  placeholder="请填写验证码">
          <div class="three">
 
@@ -401,8 +401,12 @@
         text-align: center;
         flex: 1;
         /*background: red;*/
+        font-size: 17px;
+        font-weight: bold;
       }
       .tab-child{
+        font-size: 17px;
+        font-weight: bold;
         line-height: 49px;
         text-align: center;
         flex: 1;
@@ -443,18 +447,20 @@
           text-align: right;
         }
         .two{
-
+          font-weight: bold;
           flex: 1;
           /*line-height: 49;*/
           text-align: center;
         }
         .three{
+          font-weight: bold;
           flex: 1;
           /*line-height: 49;*/
           text-align: center;
           /*height: 49px;*/
         }
         .four{
+          font-weight: bold;
           /*height: 49px;*/
           flex: 1;
           /*line-height: 49;*/
@@ -570,6 +576,7 @@
         margin-top: 40px;
         text-align: center;
         span{
+          font-weight: bold;
           color: white;
           padding:5% 42%;
           background-color: #13bf72;;
@@ -605,6 +612,7 @@
         display: flex;
         margin-top: 13px;
         height: 36px;
+
         .one{
           flex: 1;
           /*height: 49px;*/
@@ -612,18 +620,20 @@
           text-align: right;
         }
         .two{
-
+          font-weight: bold;
           flex: 1;
           /*line-height: 49;*/
           text-align: center;
         }
         .three{
+          font-weight: bold;
           flex: 1;
           /*line-height: 49;*/
           text-align: center;
           /*height: 49px;*/
         }
         .four{
+          font-weight: bold;
           /*height: 49px;*/
           flex: 1;
           /*line-height: 49;*/
@@ -757,6 +767,7 @@
         margin-top: 40px;
         text-align: center;
         span{
+          font-weight: bold;
           color: white;
           padding:5% 42%;
           background-color: #13bf72;;
@@ -776,5 +787,9 @@
       text-align: center;
       padding: 15px;
     }
-
+    .coom{
+      font-size: 16px;
+      color: #353535;
+      font-weight: bold;
+    }
 </style>

@@ -4,7 +4,7 @@
      <div class="com"><span class="com-one" style="margin-left: 16px">就诊人</span><span class="com-two">&nbsp;{{outList.patName}}</span></div>
      <div  class="com" style="padding-bottom: 14px"><span class="com-one">就诊科室</span><span class="com-two">&nbsp;{{outList.deptName}}</span></div>
      <my-line></my-line>
-     <div  class="com" style="padding-bottom: 14px"><span  class="com-one">订单金额</span><span class="com-two">&nbsp;¥{{outList.rcptMoney}}</span></div>
+     <div  class="com" style="padding-bottom: 14px"><span  class="com-one">订单金额</span><span class="com-two">&nbsp;¥{{outList.rcptMoney|changePrice}}</span></div>
      <my-line></my-line>
      <div  class="com"><span class="com-one">支付时间</span><span class="com-two"> &nbsp;{{outList.rcptDate}}</span></div>
      <div  class="com"><span class="com-one">支付方式</span><span class="com-two">&nbsp;{{outList.platfrom}}</span></div>
@@ -23,7 +23,7 @@
              </div>
              <div class="one-right">
                <div>{{item.itemNum}}盒</div>
-               <div class="price">¥{{item.itemMoney}}</div>
+               <div class="price">¥{{item.itemMoney|changePrice}}</div>
              </div>
            </div >
            <my-line></my-line>
@@ -37,7 +37,7 @@
              </div>
              <div class="one-right">
                <div>1次</div>
-               <div class="price">¥{{item.rcptMoney}}</div>
+               <div class="price">¥{{item.rcptMoney|changePrice}}</div>
              </div>
            </div >
            <my-line></my-line>
@@ -52,6 +52,12 @@
   import myLine from '../../../common/component/myLine.vue'
   import betterScroll from '../../../common/component/betterscroll.vue'
   export default {
+    filters: {
+      changePrice: function (value) {
+
+        return  Number(value).toFixed(2)
+      }
+    },
     data(){
       return{
         outList:{},
@@ -104,7 +110,7 @@
      }
      .com-two{
        font-size: 16px;
-       font-weight: 500;
+       font-weight: bold;
        color: #353535;
      }
    }
@@ -116,7 +122,7 @@
       height: 54px;
       line-height: 54px;
       font-size: 17px;
-      font-weight: 500;
+      font-weight: bold;
       color: #353535;
       margin-left: 14.5px;
     }

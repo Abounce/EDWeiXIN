@@ -17,7 +17,7 @@
                     <div class="three">{{item.rcptDate}}</div>
                   </div>
                   <div class="content-three">
-                      <div class="one">¥{{item.rcptMoney}}</div>
+                      <div class="one">¥{{item.rcptMoney|changePrice}}</div>
                       <div class="two" @click="seeContent(item)">查看明细</div>
                   </div>
                </div>
@@ -28,7 +28,7 @@
       </div>
       <div class="bottom">
         <check-icon :value.sync="demo6"  class="bottom-one"  @click.native="allChoose">全选</check-icon>
-        <div class="bottom-two">合计:{{changeMoney()}}</div>
+        <div class="bottom-two">合计:{{changeMoney()|changePrice}}</div>
         <div class="bottom-three" @click="surePay">确认支付</div>
       </div>
       <div v-transfer-dom class="alert">
@@ -45,7 +45,7 @@
                  </div>
                  <div class="one-right">
                    <div>{{item.itemNum}}盒</div>
-                   <div class="price">¥{{allPrice(item)}}</div>
+                   <div class="price">¥{{allPrice(item)|changePrice}}</div>
                  </div>
                </div >
                <my-line></my-line>
@@ -64,6 +64,12 @@
   import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from 'vux'
   import {out,inner} from '../../../api/comClass.js'
   export default {
+    filters: {
+      changePrice: function (value) {
+
+        return  Number(value).toFixed(2)
+      }
+    },
     directives: {
       TransferDom
     },
@@ -200,19 +206,19 @@
           .one{
             margin-top: 15px;
             font-size: 17px;
-            font-weight: 500;
+            font-weight: bold;
             color: #353535;
           }
           .two{
             margin-top: 15px;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: bold;
             color: #888888;
           }
           .three{
             margin-top: 10.5px;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: bold;
             color: #888888;
 
           }
@@ -222,14 +228,14 @@
           .one{
             margin-top: 17px;
             font-size: 17px;
-            font-weight: 500;
+            font-weight: bold;
             color: #ff8c19;
             margin-right: 15px;
           }
           .two{
             margin-top: 38.5px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: bold;
             margin-right: 16.5px;
             color: #13bf72;
           }
@@ -248,7 +254,7 @@
     .bottom-one{
        flex: 30;
       font-size: 16px;
-      font-weight: 500;
+      font-weight: bold;
       text-align: center;
       color: #888888;
       line-height: 49px;
@@ -262,6 +268,7 @@
       line-height: 49px;
     }
     .bottom-three{
+      font-weight: bold;
       flex: 30;
       background-color: #13bf72;
       color: white;
@@ -275,7 +282,7 @@
       text-align: center;
       line-height: 44px;
       font-size: 17px;
-      font-weight: 500;
+      font-weight: bold;
       color: #888888;
     }
     .mlili{

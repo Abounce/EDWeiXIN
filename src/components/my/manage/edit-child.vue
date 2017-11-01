@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper">
-       <div class="left-one">真实姓名</div>
+       <div class="left-one ">真实姓名</div>
        <div class="right-one">{{visit.name}}</div>
     </div>
     <my-line></my-line>
@@ -112,6 +112,9 @@
     .left-one{
        margin-left: 14.5px;
        margin-top: 17.5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #353535;
     }
     .right-one{
        position: absolute;
@@ -125,11 +128,13 @@
         vertical-align: top;
       }
       .edit{
+        margin-left: 5px;
         color: #1793e6;
       }
     }
   }
   .button{
+    font-weight: bold;
     margin-top: 30px;
     text-align: center;
     span{

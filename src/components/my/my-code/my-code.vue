@@ -83,7 +83,7 @@
     line-height: 63px;
     text-align: center;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: bold;
     color: #353535;
   }
   .wrapper{

@@ -1,5 +1,5 @@
 <template>
-  <better-scroll class="allwrapper">
+  <better-scroll class="allwrapper" :data="downList">
   <div class="wrapper-outer">
        <div>
        <ul>
@@ -241,6 +241,7 @@
      /*overflow: hidden;*/
      /*background: yellow;*/
      .info{
+       font-weight: bold;
        position: relative;
        height: 46px;
        line-height: 46px;

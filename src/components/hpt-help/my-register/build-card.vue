@@ -3,7 +3,7 @@
    <div style="background: white">
      <div class="user">
        <div class="name">
-         <label for="nameinput" class="one" >真实姓名:</label>
+         <label for="nameinput" class="one coom" >真实姓名:</label>
          <input  id="nameinput" v-model="namemsg" class="two" placeholder="请填写就诊人姓名" >
          <div class="three">
          <div class="weui-icon-clear " v-show="namemsg" @click="cleanNamemsg"></div>
@@ -11,7 +11,7 @@
        </div>
        <my-line></my-line>
        <div class="card">
-         <label for="cardinput" class="one"  >身份证号:</label>
+         <label for="cardinput" class="one coom"  >身份证号:</label>
          <input  id="cardinput" v-model="cardmsg" class="two"  placeholder="请填写就诊人身份证号">
          <div class="three">
          <div class="weui-icon-clear "  v-show="cardmsg" @click="cleanCardmsg"></div>
@@ -19,7 +19,7 @@
        </div>
        <my-line></my-line>
        <div class="phone">
-         <label for="phoneinput" class="one">手机号码:</label>
+         <label for="phoneinput" class="one coom">手机号码:</label>
          <input  id="phoneinput" v-model="phonemsg" class="two"  placeholder="请填写建卡预留手机号">
          <div class="three">
          <div class="weui-icon-clear " v-show="phonemsg" @click="cleanPhonemsg" ></div>
@@ -28,7 +28,7 @@
        </div>
        <my-line></my-line>
        <div class="auto-code">
-         <label for="autoinput" class="one">验证码:</label>
+         <label for="autoinput" class="one coom">验证码:</label>
          <input  id="autoinput" v-model="automsg" class="two"  placeholder="请填写验证码">
          <div class="three">
 
@@ -272,11 +272,15 @@
        height: 49px;
        display: flex;
        .man{
+         font-size: 16px;
+         font-weight: bold;
          line-height: 49px;
          flex: 1;
          text-align: center;
        }
        .child{
+         font-size: 16px;
+         font-weight: bold;
          line-height: 49px;
          flex: 1;
          text-align: center;
@@ -307,6 +311,11 @@
          border-radius: 5px;
          border: solid 0.5px #cdcdcd;
        }
+       .font{
+         font-size: 14px;
+         font-weight: bold;
+         color: #888888;
+       }
      }
      .fm{
        text-align: center;
@@ -320,6 +329,12 @@
          border-radius: 5px;
          border: solid 0.5px #eeeeee;
        }
+       .font{
+         font-size: 14px;
+         font-weight: bold;
+         color: #888888;
+       }
+
      }
 
    }
@@ -351,7 +366,9 @@
     text-align: center;
     line-height: 44px;
     border: solid 1px #11ad67;
+    font-weight: bold;
     span{
+
       color: white;
       padding:5% 42%;
       background-color: #13bf72;;
@@ -364,5 +381,10 @@
   color: #000;
   text-align: center;
   padding: 15px;
+}
+.coom{
+  font-size: 16px;
+  color: #353535;
+  font-weight: bold;
 }
 </style>

@@ -105,7 +105,7 @@
      text-align: center;
      line-height: 46px;
      font-size: 17px;
-     font-weight: 900;
+     font-weight: bold;
      color: #353535;
    }
    .com{
@@ -118,14 +118,14 @@
      margin-top: 15px;
      margin-left: 15px;
      font-size: 17px;
-     font-weight: 500;
+     font-weight: bold;
      color: #888888;
    }
    .com-one{
      margin-left: 15px;
      margin-top: 15px;
      font-size: 15px;
-     font-weight: 500;
+     font-weight: bold;
      color: #353535;
    }
  }
@@ -138,7 +138,7 @@
        flex:1;
        text-align: center;
        font-size: 17px;
-       font-weight: 500;
+       font-weight: bold;
        line-height: 45px;
        color: #888888;
      }
@@ -155,7 +155,7 @@
        margin-top: 15px;
        display: flex;
        height: 47.5px;
-       padding-bottom: 30px;
+       padding-bottom: 10px;
        .li-com{
          /*line-height: 62.5px;*/
          flex: 1;

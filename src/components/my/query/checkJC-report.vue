@@ -93,14 +93,14 @@
       margin-top: 15px;
       margin-left: 15px;
       font-size: 17px;
-      font-weight: 500;
+      font-weight: bold;
       color: #888888;
     }
     .com-one{
       margin-left: 15px;
       margin-top: 15px;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: bold;
       color: #353535;
     }
   }
@@ -119,7 +119,7 @@
         margin-left: 15px;
         margin-top: 20px;
         font-size: 17px;
-        font-weight: 500;
+        font-weight: bold;
         color: #888888;
       }
       .two{
@@ -127,13 +127,13 @@
         margin-bottom: 20px;
         margin-left: 15px;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: bold;
         color: #353535;
       }
       .three{
         margin-left: 15px;
         margin-top: 20px;
-        font-weight: 500;
+        font-weight: bold;
         color: #888888;
       }
       .four{
@@ -141,7 +141,7 @@
         margin-top: 15px;
         margin-bottom: 19px;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: bold;
         text-align: left;
         color: #353535;
       }
@@ -149,14 +149,14 @@
         margin-top: 20px;
         margin-left: 15px;
         font-size: 17px;
-        font-weight: 500;
+        font-weight: bold;
         color: #888888;
       }
       .six{
         margin-left: 15px;
         margin-top: 15px;
         margin-bottom: 20px;
-        font-weight: 500;
+        font-weight: bold;
         color: #353535;
       }
     }

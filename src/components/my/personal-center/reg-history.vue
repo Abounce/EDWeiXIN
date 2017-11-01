@@ -104,6 +104,7 @@
          position: relative;
          height: 44px;
          .name{
+           font-weight: bold;
            line-height: 44px;
            margin-left: 10px;
            font-size: 17px;
@@ -122,6 +123,9 @@
 
  }
  .inner{
+   font-size: 15px;
+
+   color: #353535;
      margin-left: 10px;
      margin-top: 15px;
  }

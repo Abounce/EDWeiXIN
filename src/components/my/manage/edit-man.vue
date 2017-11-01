@@ -113,6 +113,9 @@
     .left-one{
       margin-left: 14.5px;
       margin-top: 17.5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #353535;
     }
     .right-one{
       position: absolute;
@@ -126,6 +129,7 @@
         vertical-align: top;
       }
       .edit{
+        margin-left: 5px;
         color: #1793e6;
       }
     }
@@ -134,6 +138,7 @@
     margin-top: 30px;
     text-align: center;
     span{
+      font-weight: bold;
       padding: 6% 37%;
       border-radius: 5px;
       background-color: #e64845;

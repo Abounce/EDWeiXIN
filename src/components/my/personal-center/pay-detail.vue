@@ -60,7 +60,7 @@
                 </div>
                 <div class="one-right">
                   <div>1次</div>
-                  <div class="price">¥{{item.rcptMoney}}</div>
+                  <div class="price">¥{{item.rcptMoney|changePrice}}</div>
                 </div>
               </div >
               <my-line></my-line>
@@ -78,6 +78,11 @@
   import {CheckIcon} from 'vux'
   import { TransferDom, Popup, Group, Cell, XButton, XSwitch, Toast, XAddress, ChinaAddressData } from 'vux'
   export default {
+    filters: {
+      changePrice: function (value) {
+        return  Number(value).toFixed(2)
+      }
+    },
     directives: {
       TransferDom
     },
@@ -178,7 +183,7 @@
       }
       .com-two{
         font-size: 16px;
-        font-weight: 500;
+        font-weight: bold;
         color: #353535;
       }
     }
@@ -186,7 +191,7 @@
       height: 54px;
       line-height: 54px;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: bold;
       text-align: center;
       color: #888888;
     }
@@ -222,7 +227,7 @@
       height: 54px;
       line-height: 54px;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: bold;
       text-align: center;
       color: #888888;
     }
