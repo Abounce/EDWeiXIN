@@ -110,7 +110,7 @@
     },
     methods:{
       buttonJKDA(){
-        this.$router.push({name:'健康档案'})
+        this.$router.push({name:'登录爱迪健康'})
       },
       changeCard(){
         this.$router.push({name:'选择就诊人列表'})

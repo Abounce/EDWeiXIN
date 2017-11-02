@@ -5,6 +5,7 @@ import store from './../store/index'
 // axios 配置
 
 axios.defaults.baseURL = 'http://192.168.0.222:8080/weChat';
+// axios.defaults.baseURL = 'http://120.78.183.169:8080/weChat';
 //映射外网地址
 // axios.defaults.baseURL = 'http://1c775781q6.iok.la:32348/appWeChat';
 axios.defaults.timeout = 5000;

@@ -227,6 +227,20 @@ const healthRecord = (resolve) => {
   })
 }
 
+//登录爱迪健康
+const loginHealth = (resolve) => {
+  import('../components/my/personal-center/login-health.vue').then((module) => {
+    resolve(module)
+  })
+}
+
+//验证码登录
+const loginCode = (resolve) => {
+  import('../components/my/personal-center/login-code.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 //选择就诊人列表
 const changeVisitList = (resolve) => {
   import('../components/my/personal-center/change-visit-list.vue').then((module) => {
@@ -439,6 +453,17 @@ let router =new Router({
       path:'/healthRecord',
       name:'健康档案',
       component:healthRecord
+    },
+    {
+      path:'/loginHealth',
+      name:'登陆爱迪健康',
+      component:loginHealth
+    },
+    //loginCode
+    {
+      path:'/loginCode',
+      name:'验证码登录',
+      component:loginCode
     },
     {
       path:'/changeVisitList',
