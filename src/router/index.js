@@ -280,16 +280,15 @@ const myDoctor = (resolve) => {
 }
 
 let router =new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
-    // { path: '*', component: index },
+    { path: '/', component: controlCenter },
     //-----------test------------
     {
       path: '/controlCenter',
       name:'控制中心',
       component: controlCenter
     },
-
 
     //-----------医院信息---------
     {
