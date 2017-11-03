@@ -455,7 +455,7 @@ let router =new Router({
     },
     {
       path:'/loginHealth',
-      name:'登陆爱迪健康',
+      name:'登录爱迪健康',
       component:loginHealth
     },
     //loginCode

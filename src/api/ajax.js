@@ -18,10 +18,13 @@ axios.interceptors.request.use((config)=>{
   // console.log('config--------:'+config)
   store.commit('setLoading',true);
   //在请求发出之前进行一些操作
-  if (!config.url.includes('/OutDepartPay/selectPayInfo')){
+  if (!config.url.includes('/OutDepartPay/selectPayInfo')&&!config.url.includes('/user/PasswordLogin')){
     config.data = Qs.stringify(config.data);
   }
+  if(!config.url.includes('/user/PasswordLogin')){
   config.url+=`?openId=${openId}&token=${token}&hospitalCode=${hospitalCode}`;
+  }
+  
   return config;
 },function(err){
   //Do something with request error

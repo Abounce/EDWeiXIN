@@ -12,6 +12,6 @@
 <style scoped lang="less" type="text/less">
   @import "./../css/variable.less";
   .line{
-    border-bottom: 0.5px solid @color-fgx;
+    border-bottom: 0.5px dashed  @color-fgx;
   }
 </style>
