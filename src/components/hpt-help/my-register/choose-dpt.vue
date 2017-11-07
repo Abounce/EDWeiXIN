@@ -17,7 +17,7 @@
         <betterscroll class="titlecenter" :data="doctorpastlist" :scrollX="true" v-if="doctorpastlist.length">
           <div class="tiltleinner"  :style="{  width: horizontalwidth+'px' }">
             <ul >
-             <li @click="chooseHistoryDocotor"   class="liwidth" v-for="(item,index) in doctorpastlist"><span class="name">{{item.docName}}</span><span class="category">({{item.departName}})</span></li>
+             <li @click="chooseHistoryDocotor(item)"   class="liwidth" v-for="(item,index) in doctorpastlist"><span class="name">{{item.docName}}</span><span class="category">({{item.departName}})</span></li>
             </ul>
           </div>
         </betterscroll>
@@ -62,7 +62,9 @@
     },
     methods: {
       //选择挂过号的医生
-      chooseHistoryDocotor(){
+      chooseHistoryDocotor(doctor){
+//        console.log(doctor.id)
+        this.$loacalstore.set('doctorId',doctor.id)
         this.$router.push({ name: '选择挂号医生' })
       },
       //选择科室

@@ -416,13 +416,16 @@ export function getPasswordLogin(params) {
   return new Promise((resovle,reject)=>{
     ajax({
       url: '/user/PasswordLogin?timestamp=1509502019062',
-      method:'put',
+      method:'PUT',
       baseURL:'http://115.29.7.200:10080/api',
       data: params,
+      // config.headers['Content-Type'] = 'application/json';
+      // config.headers['sign'] = '591f7e1156dea2f1995f5ebd09d3c7bb';
       headers:{
-         'Content-Type':'application/json',
-         'sign:':'591f7e1156dea2f1995f5ebd09d3c7bb'
+        'Content-Type':'application/json',
+        'sign':'591f7e1156dea2f1995f5ebd09d3c7bb'
       }
+
     }).then(body=>{
       resovle(body)
     })

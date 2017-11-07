@@ -282,7 +282,7 @@ const myDoctor = (resolve) => {
 let router =new Router({
   // mode: 'history',
   routes: [
-    { path: '/', component: controlCenter },
+
     //-----------test------------
     {
       path: '/controlCenter',
@@ -488,9 +488,9 @@ let router =new Router({
       path:'/myCode',
       name:'我的识别码',
       component:myCode
-    }
+    },
     //-----------------
-
+    { path: '/', component: controlCenter },
   ]
 });
 

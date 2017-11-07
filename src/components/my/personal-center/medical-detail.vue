@@ -4,7 +4,7 @@
      <div class="title"><span class="icon iconfont icon-lishijilu" style="font-size: 15px; color: #888888;"></span>就诊记录</div>
      <better-scroll class="wrapper" ref="refbs" :data="itemList">
        <ul>
-         <li @click="finishOrder" v-for="(item,index) in itemList">
+         <li @click="finishOrder(item)" v-for="(item,index) in itemList">
            <div>
              <div class="info">
                <div class="name">{{item.patName}}</div>
@@ -46,7 +46,8 @@
     },
     methods:{
       //已完成预约查看
-      finishOrder(){
+      finishOrder(item){
+         this.$loacalstore.set('finishItem',item)
         this.$router.push({name:'已完成预约查看'})
       },
       isUse(item){

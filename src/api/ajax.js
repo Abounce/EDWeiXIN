@@ -4,7 +4,7 @@ import store from './../store/index'
 // Add a request interceptor
 // axios 配置
 
-axios.defaults.baseURL = 'http://192.168.0.222:8080/weChat';
+axios.defaults.baseURL = 'http://1ix8855581.imwork.net:8080/weChat';
 // axios.defaults.baseURL = 'http://120.78.183.169:8080/weChat';
 //映射外网地址
 // axios.defaults.baseURL = 'http://1c775781q6.iok.la:32348/appWeChat';
@@ -24,7 +24,8 @@ axios.interceptors.request.use((config)=>{
   if(!config.url.includes('/user/PasswordLogin')){
   config.url+=`?openId=${openId}&token=${token}&hospitalCode=${hospitalCode}`;
   }
-  
+  // config.headers['Content-Type'] = 'application/json';
+  // config.headers['sign'] = '591f7e1156dea2f1995f5ebd09d3c7bb';
   return config;
 },function(err){
   //Do something with request error

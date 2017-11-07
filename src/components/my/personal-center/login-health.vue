@@ -23,7 +23,7 @@
         loginED(){
           let outArray={"DeviceToken":"1079931993159630355,4077779799703647525","Mobile":"18398609020","Password":"e10adc3949ba59abbe56e057f20f883e","PhoneType":"Android","RegSource":"app"}
           let aa = JSON.stringify(outArray);
-          this.$api.getPasswordLogin(outArray).then((data=>{
+          this.$api.getPasswordLogin(aa).then((data=>{
                 console.log(data)
           }))
 //          this.$router.push({name:'健康档案'})

@@ -132,6 +132,7 @@
       this.$nextTick(()=>{
       this.finishItem=  this.$loacalstore.get('finishItem')
         let paramone={registerNo:this.finishItem.registerNo}
+        console.log(this.finishItem.registerNo)
         this.$api.getSelectHisDiagnosis(paramone).then((data=>{
           this.zhuzhenduan=data
         }))
